@@ -1,0 +1,64 @@
+@import "antd/dist/antd.css";
+
+header {
+  padding: 15px 0px;
+  background: #323233;
+}
+
+.navBar__nav__link,
+.navBar__nav__logo,
+.navBar__nav__Search,
+.navBar__nav__menuIcon {
+  color: #d6d6d6;
+}
+
+.navBar__nav__link:hover,
+.navBar__nav__logo:hover,
+.navBar__nav__Search:hover,
+.navBar__nav__menuIcon:hover {
+  color: white;
+}
+
+.navBar__nav {
+  text-align: center;
+}
+
+.navBar--mobile__col {
+  text-align: center;
+}
+
+.navBar--mobile__col:first-child {
+  padding-left: 20px;
+  text-align: start;
+}
+
+.ant-drawer-header {
+  background-color: black;
+  border-radius: 0;
+  color: #fff;
+}
+
+.ant-drawer-title {
+  color: #fff;
+}
+
+.ant-drawer-body {
+  background-color: black;
+  color: #fff;
+  height: calc(100vh - 55px);
+}
+
+#drawer--menu {
+  background: black;
+  transition: margin-left 1s;
+}
+
+.drawer--menu--show {
+  height: 0px;
+  transition: 0.5s;
+}
+
+.drawer--menu--show.active {
+  height: 500px;
+  transition: 0.5s;
+}
