@@ -1,31 +1,27 @@
-import Contact from "./components/Contact"
-import Home from "./components/Home"
-import Info from "./components/Info"
-import Project from "./components/Projects"
+import Vegetable from "./components/pages/Vegetable"
+import Tuber from "./components/pages/Tuber"
+import Fruit from "./components/pages/Fruit"
+import Home from "./components/pages/Home"
 
 export const routes = [
   {
     path: "/",
-    name: "HOME",
     exact: true,
     Component: <Home routeName="Home" />,
   },
   {
-    path: "/contact",
-    name: "CONTACT",
+    path: "/vegetable",
     exact: true,
-    Component: <Contact routeName="Contact" />,
+    Component: <Vegetable routeName="vegetable" />,
   },
   {
-    path: "/projects",
-    name: "PROJECTS",
+    path: "/tuber",
     exact: true,
-    Component: <Project routeName="Projects" />,
+    Component: <Tuber routeName="tuber" />,
   },
   {
-    path: "/info",
-    name: "INFO",
+    path: "/fruit",
     exact: true,
-    Component: <Info routeName="Info" />,
+    Component: <Fruit routeName="fruit" />,
   },
 ]

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { Row, Col } from "antd"
 import { Link } from "react-router-dom"
-import AppleIcon from "@material-ui/icons/Apple"
-import SearchIcon from "@material-ui/icons/Search"
+import { ShoppingCartOutlined } from "@material-ui/icons"
+import { nav } from "./../../_nav"
 
 const NavBarDesktop = ({ routes, setIsShowMenu }) => {
   useEffect(() => {
@@ -12,22 +12,29 @@ const NavBarDesktop = ({ routes, setIsShowMenu }) => {
   return (
     <>
       <Row>
-        <Col className="navBar__nav" span={4}>
+        <Col className="navBar" span={3}>
           <Link to="/">
-            <AppleIcon className="navBar__nav__logo" />
+            <span className="navBar__nav__logo">Nông sản sạch</span>
           </Link>
         </Col>
 
-        {routes.map((route, index) => (
-          <Col className="navBar__nav" span={4}>
-            <Link className="navBar__nav__link" key={index} to={route.path}>
-              {route.name}
+        <Col className="navBar" span={4}>
+          <input type="text" />
+        </Col>
+
+        {nav.map((item, index) => (
+          <Col key={index} className="navBar" span={2}>
+            <Link to={item.to}>
+              <span className="navBar__nav__link">{item.lable}</span>
             </Link>
           </Col>
         ))}
 
-        <Col className="navBar__nav" span={4}>
-          <SearchIcon className="navBar__nav__Search" />
+        <Col className="navBar" span={3}>
+          <Link style={{ display: "flex", flexDirection: "row" }}>
+            <ShoppingCartOutlined style={{ color: "#9ede73" }} />
+            <span style={{ color: "#d6d6d6" }}>Giỏ hàng</span>
+          </Link>
         </Col>
       </Row>
     </>

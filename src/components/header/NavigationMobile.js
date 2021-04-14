@@ -1,7 +1,7 @@
 import React from "react"
 import { Row, Col } from "antd"
+import SearchIcon from "@material-ui/icons/Search"
 import MenuIcon from "@material-ui/icons/Menu"
-import AppleIcon from "@material-ui/icons/Apple"
 
 const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
   return (
@@ -15,10 +15,12 @@ const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
         </Col>
 
         <Col className="navBar--mobile__col" span={8}>
-          <AppleIcon className="navBar__nav__logo" />
+          <h2 className="navBar__nav__logo">Nông sản sạch</h2>
         </Col>
 
-        <Col span={8}></Col>
+        <Col className="navBar--mobile__col" span={8}>
+          <SearchIcon className="navBar__nav__Search" />
+        </Col>
       </Row>
     </>
   )

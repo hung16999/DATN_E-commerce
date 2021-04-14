@@ -1,0 +1,23 @@
+.product {
+  padding: 15px;
+  width: 222px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  // background: red;
+}
+
+.product__img {
+  margin: auto;
+  width: 192px;
+  max-height: 185px;
+  // background: green;
+}
+
+.list__product {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
