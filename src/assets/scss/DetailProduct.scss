@@ -1,0 +1,19 @@
+body {
+  background: #f1f0f1;
+}
+
+.detail__product {
+  width: 80%;
+  height: 500px;
+  background: white;
+  margin: auto;
+}
+
+.price__status {
+  display: flex;
+  flex-direction: row;
+
+  div:first-child {
+    margin-right: 40px;
+  }
+}

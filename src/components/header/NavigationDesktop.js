@@ -12,25 +12,25 @@ const NavBarDesktop = ({ routes, setIsShowMenu }) => {
   return (
     <>
       <Row>
-        <Col className="navBar" span={3}>
+        <Col span={3}>
           <Link to="/">
             <span className="navBar__nav__logo">Nông sản sạch</span>
           </Link>
         </Col>
 
-        <Col className="navBar" span={4}>
+        <Col span={4}>
           <input type="text" />
         </Col>
 
         {nav.map((item, index) => (
-          <Col key={index} className="navBar" span={2}>
+          <Col key={index} span={2}>
             <Link to={item.to}>
               <span className="navBar__nav__link">{item.lable}</span>
             </Link>
           </Col>
         ))}
 
-        <Col className="navBar" span={3}>
+        <Col span={3}>
           <Link style={{ display: "flex", flexDirection: "row" }}>
             <ShoppingCartOutlined style={{ color: "#9ede73" }} />
             <span style={{ color: "#d6d6d6" }}>Giỏ hàng</span>

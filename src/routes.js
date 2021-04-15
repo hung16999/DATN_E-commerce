@@ -2,26 +2,32 @@ import Vegetable from "./components/pages/Vegetable"
 import Tuber from "./components/pages/Tuber"
 import Fruit from "./components/pages/Fruit"
 import Home from "./components/pages/Home"
+import DetailProduct from "./components/DetailProduct"
 
 export const routes = [
   {
     path: "/",
     exact: true,
-    Component: <Home routeName="Home" />,
+    Component: <Home />,
   },
   {
     path: "/vegetable",
     exact: true,
-    Component: <Vegetable routeName="vegetable" />,
+    Component: <Vegetable />,
   },
   {
     path: "/tuber",
     exact: true,
-    Component: <Tuber routeName="tuber" />,
+    Component: <Tuber />,
   },
   {
     path: "/fruit",
     exact: true,
-    Component: <Fruit routeName="fruit" />,
+    Component: <Fruit />,
+  },
+  {
+    path: "/detail-product/:id",
+    exact: true,
+    Component: <DetailProduct />,
   },
 ]
