@@ -2,19 +2,44 @@ body {
   background: #f1f0f1;
 }
 
-.detail__product {
-  width: 75%;
-  height: 450px;
-  background: white;
+.detail {
+  width: 80%;
+  height: 500px;
   margin: auto;
   margin-top: 50px;
-}
-
-.price__status {
+  background: white;
   display: flex;
   flex-direction: row;
 
-  div:first-child {
-    margin-right: 40px;
+  &.detail--mobile {
+    flex-direction: column;
+    width: 450px;
+    height: auto;
+  }
+
+  &__info {
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+
+  &__info--flex {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__img {
+    width: 445px;
+    height: 445px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  &__info__value {
+    margin-left: 50px;
+
+    &--lineThrough {
+      text-decoration: line-through;
+    }
   }
 }

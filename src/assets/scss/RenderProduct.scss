@@ -51,10 +51,9 @@
   color: white;
   background: #d42333;
   border-radius: 0 0 5px 5px;
-}
-
-.hidden {
-  visibility: hidden;
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 .product__label {
@@ -76,6 +75,9 @@
   color: grey;
   text-decoration: line-through;
   font-size: 14px;
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 .product__button {

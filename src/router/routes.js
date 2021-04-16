@@ -1,8 +1,8 @@
-import Vegetable from "./components/pages/Vegetable"
-import Tuber from "./components/pages/Tuber"
-import Fruit from "./components/pages/Fruit"
-import Home from "./components/pages/Home"
-import DetailProduct from "./components/DetailProduct"
+import Vegetable from "../components/pages/Vegetable"
+import Tuber from "../components/pages/Tuber"
+import Fruit from "../components/pages/Fruit"
+import Home from "../components/pages/Home"
+import DetailProduct from "./../containers/DetailProduct"
 
 export const routes = [
   {

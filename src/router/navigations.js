@@ -1,4 +1,4 @@
-export const nav = [
+export const navigations = [
   { lable: "Rau", to: "/vegetable" },
   { lable: "Củ", to: "/tuber" },
   { lable: "Quả", to: "/fruit" },

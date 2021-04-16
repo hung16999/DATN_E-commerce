@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Row, Col } from "antd"
 import { Link } from "react-router-dom"
 import { ShoppingCartOutlined } from "@material-ui/icons"
-import { nav } from "./../../_nav"
+import { navigations } from "../../router/navigations"
 
 const NavBarDesktop = ({ routes, setIsShowMenu }) => {
   useEffect(() => {
@@ -22,7 +22,7 @@ const NavBarDesktop = ({ routes, setIsShowMenu }) => {
           <input type="text" />
         </Col>
 
-        {nav.map((item, index) => (
+        {navigations.map((item, index) => (
           <Col key={index} span={2}>
             <Link to={item.to}>
               <span className="navBar__nav__link">{item.lable}</span>
