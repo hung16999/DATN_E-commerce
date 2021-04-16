@@ -11,12 +11,9 @@
   bottom: 30px;
   right: 30px;
   z-index: 1000;
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
   &:hover {
     cursor: pointer;
-    background-color: #ff9800;
+    background-color: #ff9900b7;
     opacity: 1;
   }
   &:active {

@@ -4,18 +4,18 @@
 
 .item__product {
   margin: 15px 10px;
-  -webkit-box-shadow: 0px 0px 9px -12px rgba(219, 219, 219, 0.83);
-  -moz-box-shadow: 0px 0px 9px -12px rgba(219, 219, 219, 0.83);
-  box-shadow: 0px 0px 9px -12px rgba(219, 219, 219, 0.83);
+  -webkit-box-shadow: 0px 0px 9px -12px #dbdbdbd3;
+  -moz-box-shadow: 0px 0px 9px -12px #dbdbdbd3;
+  box-shadow: 0px 0px 9px -12px #dbdbdbd3;
   transition: all 0.2s ease-in-out;
   &.sold-out {
     opacity: 0.5;
     pointer-events: none;
   }
   &:hover {
-    -webkit-box-shadow: 0px 0px 9px 6px rgba(219, 219, 219, 0.83);
-    -moz-box-shadow: 0px 0px 9px 6px rgba(219, 219, 219, 0.83);
-    box-shadow: 0px 0px 9px 6px rgba(219, 219, 219, 0.83);
+    -webkit-box-shadow: 0px 0px 9px 6px #dbdbdbd3;
+    -moz-box-shadow: 0px 0px 9px 6px #dbdbdbd3;
+    box-shadow: 0px 0px 9px 6px #dbdbdbd3;
     transform: scale(1.01);
   }
 }

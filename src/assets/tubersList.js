@@ -15,7 +15,7 @@ export const tubersList = [
     label: "Bí đỏ Hải Dương",
     discount: 0,
     price: 10000,
-    remains: 50,
+    remains: 0,
   },
   {
     id: v4(),
