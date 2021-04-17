@@ -25,9 +25,4 @@ export const routes = [
     exact: true,
     Component: <Fruit />,
   },
-  {
-    path: "/detail-product/:id",
-    exact: true,
-    Component: <DetailProduct />,
-  },
 ]
