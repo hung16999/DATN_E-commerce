@@ -6,6 +6,8 @@ import { routes } from "./router/routes"
 import NavigationDesktop from "./components/header/NavigationDesktop"
 import NavigationMobile from "./components/header/NavigationMobile"
 import DrawerMenu from "./components/header/DrawerMenu"
+import { Provider } from "react-redux"
+import store from "./redux/store"
 
 const { useBreakpoint } = Grid
 
@@ -14,7 +16,7 @@ const App = () => {
   const [isShowMenu, setIsShowMenu] = useState()
 
   return (
-    <>
+    <Provider store={store}>
       <BrowserRouter>
         <header>
           {md ? (
@@ -45,7 +47,7 @@ const App = () => {
           </Row>
         </Switch>
       </BrowserRouter>
-    </>
+    </Provider>
   )
 }
 

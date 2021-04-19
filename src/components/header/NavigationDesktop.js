@@ -3,7 +3,11 @@ import { Link } from "react-router-dom"
 import { ShoppingCartOutlined } from "@material-ui/icons"
 import { navigations } from "../../router/navigations"
 import "../../assets/scss/NavigationDesktop.scss"
+import { useSelector } from "react-redux"
 const NavBarDesktop = ({ setIsShowMenu }) => {
+  const store = useSelector((store) => store)
+  const { cart } = store.product
+
   useEffect(() => {
     setIsShowMenu(false)
   })
@@ -29,8 +33,14 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
       ))}
 
       <div className="navbar__cart">
-        <Link style={{ display: "flex", alignContent: "center" }}>
-          <ShoppingCartOutlined style={{ color: "#9ede73" }} />
+        <Link to="/cart" style={{ display: "flex", alignContent: "center" }}>
+          <span className="navbar__cart__text">Giỏ hàng</span>
+          <div className="navbar__cart__icon">
+            <ShoppingCartOutlined style={{ color: "#acf57c" }} />
+            <div hidden={cart.length === 0} className="navbar__cart__badge">
+              {cart.length}
+            </div>
+          </div>
         </Link>
       </div>
     </div>

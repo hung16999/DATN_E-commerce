@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
 import { pricingByDiscount, formatMoney } from "./functions"
 import "../assets/scss/RenderProduct.scss"
 import Modal from "antd/lib/modal/Modal"
@@ -21,7 +20,7 @@ const RenderProduct = ({ listProduct }) => {
   return (
     <div className="renderProduct">
       <div className="wrapper">
-        {listProduct
+        {[...listProduct]
           .sort((item1, item2) => {
             return item2.remains - item1.remains
           })

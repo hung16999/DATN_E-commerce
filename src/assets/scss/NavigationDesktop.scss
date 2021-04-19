@@ -17,41 +17,75 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 44px;
+  height: 40px;
 
   span {
     text-align: center;
     font-size: 16px;
-    color: #d6d6d6;
-
-    &:hover {
-      color: white;
-    }
   }
 
   &__logo {
     span {
-      color: #9ede73;
+      color: #acf57c;
 
-      &:hover {
+      :hover {
         color: #acf57c;
       }
     }
   }
 
-  &__cart {
-    :hover {
-      color: #acf57c;
+  &__item {
+    display: inline-block;
+    span {
+      color: #d6d6d6;
+
+      &:hover {
+        color: white;
+      }
     }
   }
 
   &__search {
     input {
-      height: 30px;
+      height: 35px;
       width: auto;
       outline: none;
       border: none;
       text-indent: 10px;
     }
   }
+
+  &__cart {
+    &__text {
+      color: #d6d6d6;
+      margin-right: 8px;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    &__icon {
+      position: relative;
+      display: inline-block;
+    }
+
+    &__badge {
+      background: #ff4d4f;
+      color: white;
+      font-size: 13px;
+      min-width: 20px;
+      height: 20px;
+      position: absolute;
+      top: -5px;
+      right: -16px;
+      border-radius: 50%;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
+
+.ant-modal-mask {
+  z-index: 0;
 }

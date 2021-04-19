@@ -2,30 +2,44 @@ import React, { useState } from "react"
 import { pricingByDiscount, formatMoney } from "./functions"
 import "../assets/scss/DetailProduct.scss"
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint"
+import { pushItemToCart } from "../redux/state/product"
+import { useDispatch } from "react-redux"
 
 const DetailProduct = ({ product }) => {
+  const dispatch = useDispatch()
   const { md } = useBreakpoint()
   const [count, setCount] = useState(1)
-  const item = product
+
+  const pushItem = () => {
+    setCount(count + 1)
+    dispatch(pushItemToCart(product))
+  }
+
+  const popItem = () => {
+    setCount(count - 1)
+    // dispatch()
+  }
 
   return (
     <div className="detailProduct">
       <div className={md ? "wrapper" : "wrapper wrapper--mobile"}>
         <div
           className="wrapper__image"
-          style={{ backgroundImage: `url(${item.src})` }}
+          style={{ backgroundImage: `url(${product.src})` }}
         ></div>
 
         <div className="wrapper__info">
-          <h2>{item.label}</h2>
+          <h2>{product.label}</h2>
 
           <div className="wrapper__info--flex">
-            {item.discount !== 0 && (
-              <div className="wrapper__info__discount">-{item.discount}%</div>
+            {product.discount !== 0 && (
+              <div className="wrapper__info__discount">
+                -{product.discount}%
+              </div>
             )}
             <div className="wrapper__info__price">
               <div className="wrapper__info__price__properties">
-                {item.discount ? (
+                {product.discount ? (
                   <>
                     <div>Giá niêm yết</div>
                     <div>Giá khuyến mãi</div>
@@ -36,15 +50,15 @@ const DetailProduct = ({ product }) => {
               </div>
 
               <div className="wrapper__info__price__value">
-                {item.discount ? (
+                {product.discount ? (
                   <>
                     <div className="wrapper__info__price__value--lineThrough">
-                      {formatMoney(item.price)}
+                      {formatMoney(product.price)}
                     </div>
-                    <div>{formatMoney(pricingByDiscount(item))}</div>
+                    <div>{formatMoney(pricingByDiscount(product))}</div>
                   </>
                 ) : (
-                  <div>{formatMoney(item.price)}</div>
+                  <div>{formatMoney(product.price)}</div>
                 )}
               </div>
             </div>
@@ -58,11 +72,13 @@ const DetailProduct = ({ product }) => {
                 >
                   -
                 </button>
+
                 <input
                   className="wrapper__info__counter__input"
                   type="text"
                   value={count}
                 />
+
                 <button onClick={() => setCount(count + 1)}>+</button>
               </div>
             </div>
@@ -70,7 +86,7 @@ const DetailProduct = ({ product }) => {
 
           <div className="wrapper__button">
             <button>MUA NGAY</button>
-            <button>THÊM VÀO GIỎ HÀNG</button>
+            <button onClick={pushItem}>THÊM VÀO GIỎ HÀNG</button>
           </div>
         </div>
       </div>
