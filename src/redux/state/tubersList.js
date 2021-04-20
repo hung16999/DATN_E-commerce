@@ -7,7 +7,7 @@ export const tubersList = [
     label: "Bí đỏ",
     discount: 0,
     price: 523000,
-    remains: 0,
+    remains: 500,
   },
   {
     id: v4(),
@@ -23,7 +23,7 @@ export const tubersList = [
     label: "Cà chua",
     discount: 0,
     price: 9000,
-    remains: 50,
+    remains: 540,
   },
   {
     id: v4(),
@@ -39,7 +39,7 @@ export const tubersList = [
     label: "Củ đậu",
     discount: 5,
     price: 96000,
-    remains: 50,
+    remains: 520,
   },
   {
     id: v4(),
@@ -47,7 +47,7 @@ export const tubersList = [
     label: "Đậu Cove",
     discount: 5,
     price: 20000,
-    remains: 50,
+    remains: 510,
   },
   {
     id: v4(),
@@ -55,7 +55,7 @@ export const tubersList = [
     label: "Gừng củ",
     discount: 50,
     price: 45000,
-    remains: 0,
+    remains: 10,
   },
   {
     id: v4(),

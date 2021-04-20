@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux"
 const DetailProduct = ({ product }) => {
   const dispatch = useDispatch()
   const { md } = useBreakpoint()
-  const [count, setCount] = useState(1)
 
   const pushItem = () => {
     setCount(count + 1)

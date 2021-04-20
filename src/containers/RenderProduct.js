@@ -5,15 +5,15 @@ import Modal from "antd/lib/modal/Modal"
 import DetailProduct from "./DetailProduct"
 
 const RenderProduct = ({ listProduct }) => {
-  const [isShowModal, setisShowModal] = useState(false)
+  const [isShowModal, setIsShowModal] = useState(false)
   const [itemClicked, setItemClicked] = useState({})
 
   const handleCancel = () => {
-    setisShowModal(false)
+    setIsShowModal(false)
   }
 
   const handleClick = (item) => {
-    setisShowModal(true)
+    setIsShowModal(true)
     setItemClicked(item)
   }
 
