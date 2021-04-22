@@ -1,8 +1,8 @@
-import Vegetable from "../components/pages/Vegetable"
-import Tuber from "../components/pages/Tuber"
 import Fruit from "../components/pages/Fruit"
 import Home from "../components/pages/Home"
-import Cart from "../components/pages/Cart"
+import Payment from "../components/pages/Payment"
+import Tuber from "../components/pages/Tuber"
+import Vegetable from "../components/pages/Vegetable"
 
 export const routes = [
   {
@@ -26,8 +26,8 @@ export const routes = [
     Component: <Fruit />,
   },
   {
-    path: "/cart",
+    path: "/payment",
     exact: true,
-    Component: <Cart />,
+    Component: <Payment />,
   },
 ]

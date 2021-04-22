@@ -4,7 +4,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/biDo.jpg",
-    label: "Bí đỏ",
+    name: "Bí đỏ",
     discount: 0,
     price: 523000,
     remains: 500,
@@ -12,7 +12,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/biDoDai.jpg",
-    label: "Bí đỏ Hải Dương",
+    name: "Bí đỏ Hải Dương",
     discount: 0,
     price: 10000,
     remains: 0,
@@ -20,7 +20,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/caChua.jpg",
-    label: "Cà chua",
+    name: "Cà chua",
     discount: 0,
     price: 9000,
     remains: 540,
@@ -28,7 +28,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/caTim.jpg",
-    label: "Cà tím",
+    name: "Cà tím",
     discount: 11,
     price: 87000,
     remains: 0,
@@ -36,7 +36,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/cuDau.jpg",
-    label: "Củ đậu",
+    name: "Củ đậu",
     discount: 5,
     price: 96000,
     remains: 520,
@@ -44,7 +44,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/dauCove.jpg",
-    label: "Đậu Cove",
+    name: "Đậu Cove",
     discount: 5,
     price: 20000,
     remains: 510,
@@ -52,23 +52,23 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/gungCu.jpg",
-    label: "Gừng củ",
+    name: "Gừng củ",
     discount: 50,
-    price: 45000,
+    price: 67000,
     remains: 10,
   },
   {
     id: v4(),
     src: "/img/cuQua/hanhCuHD.jpg",
-    label: "Hành củ Hưng Yên",
+    name: "Hành củ Hưng Yên",
     discount: 23,
     price: 56000,
-    remains: 50,
+    remains: 0,
   },
   {
     id: v4(),
     src: "/img/cuQua/hanhTay.jpg",
-    label: "Hành tây",
+    name: "Hành tây",
     discount: 33,
     price: 400000,
     remains: 50,
@@ -76,15 +76,15 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/hatSen.jpg",
-    label: "Hạt sen",
+    name: "Hạt sen",
     discount: 0,
     price: 94000,
-    remains: 50,
+    remains: 0,
   },
   {
     id: v4(),
     src: "/img/cuQua/khoaiLang.jpg",
-    label: "Khoai lang",
+    name: "Khoai lang",
     discount: 11,
     price: 43000,
     remains: 50,
@@ -92,7 +92,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/muopDang.jpg",
-    label: "Mướp đắng",
+    name: "Mướp đắng",
     discount: 0,
     price: 69000,
     remains: 50,
@@ -100,7 +100,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/ngo.jpg",
-    label: "Ngô",
+    name: "Ngô",
     discount: 0,
     price: 34000,
     remains: 50,
@@ -108,7 +108,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/otChuong.jpg",
-    label: "Ớt chuông Đà Lạt",
+    name: "Ớt chuông Đà Lạt",
     discount: 0,
     price: 106000,
     remains: 50,
@@ -116,7 +116,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/otMau.jpg",
-    label: "Ớt Nhật",
+    name: "Ớt Nhật",
     discount: 0,
     price: 90000,
     remains: 50,
@@ -124,7 +124,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/otNgot.jpg",
-    label: "Ớt ngọt",
+    name: "Ớt ngọt",
     discount: 10,
     price: 10000,
     remains: 50,
@@ -132,7 +132,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/otNho.jpg",
-    label: "Ớt cay",
+    name: "Ớt cay",
     discount: 0,
     price: 103000,
     remains: 50,
@@ -140,7 +140,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/quaBau.jpg",
-    label: "Quả bầu",
+    name: "Quả bầu",
     discount: 0,
     price: 10000,
     remains: 50,
@@ -148,7 +148,7 @@ export const tubersList = [
   {
     id: v4(),
     src: "/img/cuQua/toiCu.jpg",
-    label: "Tỏi củ",
+    name: "Tỏi củ",
     discount: 0,
     price: 123000,
     remains: 50,

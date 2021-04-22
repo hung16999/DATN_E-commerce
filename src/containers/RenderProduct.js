@@ -1,12 +1,32 @@
-import React, { useState } from "react"
-import { pricingByDiscount, formatMoney } from "./functions"
 import "../assets/scss/RenderProduct.scss"
-import Modal from "antd/lib/modal/Modal"
-import DetailProduct from "./DetailProduct"
 
-const RenderProduct = ({ listProduct }) => {
+import React, { useState } from "react"
+import { formatMoney, priceByDiscount } from "./functions"
+
+import Modal from "antd/lib/modal/Modal"
+import ProductDetail from "./ProductDetail"
+
+const RenderProduct = ({ products }) => {
   const [isShowModal, setIsShowModal] = useState(false)
-  const [itemClicked, setItemClicked] = useState({})
+  const [itemSelected, setItemSelected] = useState({})
+
+  const editData = () => {
+    return products.map((item) => ({ ...item, quantity: 1 }))
+  }
+
+  const [data, setData] = useState(editData())
+
+  const increaseQuantity = (item) => {
+    const itemFinded = data.find((product) => product.id === item.id)
+    itemFinded.quantity++
+    setData([...data])
+  }
+
+  const decreaseQuantity = (item) => {
+    const itemFinded = data.find((product) => product.id === item.id)
+    itemFinded.quantity--
+    setData([...data])
+  }
 
   const handleCancel = () => {
     setIsShowModal(false)
@@ -14,13 +34,13 @@ const RenderProduct = ({ listProduct }) => {
 
   const handleClick = (item) => {
     setIsShowModal(true)
-    setItemClicked(item)
+    setItemSelected(item)
   }
 
   return (
     <div className="renderProduct">
       <div className="wrapper">
-        {[...listProduct]
+        {data
           .sort((item1, item2) => {
             return item2.remains - item1.remains
           })
@@ -31,6 +51,9 @@ const RenderProduct = ({ listProduct }) => {
                 item.remains ? "wrapper__item" : "wrapper__item disable"
               }
             >
+              {item.remains === 0 && (
+                <div className="wrapper__item__sold-out">HẾT HÀNG</div>
+              )}
               <div
                 className={
                   item.discount
@@ -45,10 +68,10 @@ const RenderProduct = ({ listProduct }) => {
                 <img src={item.src} alt="" />
               </div>
 
-              <div className="wrapper__item__label__price">
-                <div className="wrapper__item__label">{item.label}</div>
+              <div className="wrapper__item__name__price">
+                <div className="wrapper__item__name">{item.name}</div>
                 <div className="wrapper__item__currentPrice">
-                  {formatMoney(pricingByDiscount(item))}
+                  {formatMoney(priceByDiscount(item))}
                 </div>
 
                 <div
@@ -61,10 +84,6 @@ const RenderProduct = ({ listProduct }) => {
                   {formatMoney(item.price)}
                 </div>
               </div>
-
-              <button className="wrapper__item__button">
-                {item.remains ? "THÊM VÀO GIỎ" : "HẾT HÀNG"}
-              </button>
             </div>
           ))}
       </div>
@@ -76,7 +95,11 @@ const RenderProduct = ({ listProduct }) => {
         visible={isShowModal}
         onCancel={handleCancel}
       >
-        <DetailProduct product={itemClicked} />
+        <ProductDetail
+          itemSelected={itemSelected}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+        />
       </Modal>
     </div>
   )

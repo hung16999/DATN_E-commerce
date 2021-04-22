@@ -1,7 +1,8 @@
-import React from "react"
-import { Row, Col } from "antd"
-import SearchIcon from "@material-ui/icons/Search"
+import { Col, Row } from "antd"
+
 import MenuIcon from "@material-ui/icons/Menu"
+import React from "react"
+import SearchIcon from "@material-ui/icons/Search"
 
 const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
   return (

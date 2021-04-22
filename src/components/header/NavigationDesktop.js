@@ -1,12 +1,20 @@
+import "../../assets/scss/NavigationDesktop.scss"
+
 import React, { useEffect } from "react"
+
 import { Link } from "react-router-dom"
 import { ShoppingCartOutlined } from "@material-ui/icons"
 import { navigations } from "../../router/navigations"
-import "../../assets/scss/NavigationDesktop.scss"
 import { useSelector } from "react-redux"
+
 const NavBarDesktop = ({ setIsShowMenu }) => {
-  const store = useSelector((store) => store)
-  const { cart } = store.product
+  const cart = useSelector((store) => store.cart)
+
+  const countItemInCart = () => {
+    return cart.reduce((total, item) => {
+      return total + item.quantity
+    }, 0)
+  }
 
   useEffect(() => {
     setIsShowMenu(false)
@@ -33,12 +41,13 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
       ))}
 
       <div className="navbar__cart">
-        <Link to="/cart" style={{ display: "flex", alignContent: "center" }}>
-          <span className="navbar__cart__text">Giỏ hàng</span>
+        <Link to="/payment" style={{ display: "flex", alignContent: "center" }}>
           <div className="navbar__cart__icon">
-            <ShoppingCartOutlined style={{ color: "#acf57c" }} />
+            <ShoppingCartOutlined
+              style={{ color: "#acf57c", marginTop: "10px" }}
+            />
             <div hidden={cart.length === 0} className="navbar__cart__badge">
-              {cart.length}
+              {countItemInCart()}
             </div>
           </div>
         </Link>

@@ -1,9 +1,9 @@
 .renderProduct {
   width: 100%;
-  background: #fbfbfd;
+  background: #f1f0f1;
 
   .wrapper {
-    background: white;
+    background: #f1f0f1;
     margin: auto;
     width: 90%;
     display: flex;
@@ -11,11 +11,12 @@
     justify-content: center;
 
     &__item {
+      background: white;
       cursor: pointer;
-      margin: 15px 10px;
-      padding: 10px 15px 20px;
+      margin: 10px;
+      padding: 10px;
       width: 215px;
-      height: 315px;
+      height: 310px;
       display: flex;
       flex-direction: column;
       -webkit-box-shadow: 0px 0px 9px -12px #dbdbdbd3;
@@ -36,7 +37,6 @@
       }
 
       &__discount {
-        margin-bottom: 10px;
         span {
           padding: 3px 6px;
           border-radius: 0 0 5px 5px;
@@ -51,19 +51,17 @@
 
       &__img {
         margin: auto;
-        width: 180px;
-        height: 160px;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      &__label__price {
+      &__name__price {
         margin-left: 20px;
       }
 
-      &__label {
+      &__name {
         margin-bottom: 5px;
         color: #333333;
         font-size: 16px;
@@ -86,16 +84,8 @@
         }
       }
 
-      &__button {
-        font-size: 14px;
-        cursor: pointer;
-        margin: 0 15px;
-        padding: 6px;
-        color: white;
-        background: #ed1c24;
-        border: none;
-        border-radius: 2px;
-        outline: none;
+      &__sold-out {
+        color: #ed1c24;
       }
     }
   }

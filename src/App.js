@@ -1,12 +1,14 @@
-import React, { useState } from "react"
 import "./assets/scss/index.scss"
-import { Row, Grid } from "antd"
+
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { routes } from "./router/routes"
+import { Grid, Row } from "antd"
+import React, { useState } from "react"
+
+import DrawerMenu from "./components/header/DrawerMenu"
 import NavigationDesktop from "./components/header/NavigationDesktop"
 import NavigationMobile from "./components/header/NavigationMobile"
-import DrawerMenu from "./components/header/DrawerMenu"
 import { Provider } from "react-redux"
+import { routes } from "./router/routes"
 import store from "./redux/store"
 
 const { useBreakpoint } = Grid

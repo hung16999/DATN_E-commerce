@@ -2,6 +2,10 @@ body {
   background: #f1f0f1;
 }
 
+button {
+  cursor: pointer;
+}
+
 .detailProduct {
   .wrapper {
     height: 350px;
@@ -72,6 +76,7 @@ body {
       &__counter {
         display: flex;
         flex-direction: row;
+        align-items: flex-end;
 
         &__input {
           text-align: center;
@@ -92,6 +97,13 @@ body {
           font-size: 16px;
           margin-right: 30px;
           margin-left: 15px;
+
+          + div {
+            + div {
+              font-size: 25px;
+              font-weight: bold;
+            }
+          }
         }
       }
     }
@@ -99,12 +111,13 @@ body {
     &__button {
       margin-top: 20px;
 
-      button {
+      button,
+      a {
         padding: 5px 30px;
         cursor: pointer;
       }
 
-      :first-child {
+      a {
         background: #d10a00;
         border: 1px solid #d10a00;
         border-radius: 3px;

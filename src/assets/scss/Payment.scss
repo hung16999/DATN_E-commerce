@@ -1,0 +1,94 @@
+.payment {
+  background: #f1f0f1;
+  height: calc(100vh - 10px);
+
+  .wrapper {
+    width: 80%;
+    margin: auto;
+
+    &__button {
+      background: #f1f0f1;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      position: sticky;
+      top: 40px;
+      z-index: 1000;
+
+      a {
+        padding: 10px 20px;
+        background: #4caf50;
+        color: white;
+        border-radius: 4px;
+      }
+
+      button {
+        background: #d10a00;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        padding: 10px 20px;
+      }
+    }
+
+    &__item {
+      background: white;
+      display: flex;
+      align-items: center;
+      height: 125px;
+      margin: 5px 0;
+
+      img {
+        height: 120px;
+        width: auto;
+      }
+
+      &__title {
+        button {
+          background: none;
+          border: none;
+          color: #d10a00;
+        }
+      }
+
+      &__counter {
+        display: flex;
+
+        input {
+          text-align: center;
+          width: 30px;
+          height: 30px;
+          outline: none;
+          border: 1px solid #e8e8e8;
+        }
+
+        button {
+          width: 30px;
+          height: 30px;
+          outline: none;
+          border: 1px solid #e8e8e8;
+        }
+      }
+    }
+
+    &__pricing {
+      background: white;
+      margin-left: 30px;
+      padding: 20px;
+      position: sticky;
+      top: 40px;
+
+      &__price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        div:nth-child(1),
+        div:nth-child(2) {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
