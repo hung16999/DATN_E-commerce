@@ -46,6 +46,7 @@ const RenderProduct = ({ products }) => {
           })
           .map((item) => (
             <div
+              key={item.id}
               onClick={() => handleClick(item)}
               className={
                 item.remains ? "wrapper__item" : "wrapper__item disable"

@@ -16,8 +16,6 @@ const ProductDetail = ({
   const { md } = useBreakpoint()
   const dispatch = useDispatch()
 
-  console.log("detail", itemSelected)
-
   const push = () => {
     const item = Object.assign({}, itemSelected)
     dispatch(pushToCart(item))
@@ -100,7 +98,10 @@ const ProductDetail = ({
           </div>
 
           <div className="wrapper__button">
-            <Link to="/payment">MUA NGAY</Link>
+            <Link to="/payment" onClick={push}>
+              MUA NGAY
+            </Link>
+
             <button onClick={push}>THÊM VÀO GIỎ HÀNG</button>
           </div>
         </div>
