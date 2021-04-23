@@ -16,7 +16,9 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 
 import { Content } from "antd/lib/layout/layout"
+import DeleteIcon from "@material-ui/icons/Delete"
 import { Link } from "react-router-dom"
+import PaymentIcon from "@material-ui/icons/Payment"
 import React from "react"
 
 const Payment = () => {
@@ -46,11 +48,8 @@ const Payment = () => {
               okText="Xác nhận"
               cancelText="Hủy"
             >
-              <button
-                style={
-                  !cart.length && { pointerEvents: "none", opacity: "0.5" }
-                }
-              >
+              <button className={!cart.length && "disable"}>
+                <DeleteIcon />
                 XÓA GIỎ HÀNG
               </button>
             </Popconfirm>
@@ -65,7 +64,7 @@ const Payment = () => {
 
                 <Col span={7} className="wrapper__item__title">
                   <Col span={24}>
-                    <h3>{item.name}</h3>
+                    <span>{item.name}</span>
                   </Col>
 
                   <Col span={24}>
@@ -83,12 +82,6 @@ const Payment = () => {
                 <Col span={12}>
                   <Row>
                     <Col span={12} className="wrapper__item__money">
-                      <span className="wrapper__item__money__bold">
-                        {formatMoney(
-                          priceByQuantity(item.quantity, priceByDiscount(item))
-                        )}
-                      </span>
-
                       {item.discount !== 0 && (
                         <>
                           <span className="wrapper__item__money__blur">
@@ -100,10 +93,17 @@ const Payment = () => {
                           <span>({`-${item.discount}%`})</span>
                         </>
                       )}
+
+                      <span className="wrapper__item__money__bold">
+                        {formatMoney(
+                          priceByQuantity(item.quantity, priceByDiscount(item))
+                        )}
+                      </span>
                     </Col>
 
                     <Col span={12} className="wrapper__item__counter">
                       <button
+                        disabled={item.quantity === 1}
                         onClick={() => {
                           dispatch(decreaseQuantity(item))
                         }}
@@ -150,7 +150,10 @@ const Payment = () => {
               </div>
             </div>
 
-            <button>THANH TOÁN</button>
+            <button>
+              <PaymentIcon />
+              <span>THANH TOÁN</span>
+            </button>
           </div>
         </Col>
       </Row>

@@ -23,11 +23,18 @@
       }
 
       button {
+        display: flex;
+        align-items: center;
         background: #d10a00;
         border: none;
         border-radius: 4px;
         color: white;
-        padding: 10px 20px;
+        padding: 10px 10px;
+
+        &.disable {
+          pointer-events: none;
+          opacity: 0.5;
+        }
       }
     }
 
@@ -44,6 +51,10 @@
       }
 
       &__title {
+        span {
+          font-size: 20px;
+        }
+
         button {
           background: none;
           border: none;
@@ -57,11 +68,11 @@
         &__bold {
           font-weight: bold;
           font-size: 20px;
+          margin-left: 5px;
         }
 
         &__blur {
           color: #9a9a9a;
-          margin-left: 5px;
           text-decoration: line-through;
 
           + span {
@@ -73,7 +84,9 @@
 
       &__counter {
         display: flex;
+        justify-content: center;
         padding-left: 10px;
+
         input {
           text-align: center;
           width: 30px;
@@ -113,6 +126,23 @@
           span {
             text-align: end;
           }
+        }
+      }
+
+      button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffc439;
+        color: white;
+        border: none;
+        padding: 7px 35px;
+
+        span {
+          font-size: 16px;
+          font-weight: 500;
+          margin-left: 10px;
         }
       }
     }

@@ -1,11 +1,16 @@
-import React from "react"
-import { Row, Col } from "antd"
+import "./../../assets/scss/DrawerMenu.scss"
+
+import { Col, Row } from "antd"
+
 import { Link } from "react-router-dom"
+import React from "react"
 
 const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
+  console.log(routes)
   return (
     <>
-      <div id="drawer--menu">
+      <div>đây là drwer menu</div>
+      <div>
         <div
           className={
             isShowMenu ? "drawer--menu--show active" : "drawer--menu--show"
@@ -19,7 +24,7 @@ const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
                     className="navBar__nav__link"
                     key={index}
                     to={route.path}
-                    onClick={() => setIsShowMenu(false)}
+                    onClick={() => setIsShowMenu()}
                   >
                     {route.name}
                   </Link>

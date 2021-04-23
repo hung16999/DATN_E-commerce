@@ -2,23 +2,26 @@ import "../assets/scss/ProductDetail.scss"
 
 import { formatMoney, priceByDiscount, priceByQuantity } from "./functions"
 
-import { Link } from "react-router-dom"
 import React from "react"
 import { pushToCart } from "../redux/actions"
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint"
 import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
 
-const ProductDetail = ({
-  itemSelected,
-  increaseQuantity,
-  decreaseQuantity,
-}) => {
+const ProductDetail = (props) => {
+  const { itemSelected, increaseQuantity, decreaseQuantity } = props
+  const history = useHistory()
   const { md } = useBreakpoint()
   const dispatch = useDispatch()
 
   const push = () => {
     const item = Object.assign({}, itemSelected)
     dispatch(pushToCart(item))
+  }
+
+  const redirectToCart = () => {
+    push()
+    history.push("/payment")
   }
 
   return (
@@ -38,6 +41,7 @@ const ProductDetail = ({
                 -{itemSelected.discount}%
               </div>
             )}
+
             <div className="wrapper__info__price">
               <div className="wrapper__info__price__properties">
                 {itemSelected.discount ? (
@@ -98,10 +102,7 @@ const ProductDetail = ({
           </div>
 
           <div className="wrapper__button">
-            <Link to="/payment" onClick={push}>
-              MUA NGAY
-            </Link>
-
+            <button onClick={redirectToCart}>MUA NGAY</button>
             <button onClick={push}>THÊM VÀO GIỎ HÀNG</button>
           </div>
         </div>

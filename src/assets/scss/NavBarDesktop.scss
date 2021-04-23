@@ -1,0 +1,83 @@
+header {
+  background: #000000cc;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 44px;
+  text-align: center;
+}
+
+.navbar__desktop {
+  .navbar {
+    height: 100%;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    span {
+      text-align: center;
+      font-size: 16px;
+    }
+
+    &__logo {
+      span {
+        color: #acf57c;
+
+        :hover {
+          color: #acf57c;
+        }
+      }
+    }
+
+    &__item {
+      display: inline-block;
+      span {
+        color: #d6d6d6;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    &__search {
+      input {
+        height: 30px;
+        width: auto;
+        outline: none;
+        border: none;
+        text-indent: 10px;
+      }
+    }
+
+    &__cart {
+      &__icon {
+        position: relative;
+        display: inline-block;
+      }
+
+      &__badge {
+        background: #ff4d4f;
+        color: white;
+        font-size: 13px;
+        min-width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 1px;
+        right: -16px;
+        border-radius: 50%;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.ant-modal-mask {
+  z-index: 0;
+}

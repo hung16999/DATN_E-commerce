@@ -44,6 +44,7 @@ button {
         color: white;
         background: #d42333;
         border-radius: 0 0 5px 5px;
+
         &.hidden {
           visibility: hidden;
         }
@@ -111,13 +112,12 @@ button {
     &__button {
       margin-top: 20px;
 
-      button,
-      a {
+      button {
         padding: 5px 30px;
         cursor: pointer;
       }
 
-      a {
+      :first-child {
         background: #d10a00;
         border: 1px solid #d10a00;
         border-radius: 3px;

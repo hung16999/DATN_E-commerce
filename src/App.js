@@ -5,9 +5,10 @@ import { Grid, Row } from "antd"
 import React, { useState } from "react"
 
 import DrawerMenu from "./components/header/DrawerMenu"
-import NavigationDesktop from "./components/header/NavigationDesktop"
-import NavigationMobile from "./components/header/NavigationMobile"
+import NavBarDesktop from "./components/header/NavBarDesktop"
+import NavBarMobile from "./components/header/NavBarMobile"
 import { Provider } from "react-redux"
+import { navigations } from "./router/navigations"
 import { routes } from "./router/routes"
 import store from "./redux/store"
 
@@ -15,25 +16,20 @@ const { useBreakpoint } = Grid
 
 const App = () => {
   const { md } = useBreakpoint()
-  const [isShowMenu, setIsShowMenu] = useState()
+  const [isShowMenu, setIsShowMenu] = useState(true)
 
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <header>
-          {md ? (
-            <NavigationDesktop setIsShowMenu={setIsShowMenu} routes={routes} />
-          ) : (
-            <NavigationMobile
-              isShowMenu={isShowMenu}
-              setIsShowMenu={setIsShowMenu}
-            />
-          )}
-        </header>
+        {md ? (
+          <NavBarDesktop routes={routes} />
+        ) : (
+          <NavBarMobile isShowMenu={isShowMenu} />
+        )}
 
         {!md && (
           <DrawerMenu
-            routes={routes}
+            routes={navigations}
             isShowMenu={isShowMenu}
             setIsShowMenu={setIsShowMenu}
           />
