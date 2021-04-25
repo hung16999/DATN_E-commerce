@@ -1,8 +1,8 @@
 export const navigations = [
-  { lable: "Rau", to: "/vegetable" },
-  { lable: "Củ", to: "/tuber" },
-  { lable: "Quả", to: "/fruit" },
-  { lable: "Thịt", to: "/meat" },
-  { lable: "Trứng", to: "/egg" },
-  { lable: "Sữa", to: "/milk" },
+  { label: "Rau", to: "/vegetable" },
+  { label: "Củ", to: "/tuber" },
+  { label: "Quả", to: "/fruit" },
+  { label: "Thịt", to: "/meat" },
+  { label: "Trứng", to: "/egg" },
+  { label: "Sữa", to: "/milk" },
 ]

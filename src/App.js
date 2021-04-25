@@ -24,7 +24,7 @@ const App = () => {
         {md ? (
           <NavBarDesktop routes={routes} />
         ) : (
-          <NavBarMobile isShowMenu={isShowMenu} />
+          <NavBarMobile isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
         )}
 
         {!md && (

@@ -26,7 +26,7 @@ const NavBarDesktop = () => {
         {navigations.map((item, index) => (
           <div className="navbar__item" key={index}>
             <Link to={item.to}>
-              <span>{item.lable}</span>
+              <span>{item.label}</span>
             </Link>
           </div>
         ))}

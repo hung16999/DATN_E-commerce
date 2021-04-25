@@ -26,40 +26,44 @@ header {
       align-items: center;
       justify-content: center;
 
-      .hrcss {
+      hr {
         width: 19px;
         border: 0;
         height: 1px;
         background: #d6d6d6;
+        margin: 3px;
+
+        &:first-child {
+          transition: margin 0.5s, transform 0.5s;
+          transition-timing-function: ease;
+        }
 
         &:last-child {
-          margin-top: -2px;
+          transition: margin 0.2s, transform 0.5s;
+          transition-timing-function: ease;
         }
-        // transform: rotate(0deg);
-        transition: 0.5s;
       }
 
-      .quay1 {
-        width: 19px;
-        border: 0;
-        height: 1px;
-        background: #d6d6d6;
+      .hr1 {
+        margin: 0;
         transform: rotate(45deg);
-        transition: 0.5s;
+        transition: margin 0.5s, transform 0.5s;
+        transition-timing-function: ease;
       }
 
-      .quay2 {
-        width: 19px;
-        border: 0;
-        height: 1px;
-        background: #d6d6d6;
+      .hr2 {
+        margin-top: -1px;
         transform: rotate(-45deg);
-        transition: 0.5s;
-        margin-top: -8px;
+        transition: margin 0.5s transform 0.5s;
+        transition-timing-function: ease;
       }
 
       &:hover {
         cursor: pointer;
+
+        hr {
+          background: white;
+        }
       }
     }
 
@@ -76,6 +80,11 @@ header {
       justify-content: center;
       width: 44px;
       height: 44px;
+
+      :hover {
+        color: white;
+        cursor: pointer;
+      }
     }
   }
 }

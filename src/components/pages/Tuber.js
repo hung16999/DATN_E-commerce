@@ -3,9 +3,8 @@ import React from "react"
 import RenderProduct from "../../containers/RenderProduct"
 import { useSelector } from "react-redux"
 
-const Tuber = () => {
+const Tuber = ({ routes, isShowMenu, setIsShowMenu }) => {
   const store = useSelector((store) => store)
-  console.log("Tubers", store)
 
   return (
     <>

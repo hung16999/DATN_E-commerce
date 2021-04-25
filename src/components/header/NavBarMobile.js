@@ -1,19 +1,18 @@
 import "./../../assets/scss/NavBarMobile.scss"
 
-import React, { useState } from "react"
-
+import React from "react"
 import SearchIcon from "@material-ui/icons/Search"
 
-const NavBarMobile = () => {
-  const [isShow, setIsShow] = useState(false)
-
+const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
   return (
     <header className="navbar__mobile">
       <div className="navbar">
-        <div onClick={() => setIsShow(!isShow)} className="navbar__menu">
-          <hr className={isShow ? "quay1" : "hrcss"} />
-
-          <hr className={isShow ? "quay2" : "hrcss"} />
+        <div
+          className="navbar__menu"
+          onClick={() => setIsShowMenu(!isShowMenu)}
+        >
+          <hr className={isShowMenu ? "hr1" : ""} />
+          <hr className={isShowMenu ? "hr2" : ""} />
         </div>
 
         <div>
