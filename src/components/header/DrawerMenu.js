@@ -1,17 +1,24 @@
-import "./../../assets/scss/DrawerMenu.scss"
+import "../../assets/scss/DrawerMenu.scss"
 
 import { Link } from "react-router-dom"
 import React from "react"
 
 const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
-  console.log("---drawer menu", routes)
   return (
-    <div className={isShowMenu ? "drawerMenu active" : "drawerMenu"}>
-      {routes.map((route, index) => (
-        <div key={index}>
-          <Link to={route.to}>{route.label}</Link>
-        </div>
-      ))}
+    <div className={!isShowMenu ? "drawer__menu" : "drawer__menu active"}>
+      <div className="drawer__menu__list">
+        {routes.map((route, index) => (
+          <Link to={route.to}>
+            <div
+              className="drawer__menu__item"
+              key={index}
+              onClick={() => setIsShowMenu(!isShowMenu)}
+            >
+              {route.label}
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

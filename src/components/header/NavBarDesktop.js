@@ -5,10 +5,15 @@ import React from "react"
 import { ShoppingCartOutlined } from "@material-ui/icons"
 import { countItemInCart } from "../../containers/functions"
 import { navigations } from "../../router/navigations"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
-const NavBarDesktop = () => {
+const NavBarDesktop = ({ setIsShowMenu }) => {
   const cart = useSelector((store) => store.cart)
+
+  useEffect(() => {
+    setIsShowMenu(false)
+  })
 
   return (
     <header className="navbar__desktop">

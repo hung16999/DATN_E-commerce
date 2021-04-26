@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Grid, Row } from "antd"
 import React, { useState } from "react"
 
+import { BackDrop } from "./components/header/BackDrop"
 import DrawerMenu from "./components/header/DrawerMenu"
 import NavBarDesktop from "./components/header/NavBarDesktop"
 import NavBarMobile from "./components/header/NavBarMobile"
@@ -16,13 +17,14 @@ const { useBreakpoint } = Grid
 
 const App = () => {
   const { md } = useBreakpoint()
-  const [isShowMenu, setIsShowMenu] = useState(true)
+  const [isShowMenu, setIsShowMenu] = useState(false)
+  console.log("---app--", isShowMenu)
 
   return (
     <Provider store={store}>
       <BrowserRouter>
         {md ? (
-          <NavBarDesktop routes={routes} />
+          <NavBarDesktop routes={routes} setIsShowMenu={setIsShowMenu} />
         ) : (
           <NavBarMobile isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
         )}
@@ -33,6 +35,10 @@ const App = () => {
             isShowMenu={isShowMenu}
             setIsShowMenu={setIsShowMenu}
           />
+        )}
+
+        {!md && (
+          <BackDrop isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
         )}
 
         <Switch>
