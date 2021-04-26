@@ -47,11 +47,19 @@ header {
 
     &__search {
       input {
+        color: black;
         height: 30px;
-        width: auto;
+        width: 300px;
         outline: none;
         border: none;
         text-indent: 10px;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        background: white;
       }
     }
 

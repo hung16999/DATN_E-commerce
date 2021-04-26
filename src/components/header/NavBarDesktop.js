@@ -2,6 +2,7 @@ import "../../assets/scss/NavBarDesktop.scss"
 
 import { Link } from "react-router-dom"
 import React from "react"
+import SearchIcon from "@material-ui/icons/Search"
 import { ShoppingCartOutlined } from "@material-ui/icons"
 import { countItemInCart } from "../../containers/functions"
 import { navigations } from "../../router/navigations"
@@ -25,7 +26,10 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
         </div>
 
         <div className="navbar__search">
-          <input type="text" placeholder="Tìm kiếm" />
+          <label>
+            <input type="text" placeholder="Tìm kiếm" />
+            <SearchIcon style={{ color: "gray" }} />
+          </label>
         </div>
 
         {navigations.map((item, index) => (

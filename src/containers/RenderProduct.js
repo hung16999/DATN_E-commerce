@@ -92,7 +92,7 @@ const RenderProduct = ({ products }) => {
       <Modal
         centered={true}
         footer={null}
-        width={1000}
+        width={900}
         visible={isShowModal}
         onCancel={handleCancel}
       >

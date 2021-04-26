@@ -4,14 +4,12 @@ import { formatMoney, priceByDiscount, priceByQuantity } from "./functions"
 
 import React from "react"
 import { pushToCart } from "../redux/actions"
-import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 
 const ProductDetail = (props) => {
   const { itemSelected, increaseQuantity, decreaseQuantity } = props
   const history = useHistory()
-  const { md } = useBreakpoint()
   const dispatch = useDispatch()
 
   const push = () => {
@@ -26,14 +24,14 @@ const ProductDetail = (props) => {
 
   return (
     <div className="detailProduct">
-      <div className={md ? "wrapper" : "wrapper wrapper--mobile"}>
+      <div className="wrapper">
         <div
           className="wrapper__image"
           style={{ backgroundImage: `url(${itemSelected.src})` }}
         ></div>
 
         <div className="wrapper__info">
-          <h2>{itemSelected.label}</h2>
+          <h2>{itemSelected.name}</h2>
 
           <div className="wrapper__info--flex">
             {itemSelected.discount !== 0 && (
@@ -69,8 +67,8 @@ const ProductDetail = (props) => {
             </div>
 
             <div className="wrapper__info__counter">
-              <div>Chọn số lượng</div>
               <div>
+                <span>Chọn số lượng</span>
                 <button
                   disabled={itemSelected.quantity === 1}
                   onClick={() => decreaseQuantity(itemSelected)}
@@ -79,7 +77,6 @@ const ProductDetail = (props) => {
                 </button>
 
                 <input
-                  className="wrapper__info__counter__input"
                   type="text"
                   value={itemSelected.quantity}
                   disabled={true}

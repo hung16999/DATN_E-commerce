@@ -3,7 +3,7 @@ import React from "react"
 import RenderProduct from "../../containers/RenderProduct"
 import { useSelector } from "react-redux"
 
-const Tuber = ({ routes, isShowMenu, setIsShowMenu }) => {
+const Tuber = () => {
   const store = useSelector((store) => store)
 
   return (
