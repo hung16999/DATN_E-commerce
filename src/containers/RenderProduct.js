@@ -17,14 +17,14 @@ const RenderProduct = ({ products }) => {
   const [data, setData] = useState(editData())
 
   const increaseQuantity = (item) => {
-    const itemFinded = data.find((product) => product.id === item.id)
-    itemFinded.quantity++
+    const found = data.find((product) => product.id === item.id)
+    found.quantity++
     setData([...data])
   }
 
   const decreaseQuantity = (item) => {
-    const itemFinded = data.find((product) => product.id === item.id)
-    itemFinded.quantity--
+    const found = data.find((product) => product.id === item.id)
+    found.quantity--
     setData([...data])
   }
 
