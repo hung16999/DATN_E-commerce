@@ -24,10 +24,9 @@ const ProductDetail = (props) => {
 
   return (
     <div className="detailProduct">
-      <div
-        className="image"
-        style={{ backgroundImage: `url(${itemSelected.src})` }}
-      ></div>
+      <div className="image">
+        <img src={itemSelected.src} alt="" />
+      </div>
 
       <div className="info">
         <h2>{itemSelected.name}</h2>

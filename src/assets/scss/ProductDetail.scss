@@ -8,14 +8,16 @@ button {
   background: white;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
 
   .image {
     width: 340px;
     height: 340px;
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
+
+    img {
+      text-align: center;
+      vertical-align: middle;
+    }
   }
 
   .info {
@@ -85,6 +87,18 @@ button {
         outline: none;
         border: 1px solid #e8e8e8;
       }
+
+      span {
+        &:first-child {
+          margin-right: 15px;
+        }
+
+        &:last-child {
+          font-size: 22px;
+          font-weight: bold;
+          margin-left: 30px;
+        }
+      }
     }
   }
 
@@ -110,5 +124,15 @@ button {
       color: #d42333;
       background: white;
     }
+  }
+}
+
+@media (max-width: 700px) {
+  .detailProduct {
+    display: flex;
+    flex-direction: column;
+  }
+  .image {
+    display: none;
   }
 }

@@ -1,91 +1,55 @@
-header {
-  background: #000000cc;
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  height: 44px;
-  text-align: center;
-}
+.navbar--desktop {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-.navbar__desktop {
-  .navbar {
-    height: 100%;
-    width: 95%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+  span {
+    text-align: center;
+    font-size: 16px;
+  }
 
+  .logo {
     span {
-      text-align: center;
-      font-size: 16px;
-    }
+      color: #acf57c;
 
-    &__logo {
-      span {
+      :hover {
         color: #acf57c;
-
-        :hover {
-          color: #acf57c;
-        }
-      }
-    }
-
-    &__item {
-      display: inline-block;
-      span {
-        color: #d6d6d6;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
-
-    &__search {
-      input {
-        color: black;
-        height: 30px;
-        width: 300px;
-        outline: none;
-        border: none;
-        text-indent: 10px;
-      }
-
-      label {
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        background: white;
-      }
-    }
-
-    &__cart {
-      &__icon {
-        position: relative;
-        display: inline-block;
-      }
-
-      &__badge {
-        background: #ff4d4f;
-        color: white;
-        font-size: 13px;
-        min-width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 1px;
-        right: -16px;
-        border-radius: 50%;
-        text-align: center;
-        vertical-align: middle;
       }
     }
   }
-}
 
+  .item {
+    display: inline-block;
+    span {
+      color: #d6d6d6;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .search {
+    input {
+      color: black;
+      height: 30px;
+
+      outline: none;
+      border: none;
+      text-indent: 10px;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      background: white;
+    }
+  }
+}
 .ant-modal-mask {
   z-index: 0;
 }

@@ -1,0 +1,39 @@
+.shopping {
+  .cart {
+    width: 55px;
+    height: 44px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #d6d6d6;
+      position: relative;
+
+      &:hover {
+        color: white;
+      }
+
+      &__shopping {
+        font-size: 25px;
+      }
+    }
+
+    &__badge {
+      background: #ff4d4f;
+      color: white;
+      font-size: 13px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: -7px;
+      right: -15px;
+      border-radius: 50%;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}

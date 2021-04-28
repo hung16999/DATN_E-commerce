@@ -8,14 +8,14 @@ const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
   return (
     <div className={!isShowMenu ? "drawer__menu" : "drawer__menu active"}>
       <div className="drawer__menu__list">
-        {navigations.map((route, index) => (
-          <Link to={route.to}>
+        {navigations.map((nav) => (
+          <Link to={nav.to}>
             <div
               className="drawer__menu__item"
-              key={index}
+              key={`nav-${nav.to}`}
               onClick={() => setIsShowMenu(!isShowMenu)}
             >
-              {route.label}
+              {nav.label}
             </div>
           </Link>
         ))}
