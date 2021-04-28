@@ -98,14 +98,26 @@ const Payment = () => {
                 </div>
 
                 <div className="item__price__counter">
-                  <button
-                    disabled={item.quantity === 1}
-                    onClick={() => {
-                      dispatch(decreaseQuantity(item))
-                    }}
-                  >
-                    -
-                  </button>
+                  {item.quantity === 1 ? (
+                    <Popconfirm
+                      title="Bạn có muốn xóa sản phẩm khỏi giỏ hàng"
+                      onConfirm={() => deleteItem(item)}
+                      okText="Có"
+                      cancelText="Không"
+                    >
+                      <button>-</button>
+                    </Popconfirm>
+                  ) : (
+                    <button
+                      disabled={item.quantity === 1}
+                      onClick={() => {
+                        dispatch(decreaseQuantity(item))
+                      }}
+                    >
+                      -
+                    </button>
+                  )}
+
                   <input type="text" disabled={true} value={item.quantity} />
                   <button
                     onClick={() => {
