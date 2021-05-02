@@ -9,7 +9,7 @@ const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
     <div className={!isShowMenu ? "drawer__menu" : "drawer__menu active"}>
       <div className="drawer__menu__list">
         {navigations.map((nav) => (
-          <Link to={nav.to}>
+          <Link to={nav.to} key={`nav-${nav.to}`}>
             <div
               className="drawer__menu__item"
               key={`nav-${nav.to}`}

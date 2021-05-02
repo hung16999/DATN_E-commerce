@@ -17,7 +17,6 @@ const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
           <span className="logo">Nông sản sạch</span>
         </div>
         <SearchOutlined className="search" />
-
         <ShoppingIcon />
       </div>
     </header>
