@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./assets/scss/index.scss"
 
-function App() {
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import React, { useState } from "react"
+
+import { BackDrop } from "./components/header/BackDrop"
+import DrawerMenu from "./components/header/DrawerMenu"
+import { Grid } from "antd"
+import NavBarDesktop from "./components/header/NavBarDesktop"
+import NavBarMobile from "./components/header/NavBarMobile"
+import { Provider } from "react-redux"
+import { routes } from "./router/routes"
+import store from "./redux/store"
+
+const { useBreakpoint } = Grid
+
+const App = () => {
+  const { md } = useBreakpoint()
+  const [isShowMenu, setIsShowMenu] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <BrowserRouter>
+        {md ? (
+          <NavBarDesktop setIsShowMenu={setIsShowMenu} />
+        ) : (
+          <NavBarMobile isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
+        )}
+
+        {!md && (
+          <DrawerMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
+        )}
+
+        {!md && isShowMenu && <BackDrop setIsShowMenu={setIsShowMenu} />}
+
+        <Switch>
+          {routes.map((route) => (
+            <Route
+              path={route.path}
+              key={`route-${route.path}`}
+              exact={route.exact}
+            >
+              {route.Component}
+            </Route>
+          ))}
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  )
 }
 
-export default App;
+export default App

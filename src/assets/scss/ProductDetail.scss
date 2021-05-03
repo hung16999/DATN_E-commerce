@@ -1,0 +1,138 @@
+button {
+  cursor: pointer;
+}
+
+.detailProduct {
+  height: 350px;
+  margin-top: 20px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .image {
+    width: 340px;
+    height: 340px;
+
+    img {
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+
+  .info {
+    margin-left: 60px;
+
+    &--flex {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__discount {
+      width: 50px;
+      padding: 2px 0;
+      text-align: center;
+      color: white;
+      background: #d42333;
+      border-radius: 0 0 5px 5px;
+
+      &.hidden {
+        visibility: hidden;
+      }
+    }
+
+    &__price {
+      width: 400px;
+      height: 70px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 35px;
+      background: #eee;
+
+      &__properties {
+        width: 150px;
+        margin-right: 30px;
+        margin-left: 20px;
+        font-size: 16px;
+      }
+
+      &__value {
+        font-size: 16px;
+        font-weight: bold;
+
+        &--lineThrough {
+          font-weight: normal;
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    &__counter {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+
+      input {
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        outline: none;
+        border: 1px solid #e8e8e8;
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+        outline: none;
+        border: 1px solid #e8e8e8;
+      }
+
+      span {
+        &:first-child {
+          margin-right: 15px;
+        }
+
+        &:last-child {
+          font-size: 22px;
+          font-weight: bold;
+          margin-left: 30px;
+        }
+      }
+    }
+  }
+
+  .button {
+    margin-top: 30px;
+
+    button {
+      padding: 5px 30px;
+      cursor: pointer;
+    }
+
+    :first-child {
+      background: #d10a00;
+      border: 1px solid #d10a00;
+      border-radius: 3px;
+      color: white;
+    }
+
+    :last-child {
+      margin-left: 20px;
+      border: 1px solid #d42333;
+      border-radius: 3px;
+      color: #d42333;
+      background: white;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .detailProduct {
+    display: flex;
+    flex-direction: column;
+  }
+  .image {
+    display: none;
+  }
+}

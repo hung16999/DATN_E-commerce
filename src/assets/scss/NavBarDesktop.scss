@@ -1,0 +1,55 @@
+.navbar--desktop {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .logo {
+    span {
+      color: #acf57c;
+
+      :hover {
+        color: #acf57c;
+      }
+    }
+  }
+
+  .item {
+    display: inline-block;
+    span {
+      color: #d6d6d6;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .search {
+    input {
+      color: black;
+      height: 30px;
+
+      outline: none;
+      border: none;
+      text-indent: 10px;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      background: white;
+    }
+  }
+}
+.ant-modal-mask {
+  z-index: 0;
+}
