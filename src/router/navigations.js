@@ -1,5 +1,5 @@
 export const navigations = [
-  { label: "Rau", to: "/vegetable" },
-  { label: "Củ", to: "/tuber" },
-  { label: "Quả", to: "/fruit" },
+  { label: "Rau củ", to: "/vegetable" },
+  { label: "Gạo", to: "/rice" },
+  { label: "Trái cây", to: "/fruit" },
 ]

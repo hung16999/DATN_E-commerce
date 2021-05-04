@@ -1,8 +1,6 @@
 .drawer__menu {
   position: fixed;
-  background: #000000cc;
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+  background: white;
   top: 44px;
   right: 0;
   width: 100%;
@@ -10,7 +8,6 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 200;
-  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
 
   &.active {
@@ -39,8 +36,8 @@
     transition: 0.3s;
 
     &:hover {
-      color: white;
-      border-bottom: 1px solid white;
+      color: black;
+      border-bottom: 1px solid black;
       transition: 0.3s;
     }
   }

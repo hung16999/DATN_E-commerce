@@ -12,24 +12,17 @@
   }
 
   .logo {
-    span {
-      color: #acf57c;
-
-      :hover {
-        color: #acf57c;
-      }
-    }
+    color: #da362f;
+    font-size: 20px;
   }
 
-  .item {
-    display: inline-block;
-    span {
-      color: #d6d6d6;
+  .navlink {
+    color: black;
+    font-size: 16px;
+  }
 
-      &:hover {
-        color: white;
-      }
-    }
+  .active {
+    border-bottom: 1px solid black;
   }
 
   .search {

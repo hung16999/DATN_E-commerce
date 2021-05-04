@@ -10,12 +10,8 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      color: #d6d6d6;
+      color: black;
       position: relative;
-
-      &:hover {
-        color: white;
-      }
 
       &__shopping {
         font-size: 25px;

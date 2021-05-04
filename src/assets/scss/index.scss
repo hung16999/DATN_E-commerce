@@ -1,14 +1,14 @@
 @import "antd/dist/antd.css";
 
 header {
-  background: #000000cc;
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+  background: white;
   position: sticky;
   top: 0;
   z-index: 200;
   width: 100%;
-  height: 44px;
+  height: 60px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 body {

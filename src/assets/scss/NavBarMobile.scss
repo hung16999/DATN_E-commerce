@@ -19,7 +19,7 @@
       width: 18px;
       border: 0;
       height: 1px;
-      background: #d6d6d6;
+      background: black;
       margin: 3px;
 
       &:first-child {
@@ -51,7 +51,7 @@
       cursor: pointer;
 
       hr {
-        background: white;
+        background: black;
       }
     }
   }
@@ -62,11 +62,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #acf57c;
+    color: #da362f;
   }
 
   .search {
-    color: #d6d6d6;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;

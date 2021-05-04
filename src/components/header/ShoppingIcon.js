@@ -2,7 +2,7 @@ import "../../assets/scss/ShoppingIcon.scss"
 
 import { Link } from "react-router-dom"
 import React from "react"
-import { ShoppingFilled } from "@ant-design/icons"
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined"
 import { countItemInCart } from "../../containers/functions"
 import { useSelector } from "react-redux"
 
@@ -13,11 +13,10 @@ const ShoppingIcon = () => {
       <div className="cart">
         <Link to="/payment">
           <div className="cart__icon">
-            <ShoppingFilled className="cart__icon__shopping" />
+            <ShoppingCartOutlinedIcon className="cart__icon__shopping" />
             <div hidden={cart.length === 0} className="cart__badge">
               {countItemInCart(cart)}
             </div>
-            {/* <span>Giỏ hàng</span> */}
           </div>
         </Link>
       </div>

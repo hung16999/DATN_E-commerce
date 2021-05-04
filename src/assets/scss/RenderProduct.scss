@@ -1,7 +1,42 @@
 .renderProduct {
+  width: 90%;
+  background: #f1f0f1;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+
+  .filter {
+    position: sticky;
+    top: 80px;
+    width: 20%;
+    height: 400px;
+    padding: 10px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+
+    div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin: 5px;
+        border: none;
+        width: 70%;
+      }
+    }
+
+    div:nth-child(4) {
+      button {
+        margin: 5px;
+        border: none;
+      }
+    }
+  }
+
   .wrapper {
     margin: auto;
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,13 +44,14 @@
     &__item {
       background: white;
       cursor: pointer;
-      margin: 10px;
-      padding: 10px;
+      margin: 5px;
+      padding: 7px;
       width: 215px;
       height: 310px;
       display: flex;
       flex-direction: column;
-      transition: all 0.2s ease-in-out;
+      border: 1px solid white;
+      transition: 0.2s;
 
       &.disable {
         opacity: 0.5;
@@ -23,10 +59,8 @@
       }
 
       &:hover {
-        -webkit-box-shadow: 0px 0px 9px 6px #dbdbdbd3;
-        -moz-box-shadow: 0px 0px 9px 6px #dbdbdbd3;
-        box-shadow: 0px 0px 9px 6px #dbdbdbd3;
-        transform: scale(1.02);
+        border: 1px solid black;
+        transition: 0.2s;
       }
 
       &__discount {

@@ -39,6 +39,22 @@ const RenderProduct = ({ products }) => {
 
   return (
     <div className="renderProduct">
+      <div className="filter">
+        <div>Giá</div>
+        <div>
+          <button>{formatMoney(100000)}</button>
+          <button>{formatMoney(200000)}</button>
+          <button>{formatMoney(500000)}</button>
+          <button>{formatMoney(1000000)}</button>
+        </div>
+
+        <div>Xuất xứ</div>
+        <div>
+          <button>Việt Nam</button>
+          <button>Nhập khẩu</button>
+        </div>
+      </div>
+
       <div className="wrapper">
         {data
           .sort((item1, item2) => {

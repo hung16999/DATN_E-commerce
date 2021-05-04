@@ -1,7 +1,7 @@
-import { tubersList } from "./tubersList"
+import { productsList } from "./productsList"
 
 const initialState = {
-  tubers: tubersList,
+  products: productsList,
   cart: [],
 }
 

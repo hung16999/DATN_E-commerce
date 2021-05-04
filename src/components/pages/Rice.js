@@ -1,17 +1,18 @@
+import React, { useEffect } from "react"
+
 import ButtonReturnTop from "../../containers/ButtonReturnTop"
-import React from "react"
 import RenderProduct from "../../containers/RenderProduct"
 import { useSelector } from "react-redux"
 
-const Tuber = () => {
+const Rice = () => {
   const store = useSelector((store) => store)
 
   return (
     <>
-      <RenderProduct products={store.tubers} />
+      <RenderProduct products={store.products} />
       <ButtonReturnTop />
     </>
   )
 }
 
-export default Tuber
+export default Rice
