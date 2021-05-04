@@ -4,6 +4,7 @@ const Footer = () => {
   return (
     <>
       <div>đây là foooter</div>
+      <div>oke</div>
     </>
   )
 }
