@@ -2,6 +2,7 @@ import Fruit from "../components/pages/Fruit"
 import Home from "../components/pages/Home"
 import Payment from "../components/pages/Payment"
 import Rice from "../components/pages/Rice"
+import ShoppingCart from "../components/pages/ShoppingCart"
 import Vegetable from "../components/pages/Vegetable"
 
 export const routes = [
@@ -24,6 +25,11 @@ export const routes = [
     path: "/fruit",
     exact: true,
     Component: <Fruit />,
+  },
+  {
+    path: "/shoppingcart",
+    exact: true,
+    Component: <ShoppingCart />,
   },
   {
     path: "/payment",

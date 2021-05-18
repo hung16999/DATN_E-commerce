@@ -11,7 +11,7 @@ const ShoppingIcon = () => {
   return (
     <div className="shopping">
       <div className="cart">
-        <Link to="/payment">
+        <Link to="/shoppingcart">
           <div className="cart__icon">
             <ShoppingCartOutlinedIcon className="cart__icon__shopping" />
             <div hidden={cart.length === 0} className="cart__badge">
