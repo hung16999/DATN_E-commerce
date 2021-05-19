@@ -48,6 +48,7 @@
       padding: 7px;
       width: 215px;
       height: 310px;
+      border-radius: 5px;
       display: flex;
       flex-direction: column;
       border: 1px solid white;
@@ -59,7 +60,10 @@
       }
 
       &:hover {
-        border: 1px solid black;
+        transform: scale(1.02);
+        -webkit-box-shadow: 0px 0px 11px 3px rgba(219, 219, 219, 1);
+        -moz-box-shadow: 0px 0px 11px 3px rgba(219, 219, 219, 1);
+        box-shadow: 0px 0px 11px 3px rgba(219, 219, 219, 1);
         transition: 0.2s;
       }
 

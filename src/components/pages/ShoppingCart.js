@@ -1,4 +1,4 @@
-import "./../../assets/scss/Payment.scss"
+import "./../../assets/scss/ShoppingCart.scss"
 
 import {
   ArrowLeftOutlined,
@@ -160,9 +160,9 @@ const ShoppingCart = () => {
               </div>
             </div>
 
-            <button>
+            <button disabled={!cart.length} onClick={handlePayment}>
               <WalletFilled />
-              <span onClick={handlePayment}>THANH TOÁN</span>
+              <span>THANH TOÁN</span>
             </button>
           </div>
         </div>
