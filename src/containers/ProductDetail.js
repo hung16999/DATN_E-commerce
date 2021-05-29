@@ -12,14 +12,14 @@ const ProductDetail = (props) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const push = () => {
+  const pushItem = () => {
     const item = Object.assign({}, itemSelected)
     dispatch(pushToCart(item))
   }
 
   const redirectToCart = () => {
-    push()
-    history.push("/payment")
+    pushItem()
+    history.push("/shoppingcart")
   }
 
   return (
@@ -86,7 +86,7 @@ const ProductDetail = (props) => {
 
         <div className="button">
           <button onClick={redirectToCart}>MUA NGAY</button>
-          <button onClick={push}>THÊM VÀO GIỎ HÀNG</button>
+          <button onClick={pushItem}>THÊM VÀO GIỎ HÀNG</button>
         </div>
       </div>
     </div>

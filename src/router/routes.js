@@ -1,7 +1,8 @@
 import Fruit from "../components/pages/Fruit"
 import Home from "../components/pages/Home"
 import Payment from "../components/pages/Payment"
-import Tuber from "../components/pages/Tuber"
+import Rice from "../components/pages/Rice"
+import ShoppingCart from "../components/pages/ShoppingCart"
 import Vegetable from "../components/pages/Vegetable"
 
 export const routes = [
@@ -16,14 +17,19 @@ export const routes = [
     Component: <Vegetable />,
   },
   {
-    path: "/tuber",
+    path: "/rice",
     exact: true,
-    Component: <Tuber />,
+    Component: <Rice />,
   },
   {
     path: "/fruit",
     exact: true,
     Component: <Fruit />,
+  },
+  {
+    path: "/shoppingcart",
+    exact: true,
+    Component: <ShoppingCart />,
   },
   {
     path: "/payment",
