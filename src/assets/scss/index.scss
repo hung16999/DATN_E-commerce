@@ -1,7 +1,9 @@
 @import "antd/dist/antd.css";
 
 header {
-  background: white;
+  background: #000000cc;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   position: sticky;
   top: 0;
   z-index: 200;
