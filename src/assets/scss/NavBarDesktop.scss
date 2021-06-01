@@ -23,6 +23,7 @@
 
   .item {
     display: inline-block;
+
     span {
       color: #d6d6d6;
 
@@ -52,4 +53,8 @@
 }
 .ant-modal-mask {
   z-index: 0;
+}
+
+.selected {
+  border-bottom: 2px solid #d6d6d6;
 }

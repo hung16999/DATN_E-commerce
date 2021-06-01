@@ -1,14 +1,19 @@
 import { Helmet } from "react-helmet"
 import React from "react"
+import RenderProduct from "../../containers/RenderProduct"
+import { useSelector } from "react-redux"
 
 const Rau = () => {
+  const store = useSelector((store) => store)
+
   return (
     <>
       <Helmet>
         <title>Rau củ</title>
       </Helmet>
-      <h2>Bán rau</h2>
-      <h2>Thanh Tâm</h2>
+      <RenderProduct
+        products={store.products.filter((item) => item.type === "vegetable")}
+      />
     </>
   )
 }

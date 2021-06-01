@@ -12,7 +12,9 @@ const Rice = () => {
       <Helmet>
         <title>Gạo</title>
       </Helmet>
-      <RenderProduct products={store.products} />
+      <RenderProduct
+        products={store.products.filter((item) => item.type === "rice")}
+      />
       <ButtonReturnTop />
     </>
   )

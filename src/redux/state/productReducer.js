@@ -3,6 +3,7 @@ import { productsList } from "./productsList"
 const initialState = {
   products: productsList,
   cart: [],
+  orders: [],
 }
 
 export const productReducer = (state = initialState, action) => {

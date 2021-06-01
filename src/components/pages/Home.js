@@ -7,8 +7,12 @@ import React from "react"
 import carousel1 from "../../assets/images/carousel1.png"
 import carousel2 from "../../assets/images/carousel2.png"
 import cleanPicture from "../../assets/images/clean.jpg"
+import { useSelector } from "react-redux"
+import RenderProduct from "../../containers/RenderProduct"
 
 const Home = () => {
+  const store = useSelector((store) => store)
+
   return (
     <>
       <Helmet>
@@ -42,14 +46,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="productsType">
-          <div className="vegetable">
-            <Link to="/vegetable">Rau</Link>
-            <div></div>
-          </div>
-        </div>
-
-        <div className="sellingProducts"></div>
+        <RenderProduct products={store.products} />
       </div>
     </>
   )

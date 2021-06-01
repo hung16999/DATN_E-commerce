@@ -1,6 +1,6 @@
 import "../../assets/scss/NavBarDesktop.scss"
 
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import React from "react"
 import { SearchOutlined } from "@ant-design/icons"
 import ShoppingIcon from "./ShoppingIcon"
@@ -30,9 +30,9 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
 
         {navigations.map((nav) => (
           <div className="item" key={`nav-${nav.to}`}>
-            <Link to={nav.to}>
+            <NavLink to={nav.to} activeClassName="selected">
               <span>{nav.label}</span>
-            </Link>
+            </NavLink>
           </div>
         ))}
 
