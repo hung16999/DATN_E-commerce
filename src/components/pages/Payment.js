@@ -7,18 +7,27 @@ import {
   priceByQuantity,
 } from "../../containers/functions"
 
-import { Form, Input, Button, Checkbox } from "antd"
-
 import { Helmet } from "react-helmet"
 import React from "react"
 import { useSelector } from "react-redux"
 import { useState } from "react"
+import { v4 } from "uuid"
 
 const Payment = () => {
   const cart = useSelector((store) => store.cart)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
+
+  const handleOrder = () => {
+    const order = {
+      id: v4(),
+      customerName: name,
+      phone: phone,
+      address: address,
+      products: cart,
+    }
+  }
 
   return (
     <div className="payment">
@@ -85,7 +94,7 @@ const Payment = () => {
               <span>{formatMoney(checkoutCart(cart))}</span>
               <span>{formatMoney(0)}</span>
               <span>{formatMoney(checkoutCart(cart))}</span>
-              <button>Đặt hàng</button>
+              <button onClick={handleOrder}>Đặt hàng</button>
             </div>
           </div>
         </div>

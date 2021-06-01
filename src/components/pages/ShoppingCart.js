@@ -47,7 +47,7 @@ const ShoppingCart = () => {
         <title>Giỏ hàng</title>
       </Helmet>
 
-      <div className="payment">
+      <div className="shoppingCart">
         {cart.length ? (
           <div className="wrapper">
             <div className="wrapper--left">
@@ -172,9 +172,18 @@ const ShoppingCart = () => {
             </div>
           </div>
         ) : (
-          <h2 style={{ textAlign: "center" }}>
-            Không có sản phẩm nào trong giỏ hàng
-          </h2>
+          <>
+            <h2 style={{ textAlign: "center" }}>
+              Không có sản phẩm nào trong giỏ hàng
+            </h2>
+
+            <div style={{ textAlign: "center" }}>
+              <Link to="/">
+                <ArrowLeftOutlined className="button__icon" />
+                QUAY LẠI MUA HÀNG
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </>

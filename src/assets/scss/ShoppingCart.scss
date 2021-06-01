@@ -1,14 +1,12 @@
-.payment {
+.shoppingCart {
   .wrapper {
-    width: 70%;
+    width: 800px;
     margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
     &--left {
-      width: width/3;
-
       .button {
         background: #f1f0f1;
         padding: 20px 0;
@@ -56,7 +54,7 @@
         }
 
         &__title {
-          width: 250px;
+          width: 100px;
           margin-left: 20px;
           display: flex;
           flex-direction: column;
@@ -132,7 +130,6 @@
 
     &--right {
       height: 200px;
-      width: width - width/3;
       padding: 20px;
       background: white;
       position: sticky;
@@ -195,6 +192,7 @@
 
   @media (max-width: 970px) {
     .wrapper {
+      width: 400px;
       margin: auto;
       display: flex;
       flex-direction: column;

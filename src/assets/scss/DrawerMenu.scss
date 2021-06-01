@@ -1,6 +1,8 @@
 .drawer__menu {
   position: fixed;
-  background: white;
+  background: #000000cc;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   top: 44px;
   right: 0;
   width: 100%;

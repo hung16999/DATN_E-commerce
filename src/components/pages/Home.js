@@ -2,7 +2,6 @@ import "../../assets/scss/Home.scss"
 
 import { Carousel } from "antd"
 import { Helmet } from "react-helmet"
-import { Link } from "react-router-dom"
 import React from "react"
 import carousel1 from "../../assets/images/carousel1.png"
 import carousel2 from "../../assets/images/carousel2.png"
