@@ -12,6 +12,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import { v4 } from "uuid"
+import NavBar from "../../containers/NavBar"
 
 const Payment = () => {
   const cart = useSelector((store) => store.cart)
@@ -34,6 +35,8 @@ const Payment = () => {
       <Helmet>
         <title>Thanh toán</title>
       </Helmet>
+
+      <NavBar />
 
       <div className="wrapper">
         <div className="wrapper__customerInfo">

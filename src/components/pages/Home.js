@@ -8,6 +8,7 @@ import carousel2 from "../../assets/images/carousel2.png"
 import cleanPicture from "../../assets/images/clean.jpg"
 import { useSelector } from "react-redux"
 import RenderProduct from "../../containers/RenderProduct"
+import NavBar from "../../containers/NavBar"
 
 const Home = () => {
   const store = useSelector((store) => store)
@@ -17,6 +18,8 @@ const Home = () => {
       <Helmet>
         <title>Nông sản sạch</title>
       </Helmet>
+
+      <NavBar />
 
       <div className="home">
         <div className="carousel__advertisement">

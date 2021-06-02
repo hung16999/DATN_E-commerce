@@ -2,9 +2,14 @@ import "../../assets/scss/DrawerMenu.scss"
 
 import { Link } from "react-router-dom"
 import React from "react"
-import { navigations } from "../../router/navigations"
 
-const DrawerMenu = ({ isShowMenu, setIsShowMenu, routes }) => {
+const DrawerMenu = ({ isShowMenu, setIsShowMenu }) => {
+  const navigations = [
+    { label: "Rau củ", to: "/vegetable" },
+    { label: "Gạo", to: "/rice" },
+    { label: "Trái cây", to: "/fruit" },
+  ]
+
   return (
     <div className={!isShowMenu ? "drawer__menu" : "drawer__menu active"}>
       <div className="drawer__menu__list">

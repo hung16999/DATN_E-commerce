@@ -1,10 +1,9 @@
 import "../../assets/scss/NavBarDesktop.scss"
 
 import { Link, NavLink } from "react-router-dom"
-import React, { useState } from "react"
+import React from "react"
 import { SearchOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons"
 import ShoppingIcon from "./ShoppingIcon"
-import { navigations } from "../../router/navigations"
 import { useEffect } from "react"
 import "./../../assets/scss/login.scss"
 import { useDispatch, useSelector } from "react-redux"
@@ -12,6 +11,13 @@ import { logout } from "../../redux/actions"
 
 const NavBarDesktop = ({ setIsShowMenu }) => {
   const currentUser = useSelector((store) => store.currentUser)
+
+  const navigations = [
+    { label: "Rau củ", to: "/vegetable" },
+    { label: "Gạo", to: "/rice" },
+    { label: "Trái cây", to: "/fruit" },
+  ]
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -52,10 +58,9 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
           {currentUser ? (
             <div className="item">
               <span style={{ paddingRight: "25px" }}>
-                {currentUser.role === 4 && <UserOutlined />}
-                {currentUser.role === 1 && <>Admin</>}
-                {currentUser.role === 2 && <>Salesman</>}
-                {currentUser.role === 3 && <>Shipper</>} {currentUser.name}
+                <UserOutlined />
+                {"  "}
+                {currentUser.name}
               </span>
               <LogoutOutlined onClick={handleLogout} />
             </div>

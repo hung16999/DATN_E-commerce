@@ -3,6 +3,7 @@ import { Form, Input, Button } from "antd"
 import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { login } from "../../redux/actions"
+import HeaderLogin from "../header/HeaderLogin"
 
 const Login = () => {
   const history = useHistory()
@@ -26,50 +27,70 @@ const Login = () => {
     )
 
     if (findUser) {
-      dispatch(login(findUser))
-      history.goBack()
+      switch (findUser.role) {
+        case 1:
+          dispatch(login(findUser))
+          history.push("/admin")
+          return
+        case 2:
+          dispatch(login(findUser))
+          history.push("/salesman")
+          return
+        case 3:
+          dispatch(login(findUser))
+          history.push("/shipper")
+          return
+        case 4:
+          dispatch(login(findUser))
+          history.goBack()
+          return
+        default:
+      }
     }
   }
 
   return (
-    <div className="login">
-      <Form {...layout} name="basic">
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
-          <Input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Item>
+    <>
+      <HeaderLogin />
+      <div className="login">
+        <Form {...layout} name="basic">
+          <Form.Item
+            label="Tên đăng nhập"
+            name="username"
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
+            <Input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input.Password
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Item>
+          <Form.Item
+            label="Mật khẩu"
+            name="password"
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
+            <Input.Password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Item>
 
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" onClick={handleLogin}>
-            Đăng nhập
-          </Button>
-        </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit" onClick={handleLogin}>
+              Đăng nhập
+            </Button>
+          </Form.Item>
 
-        <div style={{ textAlign: "center" }}>
-          <span>Bạn chưa có tài khoản? </span>
-          <Link to="/register" htmlType="button">
-            Đăng ký
-          </Link>
-        </div>
-      </Form>
-    </div>
+          <div style={{ textAlign: "center" }}>
+            <span>Bạn chưa có tài khoản? </span>
+            <Link to="/register" htmlType="button">
+              Đăng ký
+            </Link>
+          </div>
+        </Form>
+      </div>
+    </>
   )
 }
 

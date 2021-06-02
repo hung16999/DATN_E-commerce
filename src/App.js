@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        {md ? (
+        {/* {md ? (
           <NavBarDesktop setIsShowMenu={setIsShowMenu} />
         ) : (
           <NavBarMobile isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
@@ -31,7 +31,7 @@ const App = () => {
           <DrawerMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
         )}
 
-        {!md && isShowMenu && <BackDrop setIsShowMenu={setIsShowMenu} />}
+        {!md && isShowMenu && <BackDrop setIsShowMenu={setIsShowMenu} />} */}
 
         <Switch>
           {routes.map((route) => (

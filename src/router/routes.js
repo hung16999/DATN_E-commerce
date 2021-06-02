@@ -6,6 +6,9 @@ import ShoppingCart from "../components/pages/ShoppingCart"
 import Vegetable from "../components/pages/Vegetable"
 import Login from "../components/pages/Login"
 import Register from "../components/pages/Register"
+import Salesman from "../components/pages/Salesman"
+import Admin from "../components/pages/Admin"
+import Shipper from "../components/pages/Shipper"
 
 export const routes = [
   {
@@ -47,5 +50,20 @@ export const routes = [
     path: "/register",
     exact: true,
     Component: <Register />,
+  },
+  {
+    path: "/admin",
+    exact: true,
+    Component: <Admin />,
+  },
+  {
+    path: "/salesman",
+    exact: true,
+    Component: <Salesman />,
+  },
+  {
+    path: "/shipper",
+    exact: true,
+    Component: <Shipper />,
   },
 ]

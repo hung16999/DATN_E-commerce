@@ -24,6 +24,7 @@ import {
   DeleteFilled,
   WalletFilled,
 } from "@ant-design/icons"
+import NavBar from "../../containers/NavBar"
 
 const ShoppingCart = () => {
   const { cart, currentUser } = useSelector((store) => store)
@@ -51,6 +52,8 @@ const ShoppingCart = () => {
       <Helmet>
         <title>Giỏ hàng</title>
       </Helmet>
+
+      <NavBar />
 
       <div className="shoppingCart">
         {cart.length ? (
