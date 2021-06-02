@@ -80,3 +80,21 @@
     }
   }
 }
+
+.login {
+  color: #cccccc;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.item {
+  span {
+    color: #d6d6d6;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

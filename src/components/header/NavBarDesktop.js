@@ -2,53 +2,25 @@ import "../../assets/scss/NavBarDesktop.scss"
 
 import { Link, NavLink } from "react-router-dom"
 import React, { useState } from "react"
-import { SearchOutlined } from "@ant-design/icons"
+import { SearchOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons"
 import ShoppingIcon from "./ShoppingIcon"
 import { navigations } from "../../router/navigations"
 import { useEffect } from "react"
-import { Form, Input, Button, Modal } from "antd"
 import "./../../assets/scss/login.scss"
+import { useDispatch, useSelector } from "react-redux"
+import { logout } from "../../redux/actions"
 
 const NavBarDesktop = ({ setIsShowMenu }) => {
+  const currentUser = useSelector((store) => store.currentUser)
+  const dispatch = useDispatch()
+
   useEffect(() => {
     setIsShowMenu(false)
   })
 
-  const [isShowLogin, setIsShowLogin] = useState(false)
-  const [isShowRegister, setIsShowRegister] = useState(false)
-
-  const handleCancelLogin = () => {
-    setIsShowLogin(false)
+  const handleLogout = () => {
+    dispatch(logout())
   }
-
-  const handleCancelRegister = () => {
-    setIsShowRegister(false)
-  }
-
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  }
-  const tailLayout = {
-    wrapperCol: {
-      offset: 8,
-      span: 16,
-    },
-  }
-
-  const onFinish = (values) => {
-    console.log("Success:", values)
-  }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo)
-  }
-
-  const toggleRegister = () => {}
 
   return (
     <>
@@ -77,120 +49,23 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
 
           <ShoppingIcon />
 
-          <div className="item">
-            <span
-              className="item__login"
-              onClick={() => setIsShowLogin(!isShowLogin)}
-            >
-              Đăng nhập
-            </span>
-          </div>
+          {currentUser ? (
+            <div className="item">
+              <span style={{ paddingRight: "25px" }}>
+                {currentUser.role === 4 && <UserOutlined />}
+                {currentUser.role === 1 && <>Admin</>}
+                {currentUser.role === 2 && <>Salesman</>}
+                {currentUser.role === 3 && <>Shipper</>} {currentUser.name}
+              </span>
+              <LogoutOutlined onClick={handleLogout} />
+            </div>
+          ) : (
+            <Link to="/login" className="item">
+              <span className="item__login">Đăng nhập</span>
+            </Link>
+          )}
         </div>
       </header>
-
-      <div className="login">
-        <Modal
-          title="Đăng nhập"
-          visible={isShowLogin}
-          centered={true}
-          footer={null}
-          onCancel={handleCancelLogin}
-        >
-          {isShowLogin ? (
-            <Form
-              {...layout}
-              name="basic"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-            >
-              <Form.Item
-                label="Username"
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your username!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your password!",
-                  },
-                ]}
-              >
-                <Input.Password />
-              </Form.Item>
-
-              <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">
-                  Đăng nhập
-                </Button>
-
-                <Button onClick={toggleRegister} htmlType="button">
-                  Đăng ký
-                </Button>
-              </Form.Item>
-            </Form>
-          ) : (
-            <></>
-          )}
-        </Modal>
-
-        <Modal
-          title="Đăng nhập"
-          visible={isShowRegister}
-          centered={true}
-          footer={null}
-          onCancel={handleCancelLogin}
-        >
-          <Form
-            {...layout}
-            name="basic"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          >
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item {...tailLayout}>
-              <Button type="primary" htmlType="submit">
-                Đăng nhập
-              </Button>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </div>
     </>
   )
 }

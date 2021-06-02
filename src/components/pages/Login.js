@@ -1,88 +1,74 @@
 import React, { useState } from "react"
-import { Form, Input, Button, Modal } from "antd"
-import "./../../assets/scss/login.scss"
+import { Form, Input, Button } from "antd"
+import { Link, useHistory } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { login } from "../../redux/actions"
 
 const Login = () => {
-  const [isShowLogin, setIsShowLogin] = useState(false)
-
-  const handleOk = () => {
-    setIsShowLogin(false)
-  }
-
-  const handleCancel = () => {
-    setIsShowLogin(false)
-  }
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const store = useSelector((store) => store)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
   }
+
   const tailLayout = {
-    wrapperCol: {
-      offset: 8,
-      span: 16,
-    },
+    wrapperCol: { offset: 8, span: 16 },
   }
 
-  const onFinish = (values) => {
-    console.log("Success:", values)
-  }
+  const handleLogin = () => {
+    const findUser = store.users.find(
+      (item) => item.username === username && item.password === password
+    )
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo)
+    if (findUser) {
+      dispatch(login(findUser))
+      history.goBack()
+    }
   }
 
   return (
     <div className="login">
-      <Modal
-        title="Basic Modal"
-        visible={isShowLogin}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <Form
-          {...layout}
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+      <Form {...layout} name="basic">
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: "Please input your username!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+          <Input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Item>
 
-          <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
-              Đăng nhập
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit" onClick={handleLogin}>
+            Đăng nhập
+          </Button>
+        </Form.Item>
+
+        <div style={{ textAlign: "center" }}>
+          <span>Bạn chưa có tài khoản? </span>
+          <Link to="/register" htmlType="button">
+            Đăng ký
+          </Link>
+        </div>
+      </Form>
     </div>
   )
 }

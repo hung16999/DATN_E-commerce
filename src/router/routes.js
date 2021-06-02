@@ -5,6 +5,7 @@ import Rice from "../components/pages/Rice"
 import ShoppingCart from "../components/pages/ShoppingCart"
 import Vegetable from "../components/pages/Vegetable"
 import Login from "../components/pages/Login"
+import Register from "../components/pages/Register"
 
 export const routes = [
   {
@@ -41,5 +42,10 @@ export const routes = [
     path: "/login",
     exact: true,
     Component: <Login />,
+  },
+  {
+    path: "/register",
+    exact: true,
+    Component: <Register />,
   },
 ]

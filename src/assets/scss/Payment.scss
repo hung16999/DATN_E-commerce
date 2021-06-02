@@ -1,9 +1,9 @@
 .payment {
-  width: 900px;
-  margin: auto;
-
   .wrapper {
+    width: 900px;
+    margin: auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 
     &__customerInfo {
@@ -78,6 +78,26 @@
             }
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 970px) {
+    .wrapper {
+      width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+
+      &__customerInfo {
+        width: 550px;
+        margin: auto;
+        position: static;
+      }
+
+      &__shoppingCart {
+        width: 550px;
+        margin: auto;
       }
     }
   }

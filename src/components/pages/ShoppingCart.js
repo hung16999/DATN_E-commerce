@@ -1,31 +1,32 @@
-import "./../../assets/scss/ShoppingCart.scss"
-
-import {
-  ArrowLeftOutlined,
-  DeleteFilled,
-  WalletFilled,
-} from "@ant-design/icons"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
+import { Helmet } from "react-helmet"
+
 import {
   checkoutCart,
   formatMoney,
   priceByDiscount,
   priceByQuantity,
 } from "../../containers/functions"
+
 import {
   decreaseQuantity,
   deleteAllItemInCart,
   deleteItemInCart,
   increaseQuantity,
 } from "../../redux/actions"
-import { useDispatch, useSelector } from "react-redux"
 
-import { Helmet } from "react-helmet"
+import "./../../assets/scss/ShoppingCart.scss"
 import { Popconfirm } from "antd"
-import React from "react"
+import {
+  ArrowLeftOutlined,
+  DeleteFilled,
+  WalletFilled,
+} from "@ant-design/icons"
 
 const ShoppingCart = () => {
-  const cart = useSelector((store) => store.cart)
+  const { cart, currentUser } = useSelector((store) => store)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -38,7 +39,11 @@ const ShoppingCart = () => {
   }
 
   const handlePayment = () => {
-    history.push("/payment")
+    if (!currentUser) {
+      history.push("/login")
+    } else {
+      history.push("/payment")
+    }
   }
 
   return (
