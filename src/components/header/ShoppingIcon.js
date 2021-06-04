@@ -8,6 +8,7 @@ import { useSelector } from "react-redux"
 
 const ShoppingIcon = () => {
   const cart = useSelector((store) => store.cart)
+
   return (
     <div className="shopping">
       <div className="cart">

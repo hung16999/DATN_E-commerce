@@ -6,3 +6,5 @@ export const DECREASE_QUANTITY = "DECREASE_QUANTITY"
 
 export const LOG_IN = "LOG_IN"
 export const LOG_OUT = "LOG_OUT"
+
+export const SET_CART_FROM_LOCAL_STOGRAGE = "SET_CART_FROM_LOCAL_STOGRAGE"

@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
-import { logout } from "../../redux/actions"
+import { deleteAllItemInCart, logout } from "../../redux/actions"
 
 import ShoppingIcon from "./ShoppingIcon"
 
@@ -14,6 +14,8 @@ const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
   const currentUser = useSelector((store) => store.currentUser)
 
   const handleLogout = () => {
+    dispatch(deleteAllItemInCart())
+
     dispatch(logout())
   }
 

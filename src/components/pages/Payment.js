@@ -13,12 +13,27 @@ import { useSelector } from "react-redux"
 import { useState } from "react"
 import { v4 } from "uuid"
 import NavBar from "../../containers/NavBar"
+import { useHistory } from "react-router"
 
 const Payment = () => {
-  const cart = useSelector((store) => store.cart)
+  const { currentUser, cart } = useSelector((store) => store)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
+
+  const history = useHistory()
+
+  if (currentUser) {
+    if (currentUser.role !== 4) {
+      if (currentUser.role === 1) {
+        history.push("/admin")
+      } else if (currentUser.role === 2) {
+        history.push("/salesman")
+      } else if (currentUser.role === 3) {
+        history.push("/shipper")
+      }
+    }
+  }
 
   const handleOrder = () => {
     const order = {

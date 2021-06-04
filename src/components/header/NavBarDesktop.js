@@ -7,7 +7,7 @@ import ShoppingIcon from "./ShoppingIcon"
 import { useEffect } from "react"
 import "./../../assets/scss/login.scss"
 import { useDispatch, useSelector } from "react-redux"
-import { logout } from "../../redux/actions"
+import { deleteAllItemInCart, logout } from "../../redux/actions"
 
 const NavBarDesktop = ({ setIsShowMenu }) => {
   const currentUser = useSelector((store) => store.currentUser)
@@ -26,6 +26,7 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
 
   const handleLogout = () => {
     dispatch(logout())
+    dispatch(deleteAllItemInCart())
   }
 
   return (
@@ -58,9 +59,10 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
           {currentUser ? (
             <div className="item">
               <span style={{ paddingRight: "25px" }}>
-                <UserOutlined />
-                {"  "}
-                {currentUser.name}
+                {currentUser.role === 4 && <UserOutlined />}
+                {currentUser.role === 1 && <>Admin</>}
+                {currentUser.role === 2 && <>Salesman</>}
+                {currentUser.role === 3 && <>Shipper</>} {currentUser.name}
               </span>
               <LogoutOutlined onClick={handleLogout} />
             </div>

@@ -6,6 +6,7 @@ import {
   LOG_IN,
   LOG_OUT,
   PUSH_ITEM_TO_CART,
+  SET_CART_FROM_LOCAL_STOGRAGE,
 } from "./state/actionType"
 
 export const pushToCart = (payload) => {
@@ -52,5 +53,12 @@ export const login = (payload) => {
 export const logout = () => {
   return {
     type: LOG_OUT,
+  }
+}
+
+export const setCart = (payload) => {
+  return {
+    type: SET_CART_FROM_LOCAL_STOGRAGE,
+    payload,
   }
 }

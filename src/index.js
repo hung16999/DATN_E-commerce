@@ -1,7 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
+import { login } from "./redux/actions"
+import store from "./redux/store"
 import reportWebVitals from "./reportWebVitals"
+import { getUserFromLocalStorage } from "./utils/localStorage"
+
+const user = getUserFromLocalStorage()
+console.log("---current user ---", user)
+
+store.dispatch(login(user))
 
 ReactDOM.render(
   <React.StrictMode>

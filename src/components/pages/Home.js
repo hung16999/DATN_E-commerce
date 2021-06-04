@@ -1,17 +1,33 @@
-import "../../assets/scss/Home.scss"
+import React from "react"
 
 import { Carousel } from "antd"
 import { Helmet } from "react-helmet"
-import React from "react"
-import carousel1 from "../../assets/images/carousel1.png"
-import carousel2 from "../../assets/images/carousel2.png"
-import cleanPicture from "../../assets/images/clean.jpg"
 import { useSelector } from "react-redux"
+
 import RenderProduct from "../../containers/RenderProduct"
 import NavBar from "../../containers/NavBar"
 
+import carousel1 from "../../assets/images/carousel1.png"
+import carousel2 from "../../assets/images/carousel2.png"
+import cleanPicture from "../../assets/images/clean.jpg"
+import "../../assets/scss/Home.scss"
+import { useHistory } from "react-router"
+
 const Home = () => {
-  const store = useSelector((store) => store)
+  const { products, currentUser } = useSelector((store) => store)
+  const history = useHistory()
+
+  if (currentUser) {
+    if (currentUser.role !== 4) {
+      if (currentUser.role === 1) {
+        history.push("/admin")
+      } else if (currentUser.role === 2) {
+        history.push("/salesman")
+      } else if (currentUser.role === 3) {
+        history.push("/shipper")
+      }
+    }
+  }
 
   return (
     <>
@@ -48,7 +64,7 @@ const Home = () => {
           </div>
         </div>
 
-        <RenderProduct products={store.products} />
+        <RenderProduct products={products} />
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { login } from "../../redux/actions"
 import HeaderLogin from "../header/HeaderLogin"
+import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const Login = () => {
   const history = useHistory()
@@ -11,6 +12,7 @@ const Login = () => {
   const store = useSelector((store) => store)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState(false)
 
   const layout = {
     labelCol: { span: 8 },
@@ -27,6 +29,8 @@ const Login = () => {
     )
 
     if (findUser) {
+      setUserToLocalStorage(findUser)
+
       switch (findUser.role) {
         case 1:
           dispatch(login(findUser))
@@ -46,7 +50,19 @@ const Login = () => {
           return
         default:
       }
+    } else {
+      setErrorMessage(true)
     }
+  }
+
+  const handleOnChangeUsername = (e) => {
+    setUsername(e.target.value)
+    setErrorMessage(false)
+  }
+
+  const handleOnChangePassword = (e) => {
+    setPassword(e.target.value)
+    setErrorMessage(false)
   }
 
   return (
@@ -59,10 +75,7 @@ const Login = () => {
             name="username"
             rules={[{ required: true, message: "Không được để trống!" }]}
           >
-            <Input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <Input value={username} onChange={handleOnChangeUsername} />
           </Form.Item>
 
           <Form.Item
@@ -72,9 +85,15 @@ const Login = () => {
           >
             <Input.Password
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleOnChangePassword}
             />
           </Form.Item>
+
+          {errorMessage && (
+            <p style={{ color: "red" }}>
+              Bạn đã nhập sai tên đăng nhập hoặc mật khẩu
+            </p>
+          )}
 
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit" onClick={handleLogin}>
