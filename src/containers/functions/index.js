@@ -30,3 +30,18 @@ export const checkoutCart = (array) => {
     return total + priceByDiscount(item) * item.quantity
   }, 0)
 }
+
+export const checkStatus = (status) => {
+  switch (status) {
+    case 1:
+      return "Đang chờ xử lý"
+    case 2:
+      return "Đã lấy hàng"
+    case 3:
+      return "Đang vận chuyển"
+    case 4:
+      return "Đã thanh toán"
+    default:
+      return
+  }
+}

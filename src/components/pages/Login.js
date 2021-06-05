@@ -29,26 +29,17 @@ const Login = () => {
     )
 
     if (findUser) {
+      dispatch(login(findUser))
       setUserToLocalStorage(findUser)
 
-      switch (findUser.role) {
-        case 1:
-          dispatch(login(findUser))
-          history.push("/admin")
-          return
-        case 2:
-          dispatch(login(findUser))
-          history.push("/salesman")
-          return
-        case 3:
-          dispatch(login(findUser))
-          history.push("/shipper")
-          return
-        case 4:
-          dispatch(login(findUser))
-          history.goBack()
-          return
-        default:
+      if (findUser.role === 1) {
+        history.push("/admin")
+      } else if (findUser.role === 2) {
+        history.push("/salesman")
+      } else if (findUser.role === 3) {
+        history.push("/shipper")
+      } else {
+        history.goBack()
       }
     } else {
       setErrorMessage(true)

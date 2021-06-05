@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import "./../../assets/scss/login.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteAllItemInCart, logout } from "../../redux/actions"
+import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const NavBarDesktop = ({ setIsShowMenu }) => {
   const currentUser = useSelector((store) => store.currentUser)
@@ -26,6 +27,7 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
 
   const handleLogout = () => {
     dispatch(logout())
+    setUserToLocalStorage(null)
     dispatch(deleteAllItemInCart())
   }
 

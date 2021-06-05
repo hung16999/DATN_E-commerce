@@ -1,4 +1,5 @@
 import {
+  PICKUP,
   DECREASE_QUANTITY,
   DELETE_ALL_ITEM_IN_CART,
   DELETE_ITEM_IN_CART,
@@ -6,7 +7,12 @@ import {
   LOG_IN,
   LOG_OUT,
   PUSH_ITEM_TO_CART,
+  SEND_ORDER,
+  SET_CURRENT_USER,
+  START_SHIP,
+  PAID,
 } from "./state/actionType"
+import { orders } from "./state/orders"
 
 import { productsList } from "./state/productsList"
 import { users } from "./state/users"
@@ -16,16 +22,20 @@ const initialState = {
   users: users,
   currentUser: null,
   cart: [],
-  orders: [],
+  orders: orders,
 }
 
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
-      return { ...state, currentUser: action.payload }
+      state.currentUser = action.payload
+      return { ...state }
 
     case LOG_OUT:
       return { ...state, currentUser: null }
+
+    case SET_CURRENT_USER:
+      return { ...state, currentUser: action.payload }
 
     case PUSH_ITEM_TO_CART:
       const copyItem = Object.assign({}, action.payload)
@@ -68,6 +78,49 @@ export const Reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+      }
+
+    case SEND_ORDER:
+      state.orders.unshift(action.payload)
+      return {
+        ...state,
+        orders: [...state.orders],
+      }
+
+    case PICKUP:
+      const findedPickUp = state.orders.find(
+        (order) => order.id === action.payload
+      )
+      if (findedPickUp) {
+        findedPickUp.status = 2
+      }
+      return {
+        ...state,
+        orders: [...state.orders],
+      }
+
+    case START_SHIP:
+      const findedStartShip = state.orders.find(
+        (order) => order.id === action.payload
+      )
+      if (findedStartShip) {
+        findedStartShip.status = 3
+      }
+      return {
+        ...state,
+        orders: [...state.orders],
+      }
+
+    case PAID:
+      const findedPaid = state.orders.find(
+        (order) => order.id === action.payload
+      )
+      if (findedPaid) {
+        findedPaid.status = 4
+      }
+      return {
+        ...state,
+        orders: [...state.orders],
       }
 
     default:

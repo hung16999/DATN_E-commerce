@@ -2,6 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { logout } from "../../redux/actions"
+import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const Admin = () => {
   const dispatch = useDispatch()
@@ -10,20 +11,29 @@ const Admin = () => {
 
   if (currentUser) {
     if (currentUser.role !== 1) {
-      history.push("/")
+      if (currentUser.role === 2) {
+        history.push("/salesman")
+      } else if (currentUser.role === 3) {
+        history.push("/shipper")
+      } else {
+        history.push("/")
+      }
     }
   } else {
     history.push("/")
   }
 
-  const handleLogOut = () => {
+  const handleLogout = () => {
     dispatch(logout())
+    setUserToLocalStorage(null)
+    history.push("/")
   }
 
   return (
     <>
-      <h2>Trang của admin</h2>
-      <button onClick={handleLogOut}>Log out</button>
+      <h2>Trang của Admin</h2>
+      <span>{currentUser && currentUser.name}</span>
+      <button onClick={handleLogout}>Log out</button>
     </>
   )
 }

@@ -31,18 +31,6 @@ const ShoppingCart = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  if (currentUser) {
-    if (currentUser.role !== 4) {
-      if (currentUser.role === 1) {
-        history.push("/admin")
-      } else if (currentUser.role === 2) {
-        history.push("/salesman")
-      } else if (currentUser.role === 3) {
-        history.push("/shipper")
-      }
-    }
-  }
-
   const deleteItem = (item) => {
     dispatch(deleteItemInCart(item))
   }

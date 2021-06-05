@@ -9,11 +9,12 @@ import {
 
 import { Helmet } from "react-helmet"
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { v4 } from "uuid"
 import NavBar from "../../containers/NavBar"
 import { useHistory } from "react-router"
+import { deleteAllItemInCart, sendOrder } from "../../redux/actions"
 
 const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)
@@ -21,6 +22,7 @@ const Payment = () => {
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
 
+  const dispatch = useDispatch()
   const history = useHistory()
 
   if (currentUser) {
@@ -42,7 +44,12 @@ const Payment = () => {
       phone: phone,
       address: address,
       products: cart,
+      total: checkoutCart(cart),
+      status: 1,
     }
+
+    dispatch(sendOrder(order))
+    dispatch(deleteAllItemInCart())
   }
 
   return (

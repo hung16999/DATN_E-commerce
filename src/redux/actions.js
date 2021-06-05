@@ -1,4 +1,5 @@
 import {
+  PICKUP,
   DECREASE_QUANTITY,
   DELETE_ALL_ITEM_IN_CART,
   DELETE_ITEM_IN_CART,
@@ -6,7 +7,11 @@ import {
   LOG_IN,
   LOG_OUT,
   PUSH_ITEM_TO_CART,
+  SEND_ORDER,
   SET_CART_FROM_LOCAL_STOGRAGE,
+  SET_CURRENT_USER,
+  START_SHIP,
+  PAID,
 } from "./state/actionType"
 
 export const pushToCart = (payload) => {
@@ -56,9 +61,44 @@ export const logout = () => {
   }
 }
 
+export const setCurrentUser = (payload) => {
+  return {
+    type: SET_CURRENT_USER,
+    payload,
+  }
+}
+
 export const setCart = (payload) => {
   return {
     type: SET_CART_FROM_LOCAL_STOGRAGE,
+    payload,
+  }
+}
+
+export const sendOrder = (payload) => {
+  return {
+    type: SEND_ORDER,
+    payload,
+  }
+}
+
+export const changePickUp = (payload) => {
+  return {
+    type: PICKUP,
+    payload,
+  }
+}
+
+export const changeStartShip = (payload) => {
+  return {
+    type: START_SHIP,
+    payload,
+  }
+}
+
+export const changePaid = (payload) => {
+  return {
+    type: PAID,
     payload,
   }
 }

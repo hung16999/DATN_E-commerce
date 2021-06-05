@@ -1,6 +1,6 @@
 export const productsList = [
   {
-    id: "29099790-e883-4368-8b4d-e7e88bb3e9cb",
+    id: "p1",
     name: "Táo Lào Cai",
     type: "fruit",
     src: "/images/apple.jpg",
@@ -9,7 +9,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "5918a8cd-6dfb-44d3-8b10-80c80c60986b",
+    id: "p2",
     name: "Bắp cải",
     type: "vegetable",
     src: "/images/bapCaiHd.jpg",
@@ -18,7 +18,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "d5f5997f-2ed5-429a-9ecb-3f967aac1bbb",
+    id: "p3",
     name: "Bắp cải tím",
     type: "vegetable",
     src: "/images/bapCaiTim.jpg",
@@ -27,7 +27,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "769dfb24-b94f-4e83-9d73-02a6d640f0e3",
+    id: "p4",
     name: "Bí đỏ",
     type: "vegetable",
     src: "/images/biDo.jpg",
@@ -36,7 +36,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "ffb60299-7e52-4f82-a93d-4d78da6bd954",
+    id: "p6",
     name: "Bí đỏ dài Đà Nẵng",
     type: "vegetable",
     src: "/images/biDoDai.jpg",
@@ -45,7 +45,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "03ff1ae4-9a8e-493f-9d47-b126e13c1e47",
+    id: "p7",
     name: "Bưởi da xanh",
     type: "fruit",
     src: "/images/buoi.jpg",
@@ -54,7 +54,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "7379458a-e52d-4d6c-b6c9-157e59da85db",
+    id: "p8",
     name: "Cà chua",
     type: "vegetable",
     src: "/images/caChua.jpg",
@@ -63,7 +63,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "ba2865f6-f9df-4f77-8828-9469aa721fbd",
+    id: "p9",
     name: "Cải cúc",
     type: "vegetable",
     src: "/images/caiCuc.jpg",
@@ -72,7 +72,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "13f3dde4-aa41-4776-a2ef-8a1719caeba2",
+    id: "p10",
     name: "Cải ngồng",
     type: "vegetable",
     src: "/images/caiNgong.jpg",
@@ -81,7 +81,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "f2757acd-120b-43c4-a3fd-ee3e56b53ac9",
+    id: "p11",
     name: "Cải xanh",
     type: "vegetable",
     src: "/images/caiXanh.jpg",
@@ -90,7 +90,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "6db66c67-07e7-4e78-866b-1db0d4cd2490",
+    id: "p12",
     name: "Cam Hà Giang",
     type: "fruit",
     src: "/images/camHaGiang.jpg",
@@ -99,7 +99,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "81bc9be4-cede-41cf-bfc4-7987ca6a2e36",
+    id: "p13",
     name: "Cam mỹ",
     type: "fruit",
     src: "/images/camMy.jpg",
@@ -108,7 +108,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "26d6285a-d1cb-4cea-b776-41d08716a212",
+    id: "pp1",
     name: "Cam sành",
     type: "fruit",
     src: "/images/camSanh.jpg",
@@ -117,7 +117,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "d1eef696-8c99-407e-834c-2bfc0d8e241a",
+    id: "p15",
     name: "Cam vàng Úc",
     type: "fruit",
     src: "/images/camVangUc.jpg",
@@ -126,7 +126,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "7b94f9f3-cd3c-4e28-ba5b-d5aebef06c7c",
+    id: "p16",
     name: "Cần tây",
     type: "vegetable",
     src: "/images/canTay.jpg",
@@ -135,7 +135,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "0875a29a-5a71-47c2-9dfd-477d292e6900",
+    id: "p17",
     name: "Cà tím",
     type: "vegetable",
     src: "/images/caTim.jpg",
@@ -144,7 +144,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "6d64ebf0-c384-4366-a648-4482384c3cf7",
+    id: "p18",
     name: "Chanh leo",
     type: "fruit",
     src: "/images/chanhLeo.jpg",
@@ -153,7 +153,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "e57d6f7d-c24f-4627-8850-1dc961ce1a8c",
+    id: "p19",
     name: "Chuối tây",
     type: "fruit",
     src: "/images/chuoi.jpg",
@@ -162,7 +162,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "4e979d0c-bae2-47e1-9c4e-af8f49f01d40",
+    id: "p20",
     name: "Chuối tiêu",
     type: "fruit",
     src: "/images/chuoiCao.jpg",
@@ -171,7 +171,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "1f460a49-741e-47ac-8796-ce3c319c8343",
+    id: "p21",
     name: "Chuối xanh",
     type: "fruit",
     src: "/images/chuoiXanh.jpg",
@@ -180,7 +180,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "a2c54f49-8faf-4864-a360-665327453a3b",
+    id: "p22",
     name: "Củ đậu",
     type: "fruit",
     src: "/images/cuDau.jpg",
@@ -189,7 +189,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "c25c5cde-4763-40b3-8117-a7571c62d09e",
+    id: "p23",
     name: "Đậu Cove",
     type: "vegetable",
     src: "/images/dauCove.jpg",
@@ -198,7 +198,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "083bc157-a743-4cd0-aece-615e90ab92b2",
+    id: "p24",
     name: "Dưa chuột",
     type: "fruit",
     src: "/images/duaChuot.jpg",
@@ -207,7 +207,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "9d8bf75b-f71a-4fa0-874a-bcd8ba8a0b42",
+    id: "p25",
     name: "Dưa hấu",
     type: "fruit",
     src: "/images/duaHau.jpg",
@@ -216,7 +216,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "99d669b2-9315-44e5-b075-135e226151dd",
+    id: "p26",
     name: "Dưa lê",
     type: "fruit",
     src: "/images/duaLe.jpg",
@@ -225,7 +225,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "56667b28-57c8-4083-80b8-3617b524de6f",
+    id: "p27",
     name: "Dứa thơm",
     type: "fruit",
     src: "/images/duaThom.jpg",
@@ -234,7 +234,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "bf3c656c-ab5d-401e-a8c4-9b7830748de2",
+    id: "p28",
     name: "Dừa Bến Tre",
     type: "fruit",
     src: "/images/duaXiem.jpg",
@@ -243,7 +243,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "4d0da5e9-6138-4932-9831-b778006178c0",
+    id: "p29",
     name: "Đu đủ",
     type: "vegetable",
     src: "/images/dudu.jpg",
@@ -252,7 +252,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "8fa7e09b-bc1f-4621-a12c-69e9f87ea182",
+    id: "p30",
     name: "Gừng củ",
     type: "vegetable",
     src: "/images/gungCu.jpg",
@@ -261,7 +261,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "04848c65-3fe7-4056-bc13-72e4b3d650b3",
+    id: "p31",
     name: "Hành củ Hải Dương",
     type: "vegetable",
     src: "/images/hanhCuHD.jpg",
@@ -270,7 +270,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "8ecb9df5-6c2e-4b6e-ac6d-845eededc0d4",
+    id: "p32",
     name: "Hành tây",
     type: "vegetable",
     src: "/images/hanhTay.jpg",
@@ -279,7 +279,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "6625e5a7-b810-4b81-bef0-5c7d5515d381",
+    id: "p33",
     name: "Hạt sen",
     type: "vegetable",
     src: "/images/hatSen.jpg",
@@ -288,7 +288,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "978f2e97-71e1-40a5-aaf2-ab82f88b4e24",
+    id: "p34",
     name: "Khoai lang",
     type: "vegetable",
     src: "/images/khoaiLang.jpg",
@@ -297,7 +297,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "15d23e25-5fd0-4d9d-9929-1b34bce89533",
+    id: "p35",
     name: "Lê Hưng Yên",
     type: "fruit",
     src: "/images/leHanQuoc.jpg",
@@ -306,7 +306,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "e2cad033-b6f8-4ca7-b011-19bc782109e1",
+    id: "p36",
     name: "Rau mùng tơi",
     type: "vegetable",
     src: "/images/mongToi.jpg",
@@ -315,7 +315,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "c5a05825-8a34-48ce-bff7-be8e4b066c3c",
+    id: "p37",
     name: "Mướp đắng",
     type: "vegetable",
     src: "/images/muopDang.jpg",
@@ -324,7 +324,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "f4889bdd-c3b6-41c2-9e2b-02018b31cd34",
+    id: "p38",
     name: "Ngô",
     type: "vegetable",
     src: "/images/ngo.jpg",
@@ -333,7 +333,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "fa39737d-a0c0-4ae7-a05d-478fde94dd5c",
+    id: "p39",
     name: "Ổi Thanh Hà",
     type: "fruit",
     src: "/images/oiThanhHa.jpg",
@@ -342,7 +342,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "43f61c39-fc23-4db1-ab94-5c17c103f67c",
+    id: "p40",
     name: "Ớt chuông",
     type: "vegetable",
     src: "/images/otChuong.jpg",
@@ -351,7 +351,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "284cd62d-d6fe-4e69-a49b-ef8f8cebf17d",
+    id: "p41",
     name: "Ớt ngọt đỏ",
     type: "vegetable",
     src: "/images/otMau.jpg",
@@ -360,7 +360,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "7b7aca7d-c18f-481b-aa26-cd92d71767e2",
+    id: "p42",
     name: "Ớt đà lạt",
     type: "vegetable",
     src: "/images/otNgot.jpg",
@@ -369,7 +369,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "d67c8979-8286-452a-843b-8cc5dad68538",
+    id: "p43",
     name: "Ớt cay",
     type: "vegetable",
     src: "/images/otNho.jpg",
@@ -378,7 +378,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "c1f0500d-61b4-4340-a0da-51b7043e8a61",
+    id: "p44",
     name: "Bầu loại to",
     type: "vegetable",
     src: "/images/quaBau.jpg",
@@ -387,7 +387,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "c35f0a59-a181-4570-b28d-30ac83a95460",
+    id: "p45",
     name: "Rau mầm xanh",
     type: "vegetable",
     src: "/images/rauMamXanh.jpg",
@@ -396,7 +396,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "86f618b6-afce-4359-9b4e-8c3e7530f7e0",
+    id: "p46",
     name: "Rau dền đỏ",
     type: "vegetable",
     src: "/images/rauDen.jpg",
@@ -405,7 +405,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "21f0b32f-6902-40e4-bfe6-daa467f7f9d1",
+    id: "p47",
     name: "Rang lang",
     type: "vegetable",
     src: "/images/rauLang.jpg",
@@ -414,7 +414,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "c3245813-6216-4013-b185-2ebab477b57d",
+    id: "p48",
     name: "Rau muống",
     type: "vegetable",
     src: "/images/rauMuong.jpg",
@@ -423,7 +423,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "a070448d-6119-44d0-a41e-21f3292a478a",
+    id: "p49",
     name: "Rau ngót",
     type: "vegetable",
     src: "/images/rauNgot.jpg",
@@ -432,7 +432,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "6b2920f8-3f7d-4214-a4ba-909b416c29e3",
+    id: "p50",
     name: "Roi nha trang",
     type: "fruit",
     src: "/images/roi.jpg",
@@ -441,7 +441,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "08b47a4e-8212-43ea-9f2c-90aa33521d7c",
+    id: "p51",
     name: "Su hào Hải Dương",
     type: "vegetable",
     src: "/images/suhao.jpg",
@@ -450,7 +450,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "81cfc4d6-c902-4c84-abfc-599c91cdbdfd",
+    id: "p52",
     name: "Táo Hưng Yên",
     type: "fruit",
     src: "/images/taoNewZelan.jpg",
@@ -459,7 +459,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "1cbae00f-ea42-44c7-b5a5-d9855bd961a4",
+    id: "p53",
     name: "Táo Quảng Nam",
     type: "fruit",
     src: "/images/taoNgon.jpg",
@@ -468,7 +468,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "b428e5b0-64ce-4ae3-ba30-f7c00b16826a",
+    id: "p54",
     name: "Táo Đà Lạt",
     type: "fruit",
     src: "/images/taoPhap.jpg",
@@ -477,7 +477,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "a059d84b-3486-47b1-9c21-6fe3cfd16e36",
+    id: "p55",
     name: "Thanh long Kiên Giang",
     type: "fruit",
     src: "/images/thanhLong.jpg",
@@ -486,7 +486,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "d00ee8ff-e02a-498a-b574-a6dc5e730331",
+    id: "p56",
     name: "Tỏi củ Hải Dương",
     type: "vegetable",
     src: "/images/toiCu.jpg",
@@ -495,7 +495,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "6c59a2ff-9876-4615-9d61-095b798fc1f8",
+    id: "p57",
     name: "Xoài Nghệ An",
     type: "fruit",
     src: "/images/xoai.jpg",
@@ -504,7 +504,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "a5c4f067-8cba-4762-8f5f-59103f253deb",
+    id: "p58",
     name: "Xoài ngọt Thái Bình",
     type: "fruit",
     src: "/images/xoaiCat.jpg",
@@ -513,7 +513,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "f829e3d0-6fea-41b9-bd66-3e8a14b7d872",
+    id: "p59",
     name: "Xoài xanh",
     type: "fruit",
     src: "/images/xoaiThai.jpg",
@@ -522,7 +522,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "79eb4850-4a20-4fa2-94f8-c021369879d9",
+    id: "p60",
     name: "Xoài Nam Đinh",
     type: "fruit",
     src: "/images/xoaiTuQuy.jpg",
@@ -531,7 +531,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "38a3f6f0-9a93-43af-9c3a-10eea4cce3bb",
+    id: "p61",
     name: "Xoài chín Phú Thọ",
     type: "fruit",
     src: "/images/xoaiVangUc.jpg",
@@ -540,7 +540,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "b67d63cb-03d6-4d47-9cf3-0efbc5365178",
+    id: "p62",
     name: "Gạo tẻ",
     type: "rice",
     src: "/images/gao.jpg",
@@ -549,7 +549,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "ac58de6f-5a7b-4a88-9b68-c8a1e8583569",
+    id: "p63",
     name: "Gạo tẻ An Giang",
     type: "rice",
     src: "/images/gaoAnGiang.jpg",
@@ -558,7 +558,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "0152b3f8-f606-4110-9391-8c55138fec14",
+    id: "p64",
     name: "Gạo bắc thơm",
     type: "rice",
     src: "/images/gaoBacThom.jpg",
@@ -567,7 +567,7 @@ export const productsList = [
     remains: 0,
   },
   {
-    id: "599448bb-6452-468a-8889-6b303dd95eeb",
+    id: "p65",
     name: "Gạo Ba Vì",
     type: "rice",
     src: "/images/gaoBaVi.jpg",
@@ -576,7 +576,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "2ed0563b-3e7d-4bb0-8c5d-169abb546655",
+    id: "p66",
     name: "Gạo Hải Phòng",
     type: "rice",
     src: "/images/gaoHaiPhong.jpg",
@@ -621,7 +621,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "0da6b9fc-6da7-4bed-bc7f-95da1c6abf79",
+    id: "p14",
     name: "Gạo Thái Bình",
     type: "rice",
     src: "/images/gaoThaiBinh.jpg",
@@ -630,7 +630,7 @@ export const productsList = [
     remains: 5000,
   },
   {
-    id: "5fbafe14-72e8-44f5-9ea6-dc5f1cd855a5",
+    id: "p5",
     name: "Gạo Thái Nguyên",
     type: "rice",
     src: "/images/gaoThaiLan.jpg",

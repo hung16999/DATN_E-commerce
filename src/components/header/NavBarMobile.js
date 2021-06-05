@@ -8,6 +8,7 @@ import ShoppingIcon from "./ShoppingIcon"
 
 import { SearchOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons"
 import "./../../assets/scss/NavBarMobile.scss"
+import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
 
   const handleLogout = () => {
     dispatch(deleteAllItemInCart())
-
+    setUserToLocalStorage(null)
     dispatch(logout())
   }
 

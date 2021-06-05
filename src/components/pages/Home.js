@@ -11,24 +11,13 @@ import carousel1 from "../../assets/images/carousel1.png"
 import carousel2 from "../../assets/images/carousel2.png"
 import cleanPicture from "../../assets/images/clean.jpg"
 import "../../assets/scss/Home.scss"
-import { useHistory } from "react-router"
 
 const Home = () => {
-  const { products, currentUser } = useSelector((store) => store)
-  const history = useHistory()
+  const { products, cart, orders } = useSelector((store) => store)
+  console.log(cart)
+  console.log(orders)
 
-  if (currentUser) {
-    if (currentUser.role !== 4) {
-      if (currentUser.role === 1) {
-        history.push("/admin")
-      } else if (currentUser.role === 2) {
-        history.push("/salesman")
-      } else if (currentUser.role === 3) {
-        history.push("/shipper")
-      }
-    }
-  }
-
+  console.log(JSON.stringify(orders))
   return (
     <>
       <Helmet>
