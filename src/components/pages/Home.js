@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 import { Carousel } from "antd"
 import { Helmet } from "react-helmet"
@@ -18,6 +18,7 @@ const Home = () => {
   console.log(orders)
 
   console.log(JSON.stringify(orders))
+
   return (
     <>
       <Helmet>

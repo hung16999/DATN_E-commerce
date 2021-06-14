@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import { login, setCurrentUser } from "./redux/actions"
+import { setCurrentUser } from "./redux/actions"
 import store from "./redux/store"
 import reportWebVitals from "./reportWebVitals"
 import { getUserFromLocalStorage } from "./utils/localStorage"

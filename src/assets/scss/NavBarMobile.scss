@@ -79,14 +79,6 @@
       cursor: pointer;
     }
   }
-}
-
-.login {
-  color: #cccccc;
-
-  &:hover {
-    color: white;
-  }
 
   .item {
     span {
@@ -96,5 +88,13 @@
         color: white;
       }
     }
+  }
+}
+
+.login {
+  color: #cccccc;
+
+  &:hover {
+    color: white;
   }
 }

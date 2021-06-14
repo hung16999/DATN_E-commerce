@@ -39,7 +39,7 @@ const Login = () => {
       } else if (findUser.role === 3) {
         history.push("/shipper")
       } else {
-        history.goBack()
+        history.push("/")
       }
     } else {
       setErrorMessage(true)

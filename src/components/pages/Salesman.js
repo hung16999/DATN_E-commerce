@@ -16,13 +16,9 @@ import { Col, Row } from "antd"
 const Salesman = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const { currentUser, orders, products } = useSelector((store) => store)
+  const { currentUser, orders } = useSelector((store) => store)
 
   console.log(orders)
-
-  const findProduct = (productDetail) => {
-    return products.find((product) => product.id === productDetail.productID)
-  }
 
   if (currentUser) {
     if (currentUser.role !== 2) {
