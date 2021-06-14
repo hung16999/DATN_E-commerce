@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 import { Carousel } from "antd"
 import { Helmet } from "react-helmet"
@@ -13,11 +13,7 @@ import cleanPicture from "../../assets/images/clean.jpg"
 import "../../assets/scss/Home.scss"
 
 const Home = () => {
-  const { products, cart, orders } = useSelector((store) => store)
-  console.log(cart)
-  console.log(orders)
-
-  console.log(JSON.stringify(orders))
+  const { products } = useSelector((store) => store)
 
   return (
     <>

@@ -10,8 +10,8 @@ import {
   priceByDiscount,
   priceByQuantity,
 } from "../../containers/functions"
-
 import { Col, Row } from "antd"
+import { LogoutOutlined } from "@ant-design/icons"
 
 const Shipper = () => {
   const dispatch = useDispatch()
@@ -53,12 +53,18 @@ const Shipper = () => {
     <>
       <div className="salesman">
         <div className="salesman__header">
-          <h2>Trang của shipper</h2>
-          <span>{currentUser && currentUser.name}</span>
-          <button onClick={handleLogout}>Log out</button>
+          <span>Nông sản sạch</span>
+          <span>Trang của shipper</span>
+          <span>
+            {currentUser && currentUser.name}{" "}
+            <LogoutOutlined
+              style={{ marginLeft: "15px", color: "white" }}
+              onClick={handleLogout}
+            />
+          </span>
         </div>
 
-        <Row>
+        <Row className="salesman__title">
           <Col span={8}>
             <h2>
               Đang chờ giao hàng{" "}
@@ -66,7 +72,24 @@ const Shipper = () => {
                 {counterOrderByStatus(2)} đơn
               </span>
             </h2>
+          </Col>
 
+          <Col span={8}>
+            <h2>
+              Đang vận chuyển{" "}
+              <span style={{ color: "red" }}>
+                {counterOrderByStatus(3)} đơn
+              </span>
+            </h2>
+          </Col>
+
+          <Col span={8}>
+            <h2>Đã thanh toán</h2>
+          </Col>
+        </Row>
+
+        <div className="salesman__wrapper">
+          <Col className="salesman__wrapper__list" span={8}>
             {orders
               .filter((orderFilter) => orderFilter.status === 1)
               .map((order) => (
@@ -96,13 +119,7 @@ const Shipper = () => {
               ))}
           </Col>
 
-          <Col span={8}>
-            <h2>
-              Đang vận chuyển{" "}
-              <span style={{ color: "red" }}>
-                {counterOrderByStatus(3)} đơn
-              </span>
-            </h2>
+          <Col className="salesman__wrapper__list" span={8}>
             {orders
               .filter((order) => order.status === 3)
               .map((order) => (
@@ -132,8 +149,7 @@ const Shipper = () => {
               ))}
           </Col>
 
-          <Col span={8}>
-            <h2>Đã thanh toán</h2>
+          <Col className="salesman__wrapper__list" span={8}>
             {orders
               .filter((order) => order.status === 4)
               .map((order) => (
@@ -159,7 +175,7 @@ const Shipper = () => {
                 </div>
               ))}
           </Col>
-        </Row>
+        </div>
       </div>
     </>
   )

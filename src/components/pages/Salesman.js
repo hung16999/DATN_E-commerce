@@ -12,13 +12,12 @@ import {
   priceByQuantity,
 } from "../../containers/functions"
 import { Col, Row } from "antd"
+import { LogoutOutlined } from "@ant-design/icons"
 
 const Salesman = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentUser, orders } = useSelector((store) => store)
-
-  console.log(orders)
 
   if (currentUser) {
     if (currentUser.role !== 2) {
@@ -54,18 +53,32 @@ const Salesman = () => {
   return (
     <div className="salesman">
       <div className="salesman__header">
-        <h2>Trang của người bán hàng</h2>
-        <span>{currentUser && currentUser.name}</span>
-        <button onClick={handleLogout}>Log out</button>
+        <span>Nông sản sạch</span>
+        <span>Trang của người bán hàng</span>
+        <span>
+          {currentUser && currentUser.name}{" "}
+          <LogoutOutlined
+            style={{ marginLeft: "15px", color: "white" }}
+            onClick={handleLogout}
+          />
+        </span>
       </div>
 
-      <Row>
+      <Row className="salesman__title">
         <Col span={12}>
           <h2>
             Đang chờ xử lý{" "}
             <span style={{ color: "red" }}>{counterOrderByStatus(1)} đơn</span>
           </h2>
+        </Col>
 
+        <Col span={12}>
+          <h2>Đã lấy hàng</h2>
+        </Col>
+      </Row>
+
+      <div className="salesman__wrapper">
+        <Col className="salesman__wrapper__list" span={12}>
           {orders
             .filter((orderFilter) => orderFilter.status === 1)
             .map((order) => (
@@ -96,8 +109,7 @@ const Salesman = () => {
             ))}
         </Col>
 
-        <Col span={12}>
-          <h2>Đã lấy hàng</h2>
+        <Col className="salesman__wrapper__list" span={12}>
           {orders
             .filter((order) => order.status === 2)
             .map((order) => (
@@ -123,7 +135,7 @@ const Salesman = () => {
               </div>
             ))}
         </Col>
-      </Row>
+      </div>
     </div>
   )
 }
