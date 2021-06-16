@@ -1,6 +1,4 @@
-@import "antd/dist/antd.css";
-
-.salesman {
+.admin {
   &__header {
     display: flex;
     flex-direction: row;
@@ -22,44 +20,30 @@
 
     color: white;
 
-    a {
-      color: white;
-    }
-
     span:first-child {
       color: #acf57c;
     }
   }
 
-  &__title {
-    position: sticky;
-    top: 50px;
-    z-index: 200;
-    background: #f1f0f1;
-    height: 50px;
-    display: flex;
-    align-items: center;
-
-    h2 {
-      margin-left: 20px;
-    }
-  }
-
-  &__wrapper {
-    height: 90%;
-    display: flex;
-    flex-direction: row;
-
+  &__user {
     &__list {
-      float: left;
-      height: 600px;
-      overflow: scroll;
+      background: white;
+      width: 200px;
+      border-radius: 7px;
+      padding: 5px;
+      margin-bottom: 10px;
     }
-  }
 
-  .order__item {
-    background: white;
-    margin: 10px;
-    padding: 15px;
+    &__form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+    }
   }
 }

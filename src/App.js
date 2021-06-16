@@ -6,6 +6,8 @@ import { routes } from "./router/routes"
 import store from "./redux/store"
 
 import "./assets/scss/index.scss"
+import AdminUser from "./components/pages/AdminUser"
+import AdminProducts from "./components/pages/AdminProducts"
 
 const App = () => {
   return (
@@ -21,6 +23,14 @@ const App = () => {
               {route.Component}
             </Route>
           ))}
+
+          <Route path="/admin/user" exact={true}>
+            <AdminUser />
+          </Route>
+
+          <Route path="/admin/products" exact={true}>
+            <AdminProducts />
+          </Route>
         </Switch>
       </BrowserRouter>
     </Provider>

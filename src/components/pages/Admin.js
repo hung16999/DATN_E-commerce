@@ -1,13 +1,19 @@
-import React from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { logout } from "../../redux/actions"
 import { setUserToLocalStorage } from "../../utils/localStorage"
+import { LogoutOutlined } from "@ant-design/icons"
+import "../../assets/scss/Admin.scss"
+import AdminUser from "./AdminUser"
+import AdminProducts from "./AdminProducts"
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom"
 
 const Admin = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const currentUser = useSelector((store) => store.currentUser)
+  const [directAdmin, setDirectAdmin] = useState(true)
 
   if (currentUser) {
     if (currentUser.role !== 1) {
@@ -30,11 +36,44 @@ const Admin = () => {
   }
 
   return (
-    <>
-      <h2>Trang của Admin</h2>
-      <span>{currentUser && currentUser.name}</span>
-      <button onClick={handleLogout}>Log out</button>
-    </>
+    <div className="admin">
+      <div className="admin__header">
+        <span>Nông sản sạch</span>
+        <span
+          style={{ cursor: "pointer" }}
+          onClick={() => setDirectAdmin(true)}
+        >
+          Quản lý nhân viên
+        </span>
+
+        <span
+          style={{ cursor: "pointer" }}
+          onClick={() => setDirectAdmin(false)}
+        >
+          Quản lý sản phẩm
+        </span>
+
+        <span>
+          {currentUser && currentUser.name}{" "}
+          <LogoutOutlined
+            style={{ marginLeft: "15px", color: "white" }}
+            onClick={handleLogout}
+          />
+        </span>
+      </div>
+
+      <div className="admin__body">
+        {directAdmin ? (
+          <>
+            <AdminUser />
+          </>
+        ) : (
+          <>
+            <AdminProducts />
+          </>
+        )}
+      </div>
+    </div>
   )
 }
 
