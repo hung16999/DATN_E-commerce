@@ -23,14 +23,6 @@ const App = () => {
               {route.Component}
             </Route>
           ))}
-
-          <Route path="/admin/user" exact={true}>
-            <AdminUser />
-          </Route>
-
-          <Route path="/admin/products" exact={true}>
-            <AdminProducts />
-          </Route>
         </Switch>
       </BrowserRouter>
     </Provider>

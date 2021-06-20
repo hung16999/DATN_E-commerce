@@ -12,6 +12,9 @@ import {
   SET_CURRENT_USER,
   START_SHIP,
   PAID,
+  ADD_NEW_ACCOUNT,
+  EDIT_ACCOUNT,
+  DELETE_ACCOUNT,
 } from "./state/actionType"
 
 export const pushToCart = (payload) => {
@@ -99,6 +102,27 @@ export const changeStartShip = (payload) => {
 export const changePaid = (payload) => {
   return {
     type: PAID,
+    payload,
+  }
+}
+
+export const deleteAccount = (payload) => {
+  return {
+    type: DELETE_ACCOUNT,
+    payload,
+  }
+}
+
+export const editAccount = (payload) => {
+  return {
+    type: EDIT_ACCOUNT,
+    payload,
+  }
+}
+
+export const addAccount = (payload) => {
+  return {
+    type: ADD_NEW_ACCOUNT,
     payload,
   }
 }

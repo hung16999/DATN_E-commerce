@@ -14,3 +14,7 @@ export const SEND_ORDER = "SEND_ORDER"
 export const PICKUP = "PICKUP"
 export const START_SHIP = "START_SHIP"
 export const PAID = "PAID"
+
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT"
+export const EDIT_ACCOUNT = "EDIT_ACCOUNT"
+export const ADD_NEW_ACCOUNT = "ADD_NEW_ACCOUNT"
