@@ -6,8 +6,6 @@ import { routes } from "./router/routes"
 import store from "./redux/store"
 
 import "./assets/scss/index.scss"
-import AdminUser from "./components/pages/AdminUser"
-import AdminProducts from "./components/pages/AdminProducts"
 
 const App = () => {
   return (

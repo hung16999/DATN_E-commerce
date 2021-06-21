@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
-import { addAccount, deleteAccount, editAccount } from "../../redux/actions"
+import { addProduct, deleteProduct, editProduct } from "../../redux/actions"
 import { Table, Popconfirm, Form, Typography, Button, Select } from "antd"
 import EditableCell from "./EditableCell"
 
@@ -12,15 +12,17 @@ const AdminUser = () => {
 
   const [form] = Form.useForm()
   const [editingKey, setEditingKey] = useState("")
-  const [role, setRole] = useState(null)
+  const [type, setType] = useState(null)
   const isEditing = (record) => record.id === editingKey
-
   const edit = (record) => {
+    setType(record.type)
     form.setFieldsValue({
       name: "",
-      username: "",
-      password: "",
-      role: role,
+      src: "",
+      price: 0,
+      discount: 0,
+      remains: 0,
+      type: type,
       ...record,
     })
     setEditingKey(record.id)
@@ -32,30 +34,30 @@ const AdminUser = () => {
 
   const save = async (id) => {
     const row = await form.validateFields()
-    console.log(row)
-    dispatch(editAccount({ row: { ...row, role: role }, id }))
+    dispatch(editProduct({ row: { ...row, type: type }, id }))
     setEditingKey("")
   }
 
   const deleteRecord = (record) => {
-    dispatch(deleteAccount(record))
+    dispatch(deleteProduct(record))
   }
 
-  const addNewAccount = () => {
-    const newAccount = {
+  const addNewProduct = () => {
+    const newProduct = {
       id: v4(),
       name: "",
-      role: null,
-      username: "",
-      password: "",
+      type: null,
+      price: 0,
+      discount: 0,
+      remains: 0,
     }
 
-    dispatch(addAccount(newAccount))
-    edit(newAccount)
+    dispatch(addProduct(newProduct))
+    edit(newProduct)
   }
 
-  const changeRole = (value) => {
-    setRole(value)
+  const changeType = (value) => {
+    setType(value)
   }
 
   const columns = [
@@ -73,7 +75,28 @@ const AdminUser = () => {
     {
       title: "loại",
       dataIndex: "type",
-      editable: true,
+      render: (_, product) => {
+        const editable = isEditing(product)
+        return editable ? (
+          <Select
+            defaultValue={product.type}
+            style={{ width: 120 }}
+            onChange={changeType}
+          >
+            <Option value="fruit">Hoa quả</Option>
+            <Option value="vegetable">Rau củ</Option>
+            <Option value="rice">Gạo</Option>
+          </Select>
+        ) : (
+          <>
+            <span>
+              {product.type === "fruit" && "Hoa quả"}
+              {product.type === "vegetable" && "Rau củ"}
+              {product.type === "rice" && "Gạo"}
+            </span>
+          </>
+        )
+      },
     },
     {
       title: "giá",
@@ -147,6 +170,12 @@ const AdminUser = () => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType:
+          col.dataIndex === "price" ||
+          col.dataIndex === "discount" ||
+          col.dataIndex === "remains"
+            ? "number"
+            : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -156,7 +185,7 @@ const AdminUser = () => {
 
   return (
     <>
-      <Button onClick={addNewAccount} type="primary">
+      <Button onClick={addNewProduct} type="primary">
         Thêm tài khoản mới
       </Button>
 

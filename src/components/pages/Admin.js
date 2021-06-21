@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { logout } from "../../redux/actions"
@@ -58,7 +58,7 @@ const Admin = () => {
             <AdminUser />
           </TabPane>
 
-          <TabPane tab="Quản lý sản phẩm" key="2">
+          <TabPane tab="QUẢN LÝ SẢN PHẨM" key="2">
             <AdminProducts />
           </TabPane>
         </Tabs>

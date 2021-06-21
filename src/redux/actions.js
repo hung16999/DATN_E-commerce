@@ -15,6 +15,9 @@ import {
   ADD_NEW_ACCOUNT,
   EDIT_ACCOUNT,
   DELETE_ACCOUNT,
+  ADD_NEW_PRODUCT,
+  EDIT_PRODUCT,
+  DELETE_PRODUCT,
 } from "./state/actionType"
 
 export const pushToCart = (payload) => {
@@ -123,6 +126,27 @@ export const editAccount = (payload) => {
 export const addAccount = (payload) => {
   return {
     type: ADD_NEW_ACCOUNT,
+    payload,
+  }
+}
+
+export const addProduct = (payload) => {
+  return {
+    type: ADD_NEW_PRODUCT,
+    payload,
+  }
+}
+
+export const editProduct = (payload) => {
+  return {
+    type: EDIT_PRODUCT,
+    payload,
+  }
+}
+
+export const deleteProduct = (payload) => {
+  return {
+    type: DELETE_PRODUCT,
     payload,
   }
 }

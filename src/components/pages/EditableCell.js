@@ -1,4 +1,4 @@
-import { Input, Form } from "antd"
+import { Input, InputNumber, Form } from "antd"
 
 const EditableCell = ({
   editing,
@@ -10,7 +10,7 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = (inputType = <Input />)
+  const inputNode = inputType === "number" ? <InputNumber /> : <Input />
 
   return (
     <td {...restProps}>

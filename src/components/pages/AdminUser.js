@@ -9,7 +9,6 @@ const AdminUser = () => {
   const { Option } = Select
   const dispatch = useDispatch()
   const users = useSelector((store) => store.users)
-  console.log("users-----", users)
   const usersFiltered = users.filter(
     (user) => user.role === 2 || user.role === 3 || user.role === null
   )
@@ -36,7 +35,6 @@ const AdminUser = () => {
 
   const save = async (id) => {
     const row = await form.validateFields()
-    console.log(row)
     dispatch(editAccount({ row: { ...row, role: role }, id }))
     setEditingKey("")
   }

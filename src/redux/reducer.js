@@ -14,6 +14,9 @@ import {
   ADD_NEW_ACCOUNT,
   EDIT_ACCOUNT,
   DELETE_ACCOUNT,
+  ADD_NEW_PRODUCT,
+  EDIT_PRODUCT,
+  DELETE_PRODUCT,
 } from "./state/actionType"
 import { orders } from "./state/orders"
 
@@ -134,33 +137,63 @@ export const Reducer = (state = initialState, action) => {
       }
 
     case EDIT_ACCOUNT:
-      console.log(action.payload)
       const newUsers = [...state.users]
       const index = newUsers.findIndex((user) => user.id === action.payload.id)
-
       if (index > -1) {
         const item = newUsers[index]
         newUsers.splice(index, 1, { ...item, ...action.payload.row })
       } else {
         newUsers.push(action.payload.row)
       }
-      console.log(newUsers)
-
       return {
         ...state,
         users: [...newUsers],
       }
 
     case DELETE_ACCOUNT:
-      console.log("action---", action.payload)
       const indexUser = state.users.findIndex(
         (user) => user.id === action.payload.id
       )
-      console.log("---index", indexUser)
       state.users.splice(indexUser, 1)
       return {
         ...state,
         users: [...state.users],
+      }
+
+    case ADD_NEW_PRODUCT:
+      state.products.unshift(action.payload)
+      return {
+        ...state,
+        products: [...state.products],
+      }
+
+    case EDIT_PRODUCT:
+      const newProducts = [...state.products]
+      const indexEditProduct = newProducts.findIndex(
+        (product) => product.id === action.payload.id
+      )
+      if (indexEditProduct > -1) {
+        const item = newProducts[indexEditProduct]
+        newProducts.splice(indexEditProduct, 1, {
+          ...item,
+          ...action.payload.row,
+        })
+      } else {
+        newProducts.push(action.payload.row)
+      }
+      return {
+        ...state,
+        products: [...newProducts],
+      }
+
+    case DELETE_PRODUCT:
+      const indexDeleteProduct = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      )
+      state.products.splice(indexDeleteProduct, 1)
+      return {
+        ...state,
+        products: [...state.products],
       }
     default:
       return state
