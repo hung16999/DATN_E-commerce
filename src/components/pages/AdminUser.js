@@ -1,57 +1,30 @@
 import React, { useState } from "react"
-import { Table, Input, Popconfirm, Form, Typography, Button } from "antd"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { addAccount, deleteAccount, editAccount } from "../../redux/actions"
-
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = <Input />
-
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  )
-}
+import { Table, Popconfirm, Form, Typography, Button, Select } from "antd"
+import EditableCell from "./EditableCell"
 
 const AdminUser = () => {
+  const { Option } = Select
   const dispatch = useDispatch()
   const users = useSelector((store) => store.users)
+  console.log("users-----", users)
+  const usersFiltered = users.filter(
+    (user) => user.role === 2 || user.role === 3 || user.role === null
+  )
+
   const [form] = Form.useForm()
   const [editingKey, setEditingKey] = useState("")
+  const [role, setRole] = useState(null)
   const isEditing = (record) => record.id === editingKey
 
   const edit = (record) => {
     form.setFieldsValue({
       name: "",
-      age: "",
-      address: "",
+      username: "",
+      password: "",
+      role: role,
       ...record,
     })
     setEditingKey(record.id)
@@ -63,7 +36,8 @@ const AdminUser = () => {
 
   const save = async (id) => {
     const row = await form.validateFields()
-    dispatch(editAccount({ row, id }))
+    console.log(row)
+    dispatch(editAccount({ row: { ...row, role: role }, id }))
     setEditingKey("")
   }
 
@@ -75,14 +49,17 @@ const AdminUser = () => {
     const newAccount = {
       id: v4(),
       name: "",
+      role: null,
       username: "",
       password: "",
     }
 
-    const newData = [...users]
-    newData.unshift(newAccount)
     dispatch(addAccount(newAccount))
     edit(newAccount)
+  }
+
+  const changeRole = (value) => {
+    setRole(value)
   }
 
   const columns = [
@@ -91,6 +68,30 @@ const AdminUser = () => {
       dataIndex: "id",
       editable: false,
       width: 150,
+    },
+    {
+      title: "chức vụ",
+      dataIndex: "role",
+      render: (_, record) => {
+        const editable = isEditing(record)
+        return editable ? (
+          <Select
+            defaultValue={record.role}
+            style={{ width: 120 }}
+            onChange={changeRole}
+          >
+            <Option value={2}>Bán hàng</Option>
+            <Option value={3}>Shipper</Option>
+          </Select>
+        ) : (
+          <>
+            <span>
+              {record.role === 2 && "Bán hàng"}
+              {record.role === 3 && "Shipper"}
+            </span>
+          </>
+        )
+      },
     },
     {
       title: "Tên người dùng",
@@ -184,7 +185,7 @@ const AdminUser = () => {
               cell: EditableCell,
             },
           }}
-          dataSource={users}
+          dataSource={usersFiltered}
           columns={mergedColumns}
           rowClassName="editable-row"
           bordered
