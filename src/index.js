@@ -7,7 +7,6 @@ import reportWebVitals from "./reportWebVitals"
 import { getUserFromLocalStorage } from "./utils/localStorage"
 
 const user = getUserFromLocalStorage()
-console.log("---current user ---", user)
 
 store.dispatch(setCurrentUser(user))
 

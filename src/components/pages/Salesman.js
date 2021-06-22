@@ -1,16 +1,17 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
+
 import { changePickUp, logout } from "../../redux/actions"
 import { setUserToLocalStorage } from "../../utils/localStorage"
-
-import "../../assets/scss/salesman.scss"
 import {
   checkoutCart,
   formatMoney,
   priceByDiscount,
   priceByQuantity,
 } from "../../containers/functions"
+
+import "../../assets/scss/salesman.scss"
 import { Col, Row } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
 

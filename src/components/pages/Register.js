@@ -1,11 +1,13 @@
 import React from "react"
-import { Form, Input, Button, notification } from "antd"
-import HeaderLogin from "../header/HeaderLogin"
+import { useHistory, Link } from "react-router-dom"
 import { v4 } from "uuid"
 import { useDispatch } from "react-redux"
+
+import HeaderLogin from "../header/HeaderLogin"
 import { addAccount, login } from "../../redux/actions"
-import { useHistory, Link } from "react-router-dom"
+
 import { SmileOutlined } from "@ant-design/icons"
+import { Form, Input, Button, notification } from "antd"
 
 const formItemLayout = {
   labelCol: {

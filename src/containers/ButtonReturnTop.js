@@ -1,6 +1,5 @@
-import "../assets/scss/ButtonReturnTop.scss"
-
 import React, { useEffect, useState } from "react"
+import "../assets/scss/ButtonReturnTop.scss"
 
 const ButtonReturnTop = () => {
   const [isVisible, setIsVisible] = useState(false)

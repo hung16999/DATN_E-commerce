@@ -1,4 +1,13 @@
-import "../../assets/scss/Payment.scss"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
+import { v4 } from "uuid"
+import { useHistory } from "react-router"
+import { Helmet } from "react-helmet"
+
+import { deleteAllItemInCart, sendOrder } from "../../redux/actions"
+
+import NavBar from "../../containers/NavBar"
 
 import {
   checkoutCart,
@@ -7,14 +16,7 @@ import {
   priceByQuantity,
 } from "../../containers/functions"
 
-import { Helmet } from "react-helmet"
-import React from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
-import { v4 } from "uuid"
-import NavBar from "../../containers/NavBar"
-import { useHistory } from "react-router"
-import { deleteAllItemInCart, sendOrder } from "../../redux/actions"
+import "../../assets/scss/Payment.scss"
 
 const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)

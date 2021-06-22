@@ -65,7 +65,7 @@ const AdminUser = () => {
       title: "id",
       dataIndex: "id",
       editable: false,
-      width: 150,
+      width: 50,
     },
     {
       title: "tên",
@@ -186,7 +186,7 @@ const AdminUser = () => {
   return (
     <>
       <Button onClick={addNewProduct} type="primary">
-        Thêm tài khoản mới
+        Thêm sản phẩm mới
       </Button>
 
       <Form form={form} component={false}>

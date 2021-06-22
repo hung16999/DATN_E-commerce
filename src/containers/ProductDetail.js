@@ -1,11 +1,9 @@
-import "../assets/scss/ProductDetail.scss"
-
-import { formatMoney, priceByDiscount, priceByQuantity } from "./functions"
-
 import React from "react"
 import { pushToCart } from "../redux/actions"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { formatMoney, priceByDiscount, priceByQuantity } from "./functions"
+import "../assets/scss/ProductDetail.scss"
 
 const ProductDetail = (props) => {
   const { itemSelected, increaseQuantity, decreaseQuantity } = props
