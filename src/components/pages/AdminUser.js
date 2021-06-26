@@ -1,14 +1,13 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { v4 } from "uuid"
 import { addAccount, deleteAccount, editAccount } from "../../redux/actions"
 import { Table, Popconfirm, Form, Typography, Button, Select } from "antd"
 import EditableCell from "./EditableCell"
 
-const AdminUser = () => {
+const AdminUser = ({ users }) => {
   const { Option } = Select
   const dispatch = useDispatch()
-  const users = useSelector((store) => store.users)
   const usersFiltered = users.filter(
     (user) => user.role === 2 || user.role === 3 || user.role === null
   )
@@ -16,7 +15,7 @@ const AdminUser = () => {
   const [form] = Form.useForm()
   const [editingKey, setEditingKey] = useState("")
   const [role, setRole] = useState(null)
-  const isEditing = (record) => record.id === editingKey
+  const isEditing = (record) => record.id_account === editingKey
 
   const edit = (record) => {
     form.setFieldsValue({
@@ -26,16 +25,16 @@ const AdminUser = () => {
       role: role,
       ...record,
     })
-    setEditingKey(record.id)
+    setEditingKey(record.id_account)
   }
 
   const cancel = async () => {
     setEditingKey("")
   }
 
-  const save = async (id) => {
+  const save = async (id_account) => {
     const row = await form.validateFields()
-    dispatch(editAccount({ row: { ...row, role: role }, id }))
+    dispatch(editAccount({ row: { ...row, role: role }, id_account }))
     setEditingKey("")
   }
 
@@ -45,8 +44,9 @@ const AdminUser = () => {
 
   const addNewAccount = () => {
     const newAccount = {
-      id: v4(),
+      id_account: v4(),
       name: "",
+      phone: null,
       role: null,
       username: "",
       password: "",
@@ -62,10 +62,9 @@ const AdminUser = () => {
 
   const columns = [
     {
-      title: "id",
-      dataIndex: "id",
-      editable: false,
-      width: 150,
+      title: "Tên nhân viên",
+      dataIndex: "name",
+      editable: true,
     },
     {
       title: "chức vụ",
@@ -91,9 +90,10 @@ const AdminUser = () => {
         )
       },
     },
+
     {
-      title: "Tên người dùng",
-      dataIndex: "name",
+      title: "Số điện thoại",
+      dataIndex: "phone",
       editable: true,
     },
     {
@@ -115,7 +115,7 @@ const AdminUser = () => {
           <span>
             <Button
               type="primary"
-              onClick={() => save(record.id)}
+              onClick={() => save(record.id_account)}
               style={{
                 marginRight: 8,
               }}

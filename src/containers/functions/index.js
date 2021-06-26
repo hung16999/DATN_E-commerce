@@ -15,8 +15,8 @@ export const priceByQuantity = (price, quantity) => {
   return price * quantity
 }
 
-export const priceByDiscount = (item) => {
-  return item.price - (item.price * item.discount) / 100
+export const priceByDiscount = (price, discount) => {
+  return price - (price * discount) / 100
 }
 
 export const countItemInCart = (array) => {
@@ -27,7 +27,7 @@ export const countItemInCart = (array) => {
 
 export const checkoutCart = (array) => {
   return array.reduce((total, item) => {
-    return total + priceByDiscount(item) * item.quantity
+    return total + priceByDiscount(item.price, item.discount) * item.quantity
   }, 0)
 }
 
@@ -44,4 +44,15 @@ export const checkStatus = (status) => {
     default:
       return
   }
+}
+
+export const counterOrderByStatus = (array, status) => {
+  let count = 0
+  array.forEach((element) => {
+    if (element.id_order_status === status) {
+      count++
+    }
+  })
+
+  return count
 }

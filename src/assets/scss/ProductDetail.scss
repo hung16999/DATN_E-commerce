@@ -4,6 +4,7 @@ button {
 
 .detailProduct {
   height: 350px;
+  width: 100%;
   margin-top: 20px;
   background: white;
   display: flex;
@@ -127,12 +128,12 @@ button {
   }
 }
 
-@media (max-width: 700px) {
-  .detailProduct {
-    display: flex;
-    flex-direction: column;
-  }
-  .image {
-    display: none;
-  }
-}
+// @media (max-width: 700px) {
+//   .detailProduct {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .image {
+//     display: none;
+//   }
+// }

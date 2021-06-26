@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { logout } from "../../redux/actions"
@@ -8,10 +8,22 @@ import "../../assets/scss/Admin.scss"
 import AdminUser from "./AdminUser"
 import AdminProducts from "./AdminProducts"
 import { Tabs } from "antd"
+import api from "../../env/api"
 
 const Admin = () => {
   const { TabPane } = Tabs
   const dispatch = useDispatch()
+  const [users, setUsers] = useState([])
+  const [products, setProducts] = useState([])
+
+  const fetchDataForAdmin = () => {
+    api.get(`get_products.php`).then((response) => setProducts(response.data))
+    api.get(`login.php`).then((response) => setUsers(response.data))
+  }
+
+  useEffect(() => {
+    fetchDataForAdmin()
+  }, [])
 
   const history = useHistory()
   const currentUser = useSelector((store) => store.currentUser)
@@ -55,11 +67,11 @@ const Admin = () => {
 
         <Tabs defaultActiveKey="1" style={{ width: "90%", margin: "auto" }}>
           <TabPane tab="Quản lý nhân viên" key="1">
-            <AdminUser />
+            <AdminUser users={users} />
           </TabPane>
 
           <TabPane tab="QUẢN LÝ SẢN PHẨM" key="2">
-            <AdminProducts />
+            <AdminProducts products={products} />
           </TabPane>
         </Tabs>
       </div>

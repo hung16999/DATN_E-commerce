@@ -8,7 +8,6 @@ export const LOG_IN = "LOG_IN"
 export const LOG_OUT = "LOG_OUT"
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
-export const SET_CART_FROM_LOCAL_STOGRAGE = "SET_CART_FROM_LOCAL_STOGRAGE"
 
 export const SEND_ORDER = "SEND_ORDER"
 export const PICKUP = "PICKUP"

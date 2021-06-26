@@ -1,15 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { login } from "../../redux/actions"
 import HeaderLogin from "../header/HeaderLogin"
 import { setUserToLocalStorage } from "../../utils/localStorage"
 import { Form, Input, Button } from "antd"
+import api from "../../env/api"
 
 const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const store = useSelector((store) => store)
+  const [users, setUsers] = useState([])
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState(false)
@@ -23,8 +24,12 @@ const Login = () => {
     wrapperCol: { offset: 8, span: 16 },
   }
 
+  useEffect(() => {
+    api.get(`login.php`).then((response) => setUsers(response.data))
+  }, [])
+
   const handleLogin = () => {
-    const findUser = store.users.find(
+    const findUser = users.find(
       (item) => item.username === username && item.password === password
     )
 
@@ -41,8 +46,6 @@ const Login = () => {
       } else {
         history.push("/")
       }
-    } else {
-      setErrorMessage(true)
     }
   }
 

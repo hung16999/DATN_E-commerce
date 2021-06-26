@@ -20,12 +20,7 @@ import {
 } from "./state/actionType"
 import { orders } from "./state/orders"
 
-import { productsList } from "./state/productsList"
-import { users } from "./state/users"
-
 const initialState = {
-  products: productsList,
-  users: users,
   currentUser: null,
   cart: [],
   orders: orders,

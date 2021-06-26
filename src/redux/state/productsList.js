@@ -5,7 +5,7 @@ export const productsList = [
     type: "fruit",
     src: "/images/apple.jpg",
     price: 500000,
-    discount: 5,
+    discount: 0,
     remains: 0,
   },
   {
@@ -14,7 +14,7 @@ export const productsList = [
     type: "vegetable",
     src: "/images/bapCaiHd.jpg",
     price: 500000,
-    discount: 5,
+    discount: 0,
     remains: 0,
   },
   {

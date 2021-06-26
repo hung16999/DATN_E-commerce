@@ -57,12 +57,13 @@
   }
 
   .logo {
-    font-size: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: #acf57c;
+    span {
+      color: #acf57c;
+
+      :hover {
+        color: #acf57c;
+      }
+    }
   }
 
   .search {

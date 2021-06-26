@@ -1,6 +1,6 @@
 import "../assets/scss/RenderProduct.scss"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { formatMoney, priceByDiscount } from "./functions"
 
 import Modal from "antd/lib/modal/Modal"
@@ -9,12 +9,11 @@ import ProductDetail from "./ProductDetail"
 const RenderProduct = ({ products }) => {
   const [isShowModal, setIsShowModal] = useState(false)
   const [itemSelected, setItemSelected] = useState({})
+  const [data, setData] = useState([])
 
-  const editData = () => {
-    return products.map((item) => ({ ...item, quantity: 1 }))
-  }
-
-  const [data, setData] = useState(editData())
+  useEffect(() => {
+    setData(products)
+  }, [products])
 
   const increaseQuantity = (item) => {
     const found = data.find((product) => product.id === item.id)
@@ -39,16 +38,6 @@ const RenderProduct = ({ products }) => {
 
   return (
     <div className="renderProduct">
-      <div className="filter">
-        <div>Giá</div>
-        <div>
-          <button>{formatMoney(100000)}</button>
-          <button>{formatMoney(200000)}</button>
-          <button>{formatMoney(500000)}</button>
-          <button>{formatMoney(1000000)}</button>
-        </div>
-      </div>
-
       <div className="wrapper">
         {data
           .sort((item1, item2) => {
@@ -59,7 +48,7 @@ const RenderProduct = ({ products }) => {
               key={item.id}
               onClick={() => handleClick(item)}
               className={
-                item.remains ? "wrapper__item" : "wrapper__item disable"
+                item.remains !== 0 ? "wrapper__item" : "wrapper__item disable"
               }
             >
               {item.remains === 0 && (
@@ -67,7 +56,7 @@ const RenderProduct = ({ products }) => {
               )}
               <div
                 className={
-                  item.discount
+                  item.discount !== 0
                     ? "wrapper__item__discount"
                     : "wrapper__item__discount hidden"
                 }
@@ -82,7 +71,7 @@ const RenderProduct = ({ products }) => {
               <div className="wrapper__item__name__price">
                 <div className="wrapper__item__name">{item.name}</div>
                 <div className="wrapper__item__currentPrice">
-                  {formatMoney(priceByDiscount(item))}
+                  {formatMoney(priceByDiscount(item.price, item.discount))}
                 </div>
 
                 <div

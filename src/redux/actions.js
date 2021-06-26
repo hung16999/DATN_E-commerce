@@ -8,7 +8,6 @@ import {
   LOG_OUT,
   PUSH_ITEM_TO_CART,
   SEND_ORDER,
-  SET_CART_FROM_LOCAL_STOGRAGE,
   SET_CURRENT_USER,
   START_SHIP,
   PAID,
@@ -70,13 +69,6 @@ export const logout = () => {
 export const setCurrentUser = (payload) => {
   return {
     type: SET_CURRENT_USER,
-    payload,
-  }
-}
-
-export const setCart = (payload) => {
-  return {
-    type: SET_CART_FROM_LOCAL_STOGRAGE,
     payload,
   }
 }

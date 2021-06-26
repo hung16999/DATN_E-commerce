@@ -1,14 +1,13 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { v4 } from "uuid"
 import { addProduct, deleteProduct, editProduct } from "../../redux/actions"
 import { Table, Popconfirm, Form, Typography, Button, Select } from "antd"
 import EditableCell from "./EditableCell"
 
-const AdminUser = () => {
+const AdminUser = ({ products }) => {
   const { Option } = Select
   const dispatch = useDispatch()
-  const products = useSelector((store) => store.products)
 
   const [form] = Form.useForm()
   const [editingKey, setEditingKey] = useState("")

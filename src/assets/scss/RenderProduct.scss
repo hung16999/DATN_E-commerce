@@ -5,41 +5,12 @@
   flex-direction: row;
   margin: auto;
 
-  .filter {
-    position: sticky;
-    top: 80px;
-    width: 20%;
-    height: 400px;
-    padding: 10px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-
-    div:nth-child(2) {
-      display: flex;
-      flex-direction: column;
-
-      button {
-        margin: 5px;
-        border: none;
-        width: 70%;
-      }
-    }
-
-    div:nth-child(4) {
-      button {
-        margin: 5px;
-        border: none;
-      }
-    }
-  }
-
   .wrapper {
     margin: auto;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 
     &__item {
       background: white;
@@ -121,4 +92,8 @@
       }
     }
   }
+}
+
+.ant-modal-content {
+  width: 900px;
 }

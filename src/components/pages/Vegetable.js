@@ -1,11 +1,25 @@
 import { Helmet } from "react-helmet"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import RenderProduct from "../../containers/RenderProduct"
-import { useSelector } from "react-redux"
 import NavBar from "../../containers/NavBar"
+import api from "../../env/api"
 
 const Rau = () => {
-  const { products } = useSelector((store) => store)
+  const [products, setProducts] = useState([])
+
+  const fetchData = () => {
+    api
+      .get(`get_products.php`)
+      .then((response) =>
+        setProducts(
+          response.data.filter((product) => product.type === "vegetable")
+        )
+      )
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>

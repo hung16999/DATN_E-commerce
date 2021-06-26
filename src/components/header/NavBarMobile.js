@@ -28,9 +28,12 @@ const NavBarMobile = ({ isShowMenu, setIsShowMenu }) => {
           <hr className={isShowMenu ? "hr2" : ""} />
         </div>
 
-        <div>
-          <span className="logo">Nông sản sạch</span>
+        <div className="logo">
+          <Link to="/">
+            <span>Nông sản sạch</span>
+          </Link>
         </div>
+
         <SearchOutlined className="search" />
         <ShoppingIcon />
 
