@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { login } from "../../redux/actions"
@@ -10,7 +10,6 @@ import api from "../../env/api"
 const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const [users, setUsers] = useState([])
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState(false)
@@ -24,29 +23,33 @@ const Login = () => {
     wrapperCol: { offset: 8, span: 16 },
   }
 
-  useEffect(() => {
-    api.get(`login.php`).then((response) => setUsers(response.data))
-  }, [])
-
   const handleLogin = () => {
-    const findUser = users.find(
-      (item) => item.username === username && item.password === password
-    )
+    const formData = new FormData()
 
-    if (findUser) {
-      dispatch(login(findUser))
-      setUserToLocalStorage(findUser)
+    formData.append("username", username)
+    formData.append("password", password)
 
-      if (findUser.role === 1) {
-        history.push("/admin")
-      } else if (findUser.role === 2) {
-        history.push("/salesman")
-      } else if (findUser.role === 3) {
-        history.push("/shipper")
+    api.post(`login.php`, formData).then((response) => {
+      const user = response.data[0]
+
+      if (user) {
+        setErrorMessage(false)
+        dispatch(login(response.data[0]))
+        setUserToLocalStorage(user)
+
+        if (user.role === 1) {
+          history.push("/admin")
+        } else if (user.role === 2) {
+          history.push("/salesman")
+        } else if (user.role === 3) {
+          history.push("/shipper")
+        } else {
+          history.push("/")
+        }
       } else {
-        history.push("/")
+        setErrorMessage(true)
       }
-    }
+    })
   }
 
   const handleOnChangeUsername = (e) => {

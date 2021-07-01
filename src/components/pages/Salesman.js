@@ -17,6 +17,7 @@ import {
 import "../../assets/scss/salesman.scss"
 import { Col, Row } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
+import api from "../../env/api"
 
 const Salesman = () => {
   const dispatch = useDispatch()
@@ -36,9 +37,6 @@ const Salesman = () => {
     fetchOrders()
   }, [])
 
-  console.log(orders)
-  console.log(ordersDetail)
-
   if (currentUser) {
     if (currentUser.role !== 2) {
       if (currentUser.role === 1) {
@@ -57,6 +55,16 @@ const Salesman = () => {
     dispatch(logout())
     setUserToLocalStorage(null)
     history.push("/")
+  }
+
+  const handlePickUp = (id, status) => {
+    const formData = new FormData()
+
+    formData.append("id", id)
+    formData.append("updateStatus", status)
+
+    api.post(`update_status_order.php`, formData)
+    fetchOrders()
   }
 
   return (
@@ -142,7 +150,9 @@ const Salesman = () => {
                   )}
                 </p>
 
-                <button onClick={() => {}}>Đã lấy hàng</button>
+                <button onClick={() => handlePickUp(order.id_order, 2)}>
+                  Đã lấy hàng
+                </button>
               </div>
             ))}
         </Col>
@@ -163,6 +173,9 @@ const Salesman = () => {
                 </p>
                 <p>
                   <b>Địa chỉ:</b> {order.address}
+                </p>
+                <p>
+                  <b>Ngày tạo đơn hàng:</b> {order.create_date}
                 </p>
 
                 <div>

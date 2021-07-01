@@ -10,7 +10,15 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === "number" ? <InputNumber /> : <Input />
+  const inputNode = () => {
+    if (dataIndex === "role") {
+      return <InputNumber min={2} max={3} />
+    } else if (inputType === "number") {
+      return <InputNumber />
+    } else {
+      return <Input />
+    }
+  }
 
   return (
     <td {...restProps}>
@@ -27,7 +35,7 @@ const EditableCell = ({
             },
           ]}
         >
-          {inputNode}
+          {inputNode()}
         </Form.Item>
       ) : (
         children

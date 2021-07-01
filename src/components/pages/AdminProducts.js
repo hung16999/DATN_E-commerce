@@ -1,62 +1,74 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
 import { v4 } from "uuid"
-import { addProduct, deleteProduct, editProduct } from "../../redux/actions"
-import { Table, Popconfirm, Form, Typography, Button, Select } from "antd"
+import {
+  Table,
+  Popconfirm,
+  Input,
+  notification,
+  Form,
+  Typography,
+  Button,
+} from "antd"
 import EditableCell from "./EditableCell"
+import api from "../../env/api"
 
-const AdminUser = ({ products }) => {
-  const { Option } = Select
-  const dispatch = useDispatch()
-
+const AdminUser = ({ products, fetchDataForAdmin }) => {
   const [form] = Form.useForm()
-  const [editingKey, setEditingKey] = useState("")
-  const [type, setType] = useState(null)
   const isEditing = (record) => record.id === editingKey
-  const edit = (record) => {
-    setType(record.type)
-    form.setFieldsValue({
+
+  const [editingKey, setEditingKey] = useState("")
+  const [isAddProduct, setIsAddProduct] = useState(false)
+  const [type, setType] = useState("")
+  const [price, setPrice] = useState("")
+  const [discount, setDiscount] = useState("")
+  const [remains, setRemains] = useState("")
+  const [src, setSrc] = useState("")
+  const [name, setName] = useState("")
+
+  const openNotification = () => {
+    notification.open({
+      message: "Thông báo",
+      description: "Thao tác thành công!",
+    })
+  }
+
+  const edit = async (record) => {
+    await form.setFieldsValue({
       name: "",
       src: "",
       price: 0,
       discount: 0,
       remains: 0,
-      type: type,
+      type: "",
       ...record,
     })
     setEditingKey(record.id)
   }
 
-  const cancel = async () => {
+  const cancel = () => {
     setEditingKey("")
   }
 
   const save = async (id) => {
     const row = await form.validateFields()
-    dispatch(editProduct({ row: { ...row, type: type }, id }))
+    const formData = new FormData()
+
+    formData.append("id", id)
+    formData.append("name", row.name)
+    formData.append("price", row.price)
+    formData.append("discount", row.discount)
+    formData.append("src", row.src)
+    formData.append("remains", row.remains)
+
+    api.post(`update_product.php`, formData).then((response) => {
+      if (response.data === 1) {
+        openNotification()
+        fetchDataForAdmin()
+      } else {
+        alert(response.data)
+      }
+    })
     setEditingKey("")
-  }
-
-  const deleteRecord = (record) => {
-    dispatch(deleteProduct(record))
-  }
-
-  const addNewProduct = () => {
-    const newProduct = {
-      id: v4(),
-      name: "",
-      type: null,
-      price: 0,
-      discount: 0,
-      remains: 0,
-    }
-
-    dispatch(addProduct(newProduct))
-    edit(newProduct)
-  }
-
-  const changeType = (value) => {
-    setType(value)
   }
 
   const columns = [
@@ -74,28 +86,6 @@ const AdminUser = ({ products }) => {
     {
       title: "loại",
       dataIndex: "type",
-      render: (_, product) => {
-        const editable = isEditing(product)
-        return editable ? (
-          <Select
-            defaultValue={product.type}
-            style={{ width: 120 }}
-            onChange={changeType}
-          >
-            <Option value="fruit">Hoa quả</Option>
-            <Option value="vegetable">Rau củ</Option>
-            <Option value="rice">Gạo</Option>
-          </Select>
-        ) : (
-          <>
-            <span>
-              {product.type === "fruit" && "Hoa quả"}
-              {product.type === "vegetable" && "Rau củ"}
-              {product.type === "rice" && "Gạo"}
-            </span>
-          </>
-        )
-      },
     },
     {
       title: "giá",
@@ -110,6 +100,11 @@ const AdminUser = ({ products }) => {
     {
       title: "số lượng còn lại",
       dataIndex: "remains",
+      editable: true,
+    },
+    {
+      title: "Đường dẫn ảnh",
+      dataIndex: "src",
       editable: true,
     },
     {
@@ -141,19 +136,6 @@ const AdminUser = ({ products }) => {
             >
               Sửa
             </Typography.Link>
-
-            <Popconfirm
-              title="Bạn có chắc XÓA tài khoản?"
-              onConfirm={() => deleteRecord(record)}
-            >
-              <Typography.Link
-                disabled={editingKey !== ""}
-                type="danger"
-                style={{ marginLeft: "25px" }}
-              >
-                Xóa
-              </Typography.Link>
-            </Popconfirm>
           </>
         )
       },
@@ -182,11 +164,106 @@ const AdminUser = ({ products }) => {
     }
   })
 
+  const addNewProduct = () => {
+    const formData = new FormData()
+
+    formData.append("id", v4())
+    formData.append("name", name)
+    formData.append("price", price)
+    formData.append("discount", discount)
+    formData.append("src", src)
+    formData.append("remains", remains)
+    formData.append("type", type)
+
+    api.post(`push_product.php`, formData).then((response) => {
+      if (response.data === 1) {
+        setDiscount("")
+        setName("")
+        setPrice("")
+        setRemains("")
+        setSrc("")
+        setType("")
+        fetchDataForAdmin()
+        openNotification()
+      }
+    })
+  }
+
   return (
     <>
-      <Button onClick={addNewProduct} type="primary">
-        Thêm sản phẩm mới
-      </Button>
+      {isAddProduct ? (
+        <>
+          <div>
+            <Button onClick={() => setIsAddProduct(false)} type="danger">
+              Hủy
+            </Button>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              marginBottom: "20px",
+            }}
+          >
+            <label>
+              Tên:{" "}
+              <Input value={name} onChange={(e) => setName(e.target.value)} />
+            </label>
+
+            <label>
+              Loại:{" "}
+              <Input value={type} onChange={(e) => setType(e.target.value)} />
+            </label>
+
+            <label>
+              price:{" "}
+              <Input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </label>
+
+            <label>
+              discount:{" "}
+              <Input
+                type="number"
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+            </label>
+
+            <label>
+              số lượng còn lại:{" "}
+              <Input
+                type="number"
+                value={remains}
+                onChange={(e) => setRemains(e.target.value)}
+              />
+            </label>
+
+            <label>
+              src:{" "}
+              <Input value={src} onChange={(e) => setSrc(e.target.value)} />
+            </label>
+
+            <Button
+              onClick={addNewProduct}
+              type="primary"
+              style={{ marginLeft: "15px" }}
+            >
+              Lưu
+            </Button>
+          </div>
+        </>
+      ) : (
+        <>
+          <Button onClick={() => setIsAddProduct(true)} type="primary">
+            Thêm sản phẩm mới
+          </Button>
+        </>
+      )}
 
       <Form form={form} component={false}>
         <Table

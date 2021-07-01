@@ -4,10 +4,11 @@ import { useState } from "react"
 import { v4 } from "uuid"
 import { useHistory } from "react-router"
 import { Helmet } from "react-helmet"
-
-import { deleteAllItemInCart, sendOrder } from "../../redux/actions"
+import API from "../../env/api"
 
 import NavBar from "../../containers/NavBar"
+import { SmileOutlined } from "@ant-design/icons"
+import { notification } from "antd"
 
 import {
   checkoutCart,
@@ -17,12 +18,13 @@ import {
 } from "../../containers/functions"
 
 import "../../assets/scss/Payment.scss"
+import { deleteAllItemInCart } from "../../redux/actions"
 
 const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)
-  const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
+  console.log(currentUser)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -39,19 +41,66 @@ const Payment = () => {
     }
   }
 
-  const handleOrder = () => {
-    const order = {
-      id: v4(),
-      customerName: name,
-      phone: phone,
-      address: address,
-      products: cart,
-      total: checkoutCart(cart),
-      status: 1,
-    }
+  const twoDigits = (d) => {
+    if (0 <= d && d < 10) return "0" + d.toString()
+    if (-10 < d && d < 0) return "-0" + (-1 * d).toString()
+    return d.toString()
+  }
 
-    dispatch(sendOrder(order))
+  // eslint-disable-next-line no-extend-native
+  Date.prototype.toMysqlFormat = function () {
+    return (
+      this.getUTCFullYear() +
+      "-" +
+      twoDigits(1 + this.getUTCMonth()) +
+      "-" +
+      twoDigits(this.getUTCDate()) +
+      " " +
+      twoDigits(7 + this.getUTCHours()) +
+      ":" +
+      twoDigits(this.getUTCMinutes()) +
+      ":" +
+      twoDigits(this.getUTCSeconds())
+    )
+  }
+
+  const handleOrder = async (e) => {
+    e.preventDefault()
+    const id = v4()
+    const formData = new FormData()
+
+    formData.append("id_order", id)
+    formData.append("id_customer", currentUser.id_account)
+    formData.append("phone", phone)
+    formData.append("address", address)
+    formData.append("id_order_status", 1)
+    formData.append("create_date", new Date().toMysqlFormat())
+
+    API.post(`push_order.php`, formData)
+
+    await cart.forEach((element) => {
+      const formData = new FormData()
+
+      formData.append("id_order", id)
+      formData.append("id_product", element.id)
+      formData.append("quantity", element.quantity)
+
+      API.post(`push_order_detail.php`, formData).then((response) =>
+        console.log(response)
+      )
+    })
+
     dispatch(deleteAllItemInCart())
+    openNotification()
+    history.push("/")
+  }
+
+  const openNotification = () => {
+    notification.open({
+      message: "Thông báo",
+      description: "Đặt hàng thành công! Tiếp tục mua hàng nào!",
+      icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+    })
   }
 
   return (
@@ -67,11 +116,7 @@ const Payment = () => {
           <h2>Điền thông tin đặt hàng</h2>
           <label>
             Họ và tên
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <input type="text" value={currentUser ? currentUser.name : ""} />
           </label>
 
           <label>
@@ -101,9 +146,13 @@ const Payment = () => {
               <div className="wrapper__shoppingCart__item--text">
                 <span>{item.name}</span>
                 <span>
-                  {formatMoney(priceByDiscount(item))} x {item.quantity} ={" "}
+                  {formatMoney(priceByDiscount(item.price, item.discount))} x{" "}
+                  {item.quantity} ={" "}
                   {formatMoney(
-                    priceByQuantity(priceByDiscount(item), item.quantity)
+                    priceByQuantity(
+                      priceByDiscount(item.price, item.discount),
+                      item.quantity
+                    )
                   )}
                 </span>
               </div>

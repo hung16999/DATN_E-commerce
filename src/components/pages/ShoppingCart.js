@@ -28,6 +28,7 @@ import NavBar from "../../containers/NavBar"
 
 const ShoppingCart = () => {
   const { currentUser, cart } = useSelector((store) => store)
+  console.log(cart)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -102,7 +103,10 @@ const ShoppingCart = () => {
                         <>
                           <span className="item__price__money--blur">
                             {formatMoney(
-                              priceByQuantity(item.quantity, item.price)
+                              priceByQuantity(
+                                item.quantity,
+                                priceByDiscount(item.price, item.discount)
+                              )
                             )}
                           </span>
 
@@ -112,7 +116,10 @@ const ShoppingCart = () => {
 
                       <span className="item__price__money--bold">
                         {formatMoney(
-                          priceByQuantity(item.quantity, priceByDiscount(item))
+                          priceByQuantity(
+                            item.quantity,
+                            priceByDiscount(item.price, item.discount)
+                          )
                         )}
                       </span>
                     </div>

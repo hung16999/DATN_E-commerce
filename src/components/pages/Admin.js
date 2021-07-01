@@ -18,7 +18,7 @@ const Admin = () => {
 
   const fetchDataForAdmin = () => {
     api.get(`get_products.php`).then((response) => setProducts(response.data))
-    api.get(`login.php`).then((response) => setUsers(response.data))
+    api.get(`get_all_user.php`).then((response) => setUsers(response.data))
   }
 
   useEffect(() => {
@@ -67,11 +67,17 @@ const Admin = () => {
 
         <Tabs defaultActiveKey="1" style={{ width: "90%", margin: "auto" }}>
           <TabPane tab="Quản lý nhân viên" key="1">
-            <AdminUser users={users} />
+            <AdminUser
+              users={users.filter((user) => user.role === 2 || user.role === 3)}
+              fetchDataForAdmin={fetchDataForAdmin}
+            />
           </TabPane>
 
           <TabPane tab="QUẢN LÝ SẢN PHẨM" key="2">
-            <AdminProducts products={products} />
+            <AdminProducts
+              products={products}
+              fetchDataForAdmin={fetchDataForAdmin}
+            />
           </TabPane>
         </Tabs>
       </div>

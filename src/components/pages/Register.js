@@ -4,10 +4,12 @@ import { v4 } from "uuid"
 import { useDispatch } from "react-redux"
 
 import HeaderLogin from "../header/HeaderLogin"
-import { addAccount, login } from "../../redux/actions"
+import { login } from "../../redux/actions"
 
 import { SmileOutlined } from "@ant-design/icons"
 import { Form, Input, Button, notification } from "antd"
+import api from "../../env/api"
+import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const formItemLayout = {
   labelCol: {
@@ -47,18 +49,33 @@ const RegistrationForm = () => {
   const history = useHistory()
 
   const handleRegister = (values) => {
-    const newAccount = {
-      id: v4(),
-      username: values.username,
-      password: values.password,
-      role: 4,
-      name: values.name,
-    }
+    const formData = new FormData()
+    const id = v4()
 
-    dispatch(addAccount(newAccount))
-    openNotification()
-    dispatch(login(newAccount))
-    history.push("/")
+    formData.append("id_account", id)
+    formData.append("username", values.username)
+    formData.append("password", values.password)
+    formData.append("role", 4)
+    formData.append("name", values.name)
+    formData.append("phone", values.phone)
+
+    api.post(`push_account.php`, formData).then((response) => {
+      if (response.data === 1) {
+        api.post(`login.php`, formData).then((response) => {
+          const user = response.data[0]
+
+          if (user) {
+            dispatch(login(response.data[0]))
+            setUserToLocalStorage(user)
+
+            openNotification()
+            history.push("/")
+          }
+        })
+      } else {
+        alert(response.data)
+      }
+    })
   }
 
   const openNotification = () => {
@@ -80,6 +97,36 @@ const RegistrationForm = () => {
           onFinish={handleRegister}
           scrollToFirstError
         >
+          <Form.Item
+            name="name"
+            label="Họ và tên"
+            tooltip="Nhập họ và tên của bạn"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập họ và tên",
+                whitespace: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="phone"
+            label="Số điện thoại"
+            tooltip="Nhập số điện thoại của bạn"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập số điện thoại",
+                whitespace: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
           <Form.Item
             name="username"
             label="Tên đăng nhập"
@@ -129,21 +176,6 @@ const RegistrationForm = () => {
             ]}
           >
             <Input.Password />
-          </Form.Item>
-
-          <Form.Item
-            name="name"
-            label="Họ và tên"
-            tooltip="Nhập họ và tên của bạn"
-            rules={[
-              {
-                required: true,
-                message: "Vui lòng nhập họ và tên",
-                whitespace: true,
-              },
-            ]}
-          >
-            <Input />
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>

@@ -52,7 +52,11 @@ const ProductDetail = (props) => {
                   <div className="info__price__value--lineThrough">
                     {formatMoney(itemSelected.price)}
                   </div>
-                  <div>{formatMoney(priceByDiscount(itemSelected))}</div>
+                  <div>
+                    {formatMoney(
+                      priceByDiscount(itemSelected.price, itemSelected.discount)
+                    )}
+                  </div>
                 </>
               ) : (
                 <div>{formatMoney(itemSelected.price)}</div>

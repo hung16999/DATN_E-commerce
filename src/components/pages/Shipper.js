@@ -15,6 +15,7 @@ import {
 } from "../../containers/functions"
 import { Col, Row } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
+import api from "../../env/api"
 
 const Shipper = () => {
   const dispatch = useDispatch()
@@ -53,6 +54,16 @@ const Shipper = () => {
     dispatch(logout())
     setUserToLocalStorage(null)
     history.push("/")
+  }
+
+  const handlePickUp = (id, status) => {
+    const formData = new FormData()
+
+    formData.append("id", id)
+    formData.append("updateStatus", status)
+
+    api.post(`update_status_order.php`, formData)
+    fetchOrders()
   }
 
   return (
@@ -112,6 +123,9 @@ const Shipper = () => {
                   <p>
                     <b>Địa chỉ:</b> {order.address}
                   </p>
+                  <p>
+                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
+                  </p>
 
                   <div>
                     <b>Danh sách sản phẩm</b>
@@ -145,7 +159,9 @@ const Shipper = () => {
                     )}
                   </p>
 
-                  <button onClick={() => {}}>Bắt đầu giao hàng</button>
+                  <button onClick={() => handlePickUp(order.id_order, 3)}>
+                    Bắt đầu giao hàng
+                  </button>
                 </div>
               ))}
           </Col>
@@ -167,6 +183,9 @@ const Shipper = () => {
                   <p>
                     <b>Địa chỉ:</b> {order.address}
                   </p>
+                  <p>
+                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
+                  </p>
 
                   <div>
                     <b>Danh sách sản phẩm</b>
@@ -200,7 +219,9 @@ const Shipper = () => {
                     )}
                   </p>
 
-                  <button onClick={() => {}}>Xác nhận thanh toán</button>
+                  <button onClick={() => handlePickUp(order.id_order, 4)}>
+                    Xác nhận thanh toán
+                  </button>
                 </div>
               ))}
           </Col>
@@ -221,6 +242,9 @@ const Shipper = () => {
                   </p>
                   <p>
                     <b>Địa chỉ:</b> {order.address}
+                  </p>
+                  <p>
+                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
                   </p>
 
                   <div>
