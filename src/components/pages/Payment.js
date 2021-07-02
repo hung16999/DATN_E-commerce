@@ -8,7 +8,7 @@ import API from "../../env/api"
 
 import NavBar from "../../containers/NavBar"
 import { SmileOutlined } from "@ant-design/icons"
-import { notification } from "antd"
+import { notification, Input } from "antd"
 
 import {
   checkoutCart,
@@ -24,7 +24,6 @@ const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
-  console.log(currentUser)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -64,7 +63,7 @@ const Payment = () => {
     )
   }
 
-  const handleOrder = async (e) => {
+  const handleOrder = (e) => {
     e.preventDefault()
     const id = v4()
     const formData = new FormData()
@@ -76,23 +75,24 @@ const Payment = () => {
     formData.append("id_order_status", 1)
     formData.append("create_date", new Date().toMysqlFormat())
 
-    API.post(`push_order.php`, formData)
+    API.post(`push_order.php`, formData).then((response) => {
+      if (response.data === 1) {
+        cart.forEach((element) => {
+          const formData = new FormData()
+          formData.append("id_order", id)
+          formData.append("id_product", element.id)
+          formData.append("quantity", element.quantity)
 
-    await cart.forEach((element) => {
-      const formData = new FormData()
+          API.post(`push_order_detail.php`, formData)
+        })
 
-      formData.append("id_order", id)
-      formData.append("id_product", element.id)
-      formData.append("quantity", element.quantity)
-
-      API.post(`push_order_detail.php`, formData).then((response) =>
-        console.log(response)
-      )
+        dispatch(deleteAllItemInCart())
+        openNotification()
+        history.push("/")
+      } else {
+        alert(response.data)
+      }
     })
-
-    dispatch(deleteAllItemInCart())
-    openNotification()
-    history.push("/")
   }
 
   const openNotification = () => {
@@ -116,12 +116,12 @@ const Payment = () => {
           <h2>Điền thông tin đặt hàng</h2>
           <label>
             Họ và tên
-            <input type="text" value={currentUser ? currentUser.name : ""} />
+            <Input type="text" value={currentUser ? currentUser.name : ""} />
           </label>
 
           <label>
             Số điện thoại
-            <input
+            <Input
               type="number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -130,7 +130,7 @@ const Payment = () => {
 
           <label>
             Địa chỉ nhận hàng
-            <input
+            <Input
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}

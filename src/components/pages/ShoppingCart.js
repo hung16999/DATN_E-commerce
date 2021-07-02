@@ -28,7 +28,6 @@ import NavBar from "../../containers/NavBar"
 
 const ShoppingCart = () => {
   const { currentUser, cart } = useSelector((store) => store)
-  console.log(cart)
   const dispatch = useDispatch()
   const history = useHistory()
 

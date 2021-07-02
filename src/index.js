@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
+import ButtonReturnTop from "./containers/ButtonReturnTop"
 import { setCurrentUser } from "./redux/actions"
 import store from "./redux/store"
 import reportWebVitals from "./reportWebVitals"
@@ -13,6 +14,7 @@ store.dispatch(setCurrentUser(user))
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <ButtonReturnTop />
   </React.StrictMode>,
   document.getElementById("root")
 )
