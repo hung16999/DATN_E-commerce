@@ -8,7 +8,7 @@ import API from "../../env/api"
 
 import NavBar from "../../containers/NavBar"
 import { SmileOutlined } from "@ant-design/icons"
-import { notification, Input } from "antd"
+import { notification, Input, Button } from "antd"
 
 import {
   checkoutCart,
@@ -170,7 +170,9 @@ const Payment = () => {
               <span>{formatMoney(checkoutCart(cart))}</span>
               <span>{formatMoney(0)}</span>
               <span>{formatMoney(checkoutCart(cart))}</span>
-              <button onClick={handleOrder}>Đặt hàng</button>
+              <Button onClick={handleOrder} type="primary">
+                Đặt hàng
+              </Button>
             </div>
           </div>
         </div>
