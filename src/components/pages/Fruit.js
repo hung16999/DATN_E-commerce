@@ -8,11 +8,13 @@ const Fruit = () => {
   const [products, setProducts] = useState([])
 
   const fetchData = () => {
-    api
-      .get(`get_products.php`)
-      .then((response) =>
-        setProducts(response.data.filter((product) => product.type === "fruit"))
-      )
+    const type = "fruit"
+    const formData = new FormData()
+    formData.append("type", type)
+
+    api.post(`get_products_by_type.php`, formData).then((response) => {
+      setProducts(response.data)
+    })
   }
 
   useEffect(() => {
@@ -26,9 +28,7 @@ const Fruit = () => {
       </Helmet>
 
       <NavBar />
-      <RenderProduct
-        products={products.filter((item) => item.type === "fruit")}
-      />
+      <RenderProduct products={products} />
     </>
   )
 }

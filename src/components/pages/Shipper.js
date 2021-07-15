@@ -6,18 +6,14 @@ import { setUserToLocalStorage } from "../../utils/localStorage"
 
 import API from "../../env/api"
 
-import {
-  checkoutCart,
-  counterOrderByStatus,
-  formatMoney,
-  priceByDiscount,
-  priceByQuantity,
-} from "../../containers/functions"
-import { Col, Row } from "antd"
+import { counterOrderByStatus } from "../../containers/functions"
+import { Tabs, Badge } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
 import api from "../../env/api"
+import OrdersDetail from "./OrdersDetail"
 
 const Shipper = () => {
+  const { TabPane } = Tabs
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentUser } = useSelector((store) => store)
@@ -62,8 +58,7 @@ const Shipper = () => {
     formData.append("id", id)
     formData.append("updateStatus", status)
 
-    api.post(`update_status_order.php`, formData)
-    fetchOrders()
+    api.post(`update_status_order.php`, formData).then(fetchOrders())
   }
 
   return (
@@ -81,207 +76,53 @@ const Shipper = () => {
           </span>
         </div>
 
-        <Row className="salesman__title">
-          <Col span={8}>
-            <h2>
-              Đang chờ giao hàng{" "}
-              <span style={{ color: "red" }}>
-                {counterOrderByStatus(orders, 2)} đơn
-              </span>
-            </h2>
-          </Col>
-
-          <Col span={8}>
-            <h2>
-              Đang vận chuyển{" "}
-              <span style={{ color: "red" }}>
-                {counterOrderByStatus(orders, 3)} đơn
-              </span>
-            </h2>
-          </Col>
-
-          <Col span={8}>
-            <h2>Đã thanh toán</h2>
-          </Col>
-        </Row>
-
-        <div className="salesman__wrapper">
-          <Col className="salesman__wrapper__list" span={8}>
-            {orders
-              .filter((orderFilter) => orderFilter.id_order_status === 2)
-              .map((order) => (
-                <div key={order.id_order} className="order__item">
-                  <p>
-                    <b>id đơn hàng:</b> {order.id_order}
-                  </p>
-                  <p>
-                    <b>Tên khách:</b> {order.name}
-                  </p>
-                  <p>
-                    <b>Số điện thoại:</b> {order.phone}
-                  </p>
-                  <p>
-                    <b>Địa chỉ:</b> {order.address}
-                  </p>
-                  <p>
-                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
-                  </p>
-
-                  <div>
-                    <b>Danh sách sản phẩm</b>
-                    {ordersDetail
-                      .filter((item) => item.id_order === order.id_order)
-                      .map((item) => (
-                        <p>
-                          {item.id_product} - {item.name}{" "}
-                          {formatMoney(
-                            priceByDiscount(item.price, item.discount)
-                          )}{" "}
-                          x {item.quantity} ={" "}
-                          {formatMoney(
-                            priceByQuantity(
-                              priceByDiscount(item.price, item.discount),
-                              item.quantity
-                            )
-                          )}
-                        </p>
-                      ))}
-                  </div>
-
-                  <p>
-                    <b>Tổng tiền:</b>{" "}
-                    {formatMoney(
-                      checkoutCart(
-                        ordersDetail.filter(
-                          (item) => item.id_order === order.id_order
-                        )
-                      )
-                    )}
-                  </p>
-
-                  <button onClick={() => handlePickUp(order.id_order, 3)}>
-                    Bắt đầu giao hàng
-                  </button>
-                </div>
-              ))}
-          </Col>
-
-          <Col className="salesman__wrapper__list" span={8}>
-            {orders
-              .filter((orderFilter) => orderFilter.id_order_status === 3)
-              .map((order) => (
-                <div key={order.id_order} className="order__item">
-                  <p>
-                    <b>id đơn hàng:</b> {order.id_order}
-                  </p>
-                  <p>
-                    <b>Tên khách:</b> {order.name}
-                  </p>
-                  <p>
-                    <b>Số điện thoại:</b> {order.phone}
-                  </p>
-                  <p>
-                    <b>Địa chỉ:</b> {order.address}
-                  </p>
-                  <p>
-                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
-                  </p>
-
-                  <div>
-                    <b>Danh sách sản phẩm</b>
-                    {ordersDetail
-                      .filter((item) => item.id_order === order.id_order)
-                      .map((item) => (
-                        <p>
-                          {item.id_product} - {item.name}{" "}
-                          {formatMoney(
-                            priceByDiscount(item.price, item.discount)
-                          )}{" "}
-                          x {item.quantity} ={" "}
-                          {formatMoney(
-                            priceByQuantity(
-                              priceByDiscount(item.price, item.discount),
-                              item.quantity
-                            )
-                          )}
-                        </p>
-                      ))}
-                  </div>
-
-                  <p>
-                    <b>Tổng tiền:</b>{" "}
-                    {formatMoney(
-                      checkoutCart(
-                        ordersDetail.filter(
-                          (item) => item.id_order === order.id_order
-                        )
-                      )
-                    )}
-                  </p>
-
-                  <button onClick={() => handlePickUp(order.id_order, 4)}>
-                    Xác nhận thanh toán
-                  </button>
-                </div>
-              ))}
-          </Col>
-
-          <Col className="salesman__wrapper__list" span={8}>
-            {orders
-              .filter((orderFilter) => orderFilter.id_order_status === 4)
-              .map((order) => (
-                <div key={order.id_order} className="order__item">
-                  <p>
-                    <b>id đơn hàng:</b> {order.id_order}
-                  </p>
-                  <p>
-                    <b>Tên khách:</b> {order.name}
-                  </p>
-                  <p>
-                    <b>Số điện thoại:</b> {order.phone}
-                  </p>
-                  <p>
-                    <b>Địa chỉ:</b> {order.address}
-                  </p>
-                  <p>
-                    <b>Ngày tạo đơn hàng:</b> {order.create_date}
-                  </p>
-
-                  <div>
-                    <b>Danh sách sản phẩm</b>
-                    {ordersDetail
-                      .filter((item) => item.id_order === order.id_order)
-                      .map((item) => (
-                        <p>
-                          {item.id_product} - {item.name}{" "}
-                          {formatMoney(
-                            priceByDiscount(item.price, item.discount)
-                          )}{" "}
-                          x {item.quantity} ={" "}
-                          {formatMoney(
-                            priceByQuantity(
-                              priceByDiscount(item.price, item.discount),
-                              item.quantity
-                            )
-                          )}
-                        </p>
-                      ))}
-                  </div>
-
-                  <p>
-                    <b>Tổng tiền:</b>{" "}
-                    {formatMoney(
-                      checkoutCart(
-                        ordersDetail.filter(
-                          (item) => item.id_order === order.id_order
-                        )
-                      )
-                    )}
-                  </p>
-                </div>
-              ))}
-          </Col>
+        <div
+          style={{
+            marginTop: "20px",
+            width: "360px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Badge count={counterOrderByStatus(orders, 2)}></Badge>
+          <Badge count={counterOrderByStatus(orders, 3)}></Badge>
+          <Badge count={counterOrderByStatus(orders, 4)}></Badge>
         </div>
+
+        <Tabs defaultActiveKey={1}>
+          <TabPane tab="Đang chờ giao hàng" key={1}>
+            <OrdersDetail
+              orders={orders.filter(
+                (orderFilter) => orderFilter.id_order_status === 2
+              )}
+              ordersDetail={ordersDetail}
+              handleOnClick={handlePickUp}
+              buttonName="Bắt đầu giao hàng"
+              status={3}
+            />
+          </TabPane>
+
+          <TabPane tab="Đang vận chuyển" key={2}>
+            <OrdersDetail
+              orders={orders.filter(
+                (orderFilter) => orderFilter.id_order_status === 3
+              )}
+              ordersDetail={ordersDetail}
+              handleOnClick={handlePickUp}
+              buttonName="Xác nhận thanh toán"
+              status={4}
+            />
+          </TabPane>
+
+          <TabPane tab="Đã thanh toán" key={3}>
+            <OrdersDetail
+              orders={orders.filter(
+                (orderFilter) => orderFilter.id_order_status === 4
+              )}
+              ordersDetail={ordersDetail}
+            />
+          </TabPane>
+        </Tabs>
       </div>
     </>
   )

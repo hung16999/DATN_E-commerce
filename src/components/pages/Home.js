@@ -13,9 +13,25 @@ import slide4 from "../../assets/images/slide4.jpg"
 import cleanPicture from "../../assets/images/clean.jpg"
 import "../../assets/scss/Home.scss"
 import api from "../../env/api"
+import { useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 
 const Home = () => {
   const [products, setProducts] = useState([])
+  const { currentUser } = useSelector((store) => store)
+  const history = useHistory()
+
+  if (currentUser) {
+    if (currentUser.role !== 4) {
+      if (currentUser.role === 1) {
+        history.push("/admin")
+      } else if (currentUser.role === 2) {
+        history.push("/salesman")
+      } else if (currentUser.role === 3) {
+        history.push("/shipper")
+      }
+    }
+  }
 
   const fetchData = () => {
     api.get(`get_products.php`).then((response) => setProducts(response.data))

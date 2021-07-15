@@ -6,20 +6,16 @@ import API from "../../env/api"
 
 import { logout } from "../../redux/actions"
 import { setUserToLocalStorage } from "../../utils/localStorage"
-import {
-  checkoutCart,
-  counterOrderByStatus,
-  formatMoney,
-  priceByDiscount,
-  priceByQuantity,
-} from "../../containers/functions"
+import { counterOrderByStatus } from "../../containers/functions"
 
 import "../../assets/scss/salesman.scss"
-import { Col, Row } from "antd"
+import { Tabs, Badge } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
 import api from "../../env/api"
+import OrdersDetail from "./OrdersDetail"
 
 const Salesman = () => {
+  const { TabPane } = Tabs
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentUser } = useSelector((store) => store)
@@ -63,8 +59,7 @@ const Salesman = () => {
     formData.append("id", id)
     formData.append("updateStatus", status)
 
-    api.post(`update_status_order.php`, formData)
-    fetchOrders()
+    api.post(`update_status_order.php`, formData).then(fetchOrders())
   }
 
   return (
@@ -81,138 +76,40 @@ const Salesman = () => {
         </span>
       </div>
 
-      <Row className="salesman__title">
-        <Col span={12}>
-          <h2>
-            Đang chờ xử lý{" "}
-            <span style={{ color: "red" }}>
-              {counterOrderByStatus(orders, 1)} đơn
-            </span>
-          </h2>
-        </Col>
-
-        <Col span={12}>
-          <h2>Đã lấy hàng</h2>
-        </Col>
-      </Row>
-
-      <div className="salesman__wrapper">
-        <Col className="salesman__wrapper__list" span={12}>
-          {orders
-            .filter((orderFilter) => orderFilter.id_order_status === 1)
-            .map((order) => (
-              <div key={order.id_order} className="order__item">
-                <p>
-                  <b>id đơn hàng:</b> {order.id_order}
-                </p>
-                <p>
-                  <b>Tên khách:</b> {order.name}
-                </p>
-                <p>
-                  <b>Số điện thoại:</b> {order.phone}
-                </p>
-                <p>
-                  <b>Địa chỉ:</b> {order.address}
-                </p>
-                <p>
-                  <b>Ngày tạo đơn hàng:</b> {order.create_date}
-                </p>
-
-                <div>
-                  <b>Danh sách sản phẩm</b>
-                  {ordersDetail
-                    .filter((item) => item.id_order === order.id_order)
-                    .map((item) => (
-                      <p>
-                        {item.id_product} - {item.name}{" "}
-                        {formatMoney(
-                          priceByDiscount(item.price, item.discount)
-                        )}{" "}
-                        x {item.quantity} ={" "}
-                        {formatMoney(
-                          priceByQuantity(
-                            priceByDiscount(item.price, item.discount),
-                            item.quantity
-                          )
-                        )}
-                      </p>
-                    ))}
-                </div>
-
-                <p>
-                  <b>Tổng tiền:</b>{" "}
-                  {formatMoney(
-                    checkoutCart(
-                      ordersDetail.filter(
-                        (item) => item.id_order === order.id_order
-                      )
-                    )
-                  )}
-                </p>
-
-                <button onClick={() => handlePickUp(order.id_order, 2)}>
-                  Đã lấy hàng
-                </button>
-              </div>
-            ))}
-        </Col>
-
-        <Col className="salesman__wrapper__list" span={12}>
-          {orders
-            .filter((orderFilter) => orderFilter.id_order_status === 2)
-            .map((order) => (
-              <div key={order.id_order} className="order__item">
-                <p>
-                  <b>id đơn hàng:</b> {order.id_order}
-                </p>
-                <p>
-                  <b>Tên khách:</b> {order.name}
-                </p>
-                <p>
-                  <b>Số điện thoại:</b> {order.phone}
-                </p>
-                <p>
-                  <b>Địa chỉ:</b> {order.address}
-                </p>
-                <p>
-                  <b>Ngày tạo đơn hàng:</b> {order.create_date}
-                </p>
-
-                <div>
-                  <b>Danh sách sản phẩm</b>
-                  {ordersDetail
-                    .filter((item) => item.id_order === order.id_order)
-                    .map((item) => (
-                      <p>
-                        {item.id_product} - {item.name}{" "}
-                        {formatMoney(
-                          priceByDiscount(item.price, item.discount)
-                        )}{" "}
-                        x {item.quantity} ={" "}
-                        {formatMoney(
-                          priceByQuantity(
-                            priceByDiscount(item.price, item.discount),
-                            item.quantity
-                          )
-                        )}
-                      </p>
-                    ))}
-                </div>
-
-                <p>
-                  <b>Tổng tiền:</b>{" "}
-                  {formatMoney(
-                    checkoutCart(
-                      ordersDetail.filter(
-                        (item) => item.id_order === order.id_order
-                      )
-                    )
-                  )}
-                </p>
-              </div>
-            ))}
-        </Col>
+      <div
+        style={{
+          marginTop: "20px",
+          width: "200px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Badge count={counterOrderByStatus(orders, 1)}></Badge>
+        <Badge count={counterOrderByStatus(orders, 2)}></Badge>
       </div>
+
+      <Tabs defaultActiveKey={1}>
+        <TabPane tab="Đang chờ xử lý" key={1}>
+          <OrdersDetail
+            orders={orders.filter(
+              (orderFilter) => orderFilter.id_order_status === 1
+            )}
+            ordersDetail={ordersDetail}
+            handleOnClick={handlePickUp}
+            buttonName="Đã lấy hàng"
+            status={2}
+          />
+        </TabPane>
+
+        <TabPane tab="Đã lấy hàng" key={2}>
+          <OrdersDetail
+            orders={orders.filter(
+              (orderFilter) => orderFilter.id_order_status === 2
+            )}
+            ordersDetail={ordersDetail}
+          />
+        </TabPane>
+      </Tabs>
     </div>
   )
 }

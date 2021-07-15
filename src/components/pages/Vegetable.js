@@ -8,13 +8,13 @@ const Rau = () => {
   const [products, setProducts] = useState([])
 
   const fetchData = () => {
-    api
-      .get(`get_products.php`)
-      .then((response) =>
-        setProducts(
-          response.data.filter((product) => product.type === "vegetable")
-        )
-      )
+    const type = "vegetable"
+    const formData = new FormData()
+    formData.append("type", type)
+
+    api.post(`get_products_by_type.php`, formData).then((response) => {
+      setProducts(response.data)
+    })
   }
 
   useEffect(() => {
