@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
-import { logout } from "../../redux/actions"
-import { setUserToLocalStorage } from "../../utils/localStorage"
+import { logout } from "../../../redux/actions"
+import { setUserToLocalStorage } from "../../../utils/localStorage"
 import { LogoutOutlined } from "@ant-design/icons"
-import "../../assets/scss/Admin.scss"
+import "../../../assets/scss/Admin.scss"
 import AdminUser from "./AdminUser"
 import AdminProducts from "./AdminProducts"
 import { Tabs } from "antd"
-import api from "../../env/api"
+import API from "../../../env/api"
 
 const Admin = () => {
   const { TabPane } = Tabs
@@ -17,8 +17,8 @@ const Admin = () => {
   const [products, setProducts] = useState([])
 
   const fetchDataForAdmin = () => {
-    api.get(`get_products.php`).then((response) => setProducts(response.data))
-    api.get(`get_all_user.php`).then((response) => setUsers(response.data))
+    API.get(`get_products.php`).then((response) => setProducts(response.data))
+    API.get(`get_all_user.php`).then((response) => setUsers(response.data))
   }
 
   useEffect(() => {

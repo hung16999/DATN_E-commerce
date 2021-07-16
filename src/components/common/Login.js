@@ -5,7 +5,7 @@ import { login } from "../../redux/actions"
 import HeaderLogin from "../header/HeaderLogin"
 import { setUserToLocalStorage } from "../../utils/localStorage"
 import { Form, Input, Button } from "antd"
-import api from "../../env/api"
+import API from "../../env/api"
 
 const Login = () => {
   const history = useHistory()
@@ -29,7 +29,7 @@ const Login = () => {
     formData.append("username", username)
     formData.append("password", password)
 
-    api.post(`login.php`, formData).then((response) => {
+    API.post(`login.php`, formData).then((response) => {
       const user = response.data[0]
 
       if (user) {

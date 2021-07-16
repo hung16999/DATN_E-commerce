@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 
-import API from "../../env/api"
+import API from "../../../env/api"
 
-import { logout } from "../../redux/actions"
-import { setUserToLocalStorage } from "../../utils/localStorage"
-import { counterOrderByStatus } from "../../containers/functions"
+import { logout } from "../../../redux/actions"
+import { setUserToLocalStorage } from "../../../utils/localStorage"
+import { counterOrderByStatus } from "../../../containers/functions"
 
-import "../../assets/scss/salesman.scss"
+import "../../../assets/scss/salesman.scss"
 import { Tabs, Badge } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
-import api from "../../env/api"
-import OrdersDetail from "./OrdersDetail"
+import OrdersDetail from "../../common/OrdersDetail"
 
 const Salesman = () => {
   const { TabPane } = Tabs
@@ -59,7 +58,7 @@ const Salesman = () => {
     formData.append("id", id)
     formData.append("updateStatus", status)
 
-    api.post(`update_status_order.php`, formData).then(fetchOrders())
+    API.post(`update_status_order.php`, formData).then(fetchOrders())
   }
 
   return (

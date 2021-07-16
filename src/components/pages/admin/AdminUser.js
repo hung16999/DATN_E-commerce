@@ -1,66 +1,58 @@
 import React, { useState } from "react"
 import { v4 } from "uuid"
+import API from "../../../env/api"
+
 import {
   Table,
   Popconfirm,
-  Input,
-  notification,
   Form,
   Typography,
   Button,
+  Input,
+  notification,
 } from "antd"
-import EditableCell from "./EditableCell"
-import api from "../../env/api"
 
-const AdminUser = ({ products, fetchDataForAdmin }) => {
+import EditableCell from "../../common/EditableCell"
+
+const AdminUser = ({ users, fetchDataForAdmin }) => {
   const [form] = Form.useForm()
-  const isEditing = (record) => record.id === editingKey
+  const isEditing = (record) => record.id_account === editingKey
 
   const [editingKey, setEditingKey] = useState("")
-  const [isAddProduct, setIsAddProduct] = useState(false)
-  const [type, setType] = useState("")
-  const [price, setPrice] = useState("")
-  const [discount, setDiscount] = useState("")
-  const [remains, setRemains] = useState("")
-  const [src, setSrc] = useState("")
+  const [isAddAccount, setIsAddAccount] = useState(false)
   const [name, setName] = useState("")
-
-  const openNotification = () => {
-    notification.open({
-      message: "Thông báo",
-      description: "Thao tác thành công!",
-    })
-  }
+  const [phone, setPhone] = useState("")
+  const [role, setRole] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const edit = async (record) => {
     await form.setFieldsValue({
       name: "",
-      src: "",
-      price: 0,
-      discount: 0,
-      remains: 0,
-      type: "",
+      username: "",
+      password: "",
+      role: "",
       ...record,
     })
-    setEditingKey(record.id)
+    setEditingKey(record.id_account)
   }
 
   const cancel = () => {
     setEditingKey("")
   }
 
-  const save = async (id) => {
+  const save = async (id_account) => {
     const row = await form.validateFields()
     const formData = new FormData()
 
-    formData.append("id", id)
+    formData.append("id_account", id_account)
     formData.append("name", row.name)
-    formData.append("price", row.price)
-    formData.append("discount", row.discount)
-    formData.append("src", row.src)
-    formData.append("remains", row.remains)
+    formData.append("phone", row.phone)
+    formData.append("username", row.username)
+    formData.append("password", row.password)
+    formData.append("role", row.role)
 
-    api.post(`update_product.php`, formData).then((response) => {
+    API.post(`update_account.php`, formData).then((response) => {
       if (response.data === 1) {
         openNotification()
         fetchDataForAdmin()
@@ -71,40 +63,44 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
     setEditingKey("")
   }
 
+  const deleteRecord = (id) => {
+    const formData = new FormData()
+    formData.append("id_account", id)
+
+    API.post(`delete_account.php`, formData).then((response) => {
+      if (response.data === 1) {
+        openNotification()
+        fetchDataForAdmin()
+      } else {
+        alert(response.data)
+      }
+    })
+  }
+
   const columns = [
     {
-      title: "id",
-      dataIndex: "id",
-      editable: false,
-      width: 50,
-    },
-    {
-      title: "tên",
+      title: "Tên nhân viên",
       dataIndex: "name",
       editable: true,
     },
     {
-      title: "loại",
-      dataIndex: "type",
-    },
-    {
-      title: "giá",
-      dataIndex: "price",
+      title: "chức vụ",
+      dataIndex: "role",
       editable: true,
     },
     {
-      title: "discount",
-      dataIndex: "discount",
+      title: "Số điện thoại",
+      dataIndex: "phone",
       editable: true,
     },
     {
-      title: "số lượng còn lại",
-      dataIndex: "remains",
+      title: "username",
+      dataIndex: "username",
       editable: true,
     },
     {
-      title: "Đường dẫn ảnh",
-      dataIndex: "src",
+      title: "password",
+      dataIndex: "password",
       editable: true,
     },
     {
@@ -116,7 +112,7 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
           <span>
             <Button
               type="primary"
-              onClick={() => save(record.id)}
+              onClick={() => save(record.id_account)}
               style={{
                 marginRight: 8,
               }}
@@ -136,6 +132,19 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
             >
               Sửa
             </Typography.Link>
+
+            <Popconfirm
+              title="Bạn có chắc XÓA tài khoản?"
+              onConfirm={() => deleteRecord(record.id_account)}
+            >
+              <Typography.Link
+                disabled={editingKey !== ""}
+                type="danger"
+                style={{ marginLeft: "25px" }}
+              >
+                Xóa
+              </Typography.Link>
+            </Popconfirm>
           </>
         )
       },
@@ -151,50 +160,50 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType:
-          col.dataIndex === "price" ||
-          col.dataIndex === "discount" ||
-          col.dataIndex === "remains"
-            ? "number"
-            : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
+        inputType: col.dataIndex === "phone" || "role" ? "number" : "text",
       }),
     }
   })
 
-  const addNewProduct = () => {
+  const addNewAccount = () => {
     const formData = new FormData()
 
-    formData.append("id", v4())
+    formData.append("id_account", v4())
     formData.append("name", name)
-    formData.append("price", price)
-    formData.append("discount", discount)
-    formData.append("src", src)
-    formData.append("remains", remains)
-    formData.append("type", type)
+    formData.append("phone", phone)
+    formData.append("role", role)
+    formData.append("username", username)
+    formData.append("password", password)
 
-    api.post(`push_product.php`, formData).then((response) => {
+    API.post(`push_account.php`, formData).then((response) => {
       if (response.data === 1) {
-        setDiscount("")
         setName("")
-        setPrice("")
-        setRemains("")
-        setSrc("")
-        setType("")
+        setPassword("")
+        setRole("")
+        setUsername("")
+        setPhone("")
         fetchDataForAdmin()
         openNotification()
       }
     })
   }
 
+  const openNotification = () => {
+    notification.open({
+      message: "Thông báo",
+      description: "Thao tác thành công!",
+    })
+  }
+
   return (
     <>
-      {isAddProduct ? (
+      {isAddAccount ? (
         <>
           <div>
-            <Button onClick={() => setIsAddProduct(false)} type="danger">
+            <Button onClick={() => setIsAddAccount(false)} type="danger">
               Hủy
             </Button>
           </div>
@@ -207,49 +216,48 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
             }}
           >
             <label>
-              Tên:{" "}
+              Họ và tên:{" "}
               <Input value={name} onChange={(e) => setName(e.target.value)} />
             </label>
 
             <label>
-              Loại:{" "}
-              <Input value={type} onChange={(e) => setType(e.target.value)} />
-            </label>
-
-            <label>
-              price:{" "}
+              Chức vụ:{" "}
               <Input
                 type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                min={2}
+                max={3}
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
               />
             </label>
 
             <label>
-              discount:{" "}
+              phone:{" "}
               <Input
                 type="number"
-                value={discount}
-                onChange={(e) => setDiscount(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </label>
 
             <label>
-              số lượng còn lại:{" "}
+              username:{" "}
               <Input
-                type="number"
-                value={remains}
-                onChange={(e) => setRemains(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </label>
 
             <label>
-              src:{" "}
-              <Input value={src} onChange={(e) => setSrc(e.target.value)} />
+              password:{" "}
+              <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </label>
 
             <Button
-              onClick={addNewProduct}
+              onClick={addNewAccount}
               type="primary"
               style={{ marginLeft: "15px" }}
             >
@@ -258,11 +266,9 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
           </div>
         </>
       ) : (
-        <>
-          <Button onClick={() => setIsAddProduct(true)} type="primary">
-            Thêm sản phẩm mới
-          </Button>
-        </>
+        <Button onClick={() => setIsAddAccount(true)} type="primary">
+          Thêm tài khoản mới
+        </Button>
       )}
 
       <Form form={form} component={false}>
@@ -272,7 +278,7 @@ const AdminUser = ({ products, fetchDataForAdmin }) => {
               cell: EditableCell,
             },
           }}
-          dataSource={products}
+          dataSource={users}
           columns={mergedColumns}
           rowClassName="editable-row"
           bordered

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
-import { logout } from "../../redux/actions"
-import { setUserToLocalStorage } from "../../utils/localStorage"
+import { logout } from "../../../redux/actions"
+import { setUserToLocalStorage } from "../../../utils/localStorage"
 
-import API from "../../env/api"
+import API from "../../../env/api"
 
-import { counterOrderByStatus } from "../../containers/functions"
+import { counterOrderByStatus } from "../../../containers/functions"
 import { Tabs, Badge } from "antd"
 import { LogoutOutlined } from "@ant-design/icons"
-import api from "../../env/api"
-import OrdersDetail from "./OrdersDetail"
+import OrdersDetail from "../../common/OrdersDetail"
 
 const Shipper = () => {
   const { TabPane } = Tabs
@@ -58,7 +57,7 @@ const Shipper = () => {
     formData.append("id", id)
     formData.append("updateStatus", status)
 
-    api.post(`update_status_order.php`, formData).then(fetchOrders())
+    API.post(`update_status_order.php`, formData).then(fetchOrders())
   }
 
   return (

@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react"
 import { Carousel } from "antd"
 import { Helmet } from "react-helmet"
 
-import RenderProduct from "../../containers/RenderProduct"
-import NavBar from "../../containers/NavBar"
+import RenderProduct from "../../../containers/RenderProduct"
+import NavBar from "../../../containers/NavBar"
 
-import slide1 from "../../assets/images/slide1.jpg"
-import slide2 from "../../assets/images/slide2.jpg"
-import slide3 from "../../assets/images/slide3.jpg"
-import slide4 from "../../assets/images/slide4.jpg"
-import cleanPicture from "../../assets/images/clean.jpg"
-import "../../assets/scss/Home.scss"
-import api from "../../env/api"
+import slide1 from "../../../assets/images/slide1.jpg"
+import slide2 from "../../../assets/images/slide2.jpg"
+import slide3 from "../../../assets/images/slide3.jpg"
+import slide4 from "../../../assets/images/slide4.jpg"
+import cleanPicture from "../../../assets/images/clean.jpg"
+import "../../../assets/scss/Home.scss"
+import API from "../../../env/api"
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 
@@ -34,7 +34,7 @@ const Home = () => {
   }
 
   const fetchData = () => {
-    api.get(`get_products.php`).then((response) => setProducts(response.data))
+    API.get(`get_products.php`).then((response) => setProducts(response.data))
   }
 
   useEffect(() => {

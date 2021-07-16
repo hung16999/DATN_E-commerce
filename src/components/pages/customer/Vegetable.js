@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet"
 import React, { useEffect, useState } from "react"
-import RenderProduct from "../../containers/RenderProduct"
-import NavBar from "../../containers/NavBar"
-import api from "../../env/api"
+import RenderProduct from "../../../containers/RenderProduct"
+import NavBar from "../../../containers/NavBar"
+import API from "../../../env/api"
 
 const Rau = () => {
   const [products, setProducts] = useState([])
@@ -12,7 +12,7 @@ const Rau = () => {
     const formData = new FormData()
     formData.append("type", type)
 
-    api.post(`get_products_by_type.php`, formData).then((response) => {
+    API.post(`get_products_by_type.php`, formData).then((response) => {
       setProducts(response.data)
     })
   }

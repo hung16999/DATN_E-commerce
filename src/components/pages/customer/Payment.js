@@ -4,9 +4,9 @@ import { useState } from "react"
 import { v4 } from "uuid"
 import { useHistory } from "react-router"
 import { Helmet } from "react-helmet"
-import API from "../../env/api"
+import API from "../../../env/api"
 
-import NavBar from "../../containers/NavBar"
+import NavBar from "../../../containers/NavBar"
 import { SmileOutlined } from "@ant-design/icons"
 import { notification, Input, Button } from "antd"
 
@@ -15,10 +15,10 @@ import {
   formatMoney,
   priceByDiscount,
   priceByQuantity,
-} from "../../containers/functions"
+} from "../../../containers/functions"
 
-import "../../assets/scss/Payment.scss"
-import { deleteAllItemInCart } from "../../redux/actions"
+import "../../../assets/scss/Payment.scss"
+import { deleteAllItemInCart } from "../../../redux/actions"
 
 const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)

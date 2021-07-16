@@ -8,23 +8,23 @@ import {
   formatMoney,
   priceByDiscount,
   priceByQuantity,
-} from "../../containers/functions"
+} from "../../../containers/functions"
 
 import {
   decreaseQuantity,
   deleteAllItemInCart,
   deleteItemInCart,
   increaseQuantity,
-} from "../../redux/actions"
+} from "../../../redux/actions"
 
-import "./../../assets/scss/ShoppingCart.scss"
+import "../../../assets/scss/ShoppingCart.scss"
 import { Popconfirm } from "antd"
 import {
   ArrowLeftOutlined,
   DeleteFilled,
   WalletFilled,
 } from "@ant-design/icons"
-import NavBar from "../../containers/NavBar"
+import NavBar from "../../../containers/NavBar"
 
 const ShoppingCart = () => {
   const { currentUser, cart } = useSelector((store) => store)

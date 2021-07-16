@@ -1,19 +1,18 @@
-import ButtonReturnTop from "../../containers/ButtonReturnTop"
 import { Helmet } from "react-helmet"
 import React, { useEffect, useState } from "react"
-import RenderProduct from "../../containers/RenderProduct"
-import NavBar from "../../containers/NavBar"
-import api from "../../env/api"
+import RenderProduct from "../../../containers/RenderProduct"
+import NavBar from "../../../containers/NavBar"
+import API from "../../../env/api"
 
-const Rice = () => {
+const Fruit = () => {
   const [products, setProducts] = useState([])
 
   const fetchData = () => {
-    const type = "rice"
+    const type = "fruit"
     const formData = new FormData()
     formData.append("type", type)
 
-    api.post(`get_products_by_type.php`, formData).then((response) => {
+    API.post(`get_products_by_type.php`, formData).then((response) => {
       setProducts(response.data)
     })
   }
@@ -25,14 +24,13 @@ const Rice = () => {
   return (
     <>
       <Helmet>
-        <title>Gạo</title>
+        <title>Trái cây</title>
       </Helmet>
 
       <NavBar />
       <RenderProduct products={products} />
-      <ButtonReturnTop />
     </>
   )
 }
 
-export default Rice
+export default Fruit

@@ -8,7 +8,7 @@ import { login } from "../../redux/actions"
 
 import { SmileOutlined } from "@ant-design/icons"
 import { Form, Input, Button, notification } from "antd"
-import api from "../../env/api"
+import API from "../../env/api"
 import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const formItemLayout = {
@@ -59,9 +59,9 @@ const RegistrationForm = () => {
     formData.append("name", values.name)
     formData.append("phone", values.phone)
 
-    api.post(`push_account.php`, formData).then((response) => {
+    API.post(`push_account.php`, formData).then((response) => {
       if (response.data === 1) {
-        api.post(`login.php`, formData).then((response) => {
+        API.post(`login.php`, formData).then((response) => {
           const user = response.data[0]
 
           if (user) {
