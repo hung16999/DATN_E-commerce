@@ -9,6 +9,8 @@ import Register from "../components/common/Register"
 import Salesman from "../components/pages/salesman/Salesman"
 import Shipper from "../components/pages/shipper/Shipper"
 import Admin from "../components/pages/admin/Admin"
+import HistoryOrders from "../components/pages/customer/HistoryOrders"
+import Info from "../components/pages/customer/Info"
 
 export const routes = [
   {
@@ -65,5 +67,15 @@ export const routes = [
     path: "/shipper",
     exact: true,
     Component: <Shipper />,
+  },
+  {
+    path: "/history",
+    exact: true,
+    Component: <HistoryOrders />,
+  },
+  {
+    path: "/info",
+    exact: true,
+    Component: <Info />,
   },
 ]

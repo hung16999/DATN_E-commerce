@@ -48,11 +48,15 @@ export const checkStatus = (status) => {
 
 export const counterOrderByStatus = (array, status) => {
   let count = 0
-  array.forEach((element) => {
-    if (element.id_order_status === status) {
-      count++
-    }
-  })
+  if (status === 0) {
+    return array.length
+  } else {
+    array.forEach((element) => {
+      if (element.id_order_status === status) {
+        count++
+      }
+    })
+  }
 
   return count
 }

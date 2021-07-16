@@ -1,5 +1,4 @@
 import {
-  PICKUP,
   DECREASE_QUANTITY,
   DELETE_ALL_ITEM_IN_CART,
   DELETE_ITEM_IN_CART,
@@ -7,16 +6,7 @@ import {
   LOG_IN,
   LOG_OUT,
   PUSH_ITEM_TO_CART,
-  SEND_ORDER,
   SET_CURRENT_USER,
-  START_SHIP,
-  PAID,
-  ADD_NEW_ACCOUNT,
-  EDIT_ACCOUNT,
-  DELETE_ACCOUNT,
-  ADD_NEW_PRODUCT,
-  EDIT_PRODUCT,
-  DELETE_PRODUCT,
 } from "./state/actionType"
 
 export const pushToCart = (payload) => {
@@ -69,76 +59,6 @@ export const logout = () => {
 export const setCurrentUser = (payload) => {
   return {
     type: SET_CURRENT_USER,
-    payload,
-  }
-}
-
-export const sendOrder = (payload) => {
-  return {
-    type: SEND_ORDER,
-    payload,
-  }
-}
-
-export const changePickUp = (payload) => {
-  return {
-    type: PICKUP,
-    payload,
-  }
-}
-
-export const changeStartShip = (payload) => {
-  return {
-    type: START_SHIP,
-    payload,
-  }
-}
-
-export const changePaid = (payload) => {
-  return {
-    type: PAID,
-    payload,
-  }
-}
-
-export const deleteAccount = (payload) => {
-  return {
-    type: DELETE_ACCOUNT,
-    payload,
-  }
-}
-
-export const editAccount = (payload) => {
-  return {
-    type: EDIT_ACCOUNT,
-    payload,
-  }
-}
-
-export const addAccount = (payload) => {
-  return {
-    type: ADD_NEW_ACCOUNT,
-    payload,
-  }
-}
-
-export const addProduct = (payload) => {
-  return {
-    type: ADD_NEW_PRODUCT,
-    payload,
-  }
-}
-
-export const editProduct = (payload) => {
-  return {
-    type: EDIT_PRODUCT,
-    payload,
-  }
-}
-
-export const deleteProduct = (payload) => {
-  return {
-    type: DELETE_PRODUCT,
     payload,
   }
 }

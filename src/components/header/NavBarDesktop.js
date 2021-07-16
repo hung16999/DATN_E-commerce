@@ -1,6 +1,6 @@
 import "../../assets/scss/NavBarDesktop.scss"
 
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useHistory } from "react-router-dom"
 import React from "react"
 import { SearchOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons"
 import ShoppingIcon from "./ShoppingIcon"
@@ -12,11 +12,13 @@ import { setUserToLocalStorage } from "../../utils/localStorage"
 
 const NavBarDesktop = ({ setIsShowMenu }) => {
   const currentUser = useSelector((store) => store.currentUser)
+  const history = useHistory()
 
   const navigations = [
     { label: "Rau củ", to: "/vegetable" },
     { label: "Gạo", to: "/rice" },
     { label: "Trái cây", to: "/fruit" },
+    // { label: "Lịch sử đơn hàng", to: "/history" },
   ]
 
   const dispatch = useDispatch()
@@ -29,6 +31,14 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
     dispatch(logout())
     setUserToLocalStorage(null)
     dispatch(deleteAllItemInCart())
+  }
+
+  const handleHistory = () => {
+    history.push("/history")
+  }
+
+  const handleInfo = () => {
+    history.push("/info")
   }
 
   return (
@@ -60,12 +70,25 @@ const NavBarDesktop = ({ setIsShowMenu }) => {
 
           {currentUser ? (
             <div className="item">
-              <span style={{ paddingRight: "25px" }}>
-                {currentUser.role === 4 && <UserOutlined />}
+              <span
+                title="Xem thông tin"
+                onClick={handleInfo}
+                style={{ paddingRight: "25px", cursor: "pointer" }}
+              >
+                <span>{currentUser.role === 4 && <UserOutlined />}</span>
                 {currentUser.role === 1 && <>Admin</>}
                 {currentUser.role === 2 && <>Salesman</>}
                 {currentUser.role === 3 && <>Shipper</>} {currentUser.name}
               </span>
+
+              <span
+                title="Xem lịch sử mua hàng của bạn"
+                onClick={handleHistory}
+                style={{ marginRight: "20px", cursor: "pointer" }}
+              >
+                Lịch sử mua hàng
+              </span>
+
               <LogoutOutlined onClick={handleLogout} />
             </div>
           ) : (

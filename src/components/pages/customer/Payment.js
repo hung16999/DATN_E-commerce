@@ -22,6 +22,7 @@ import { deleteAllItemInCart } from "../../../redux/actions"
 
 const Payment = () => {
   const { currentUser, cart } = useSelector((store) => store)
+  // const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
 
@@ -83,7 +84,9 @@ const Payment = () => {
           formData.append("id_product", element.id)
           formData.append("quantity", element.quantity)
 
-          API.post(`push_order_detail.php`, formData)
+          API.post(`push_order_detail.php`, formData).then((response) => {
+            console.log(response.data)
+          })
         })
 
         dispatch(deleteAllItemInCart())

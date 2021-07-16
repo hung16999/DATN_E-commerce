@@ -5,7 +5,7 @@ const ButtonReturnTop = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 200) {
+    if (window.pageYOffset > 600) {
       setIsVisible(true)
     } else {
       setIsVisible(false)
